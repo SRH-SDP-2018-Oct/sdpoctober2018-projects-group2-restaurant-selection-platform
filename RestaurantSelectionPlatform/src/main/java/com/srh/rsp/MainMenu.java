@@ -1,0 +1,210 @@
+package com.srh.rsp;
+import java.util.Scanner;
+
+public class MainMenu {
+	public void CustomerMainMenu() {
+		System.out.println("--------------Restaurant Selection Platform--------------");
+		System.out.println("Please proceed with below options:");
+		System.out.println("1. Search Restaurant \n2. Notifications \n3. Settings \n0. Exit");
+		System.out.println("\nEnter Choice");
+		Scanner input = new Scanner(System.in);
+		int choice = Integer.parseInt(input.nextLine());
+		switch(choice) {
+		case 1: SearchRestaurant();
+			break;
+		case 2: CustomerNotificaitons();
+			break;
+		case 3: CustomerSettings();
+			break;
+		case 0: System.exit(0);
+			break;
+			default: System.out.println("Wrong input");
+		}
+		input.close();
+	}
+
+	public void OwnerMainMenu() {
+		System.out.println("--------------Restaurant Selection Platform--------------");
+		System.out.println("Please proceed with below options:");
+		System.out.println("1. Add/Delete Restaurant \n2. Generate Report \n3. Manage Bookings \n4. Notifications \n5.Settings \n0. Exit");
+		System.out.println("\nEnter Choice");
+		Scanner input = new Scanner(System.in);
+		int choice = Integer.parseInt(input.nextLine());
+		switch(choice) {
+		case 1: AddDeleteRestaurant();
+			break;
+		case 2: GenerateReport();
+			break;
+		case 3: ManageBookings();
+			break;
+		case 4: OwnerNotificaitons();
+			break;
+		case 5: OwnerSettings();
+			break;
+		case 0: System.exit(0);
+			break;
+			default: System.out.println("Wrong input");
+		}
+		input.close();
+	}
+
+	public void MasterMainMenu() {
+		System.out.println("--------------Restaurant Selection Platform--------------");
+		System.out.println("Please proceed with below options:");
+		System.out.println("1. Add/Delete Restaurant \n2. Generate Report \n3. Search Restaurant \n4. Manage Bookings");
+		System.out.println("n5. Notifications \\n6.Settings \\n0. Exit");
+		System.out.println("\nEnter Choice");
+		Scanner input = new Scanner(System.in);
+		int choice = Integer.parseInt(input.nextLine());
+		switch(choice) {
+		case 1: AddDeleteRestaurant();
+			break;
+		case 2: GenerateReport();
+			break;
+		case 3: SearchRestaurant();
+			break;
+		case 4: ManageBookings();
+			break;
+		case 5: MasterNotificatins();
+			break;
+		case 6: MasterSettings();
+			break;
+		case 0: System.exit(0);
+			break;
+			default: System.out.println("Wrong input");
+		}
+		input.close();
+	}
+	
+	private void SearchRestaurant() {
+		System.out.println("--------------Restaurant Selection Platform--------------");
+		System.out.print("Please enter location for search: ");
+		Scanner input = new Scanner(System.in);
+		String location = input.nextLine();
+		
+		input.close();
+	}
+	
+	private void CustomerNotificaitons() {
+		System.out.println("--------------Restaurant Selection Platform--------------");
+		System.out.println("--------------Notifications--------------");
+		
+	}
+	
+	private void CustomerSettings() {
+		System.out.println("--------------Restaurant Selection Platform--------------");
+		System.out.println("--------------Settings Menu--------------");
+		System.out.println("1. Edit Profile \n0. Return to Main Menu");
+		System.out.print("\nEnter choice: ");
+		Scanner input = new Scanner(System.in);
+		int choice = Integer.parseInt(input.nextLine());
+		switch(choice) {
+		case 1: 
+			break;
+		case 0: CustomerMainMenu(); 
+			break;
+		}
+		
+		input.close();
+		
+	}
+	
+	private void AddDeleteRestaurant() {
+		System.out.println("--------------Restaurant Selection Platform--------------");
+		System.out.println("--------------Search Restaurant--------------");
+		System.out.println("Please make a selection..");
+		System.out.println("1. Add Restaurant \n2. Delete Restaurant \n0. Return to main menu");
+		System.out.print("\nEnter choice: ");
+		Scanner input = new Scanner(System.in);
+		int choice = Integer.parseInt(input.nextLine());
+		switch(choice) {
+		case 1:
+			break;
+		case 2:
+			break;
+		case 0: OwnerMainMenu(); 
+			break;
+		}
+		
+		input.close();
+	}
+	
+	private void GenerateReport() {
+		System.out.println("--------------Restaurant Selection Platform--------------");
+		System.out.println("--------------Reporting Page for Owner--------------");
+		System.out.println("Please proceed with below options..");
+		System.out.println("1. Daily Reports \n2. Monthly Reports \n0. Return to Main Menu");
+		System.out.print("\nEnter choice: ");
+		Scanner input = new Scanner(System.in);
+		int choice = Integer.parseInt(input.nextLine());
+		switch(choice) {
+		case 1:
+			break;
+		case 2:
+			break;
+		case 0: OwnerMainMenu(); 
+			break;
+		}
+		
+		input.close();
+	}
+	
+	private void ManageBookings() {
+		System.out.println("--------------Restaurant Selection Platform--------------");
+		System.out.println("--------------Manage Bookings--------------");
+		
+	}
+	
+	private void OwnerNotificaitons() {
+		System.out.println("--------------Restaurant Selection Platform--------------");
+		System.out.println("--------------Notifications--------------");
+		
+	}
+	
+	private void OwnerSettings() {
+		System.out.println("--------------Restaurant Selection Platform--------------");
+		System.out.println("--------------Settings--------------");
+		System.out.println("1. Edit Restaurant Details \n2. Edit Profile \n0. Return to main menu");
+		System.out.print("\nEnter choice: ");
+		Scanner input = new Scanner(System.in);
+		int choice = Integer.parseInt(input.nextLine());
+		switch(choice) {
+		case 1:
+			break;
+		case 2:
+			break;
+		case 0: OwnerMainMenu(); 
+			break;
+		}
+		
+		input.close();
+		
+	}
+	
+	private void MasterNotificatins() {
+		System.out.println("--------------Restaurant Selection Platform--------------");
+		System.out.println("--------------Notifications--------------");
+		
+	}
+	
+	private void MasterSettings() {
+		System.out.println("--------------Restaurant Selection Platform--------------");
+		System.out.println("--------------Settings--------------");
+		System.out.println("1. Edit Restaurant Details \n2. Edit Profile \n0. Return to main menu");
+		System.out.print("\nEnter choice: ");
+		Scanner input = new Scanner(System.in);
+		int choice = Integer.parseInt(input.nextLine());
+		switch(choice) {
+		case 1:
+			break;
+		case 2:
+			break;
+		case 0: MasterMainMenu(); 
+			break;
+		}
+		
+		input.close();
+		
+	}
+
+}
