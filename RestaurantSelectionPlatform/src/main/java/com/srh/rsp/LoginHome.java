@@ -2,7 +2,7 @@ package com.srh.rsp;
 import java.io.Console;
 import java.util.Scanner;
 
-public class ConsoleLogin {
+public class LoginHome {
 	public void ConsoleMenu() {
 		System.out.println("-----------------Welcome to Restaurant Selection Platform-----------------");
 		System.out.println("Select an option:");

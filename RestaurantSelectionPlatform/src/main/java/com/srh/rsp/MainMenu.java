@@ -99,7 +99,7 @@ public class MainMenu {
 		Scanner input = new Scanner(System.in);
 		int choice = Integer.parseInt(input.nextLine());
 		switch(choice) {
-		case 1:
+		case 1: 
 			break;
 		case 0: CustomerMainMenu(); 
 			break;

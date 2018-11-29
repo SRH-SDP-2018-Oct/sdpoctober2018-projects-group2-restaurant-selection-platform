@@ -4,7 +4,7 @@ public class App
 {
     public static void main( String[] args )
     {
-    	ConsoleLogin mainPage = new ConsoleLogin();
+    	LoginHome mainPage = new LoginHome();
 		mainPage.ConsoleMenu();
     }
 }
