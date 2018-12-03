@@ -33,14 +33,14 @@ public class LoginHome {
 	private void Login() {
 		Scanner input = new Scanner(System.in);
 		System.out.println("Enter Credentials");
-		System.out.print("Username: ");
-		String userName = input.nextLine();
+		System.out.print("Email: ");
+		String eMail = input.nextLine();
 		Console console = System.console();
 		char[] password = console.readPassword("Password: ");
 		String passWord = String.valueOf(password);
 
 		LoginSession session = new LoginSession();
-		session.Login(userName, passWord);
+		session.Login(eMail, passWord);
 		input.close();
 	}
 
@@ -50,8 +50,6 @@ public class LoginHome {
 		System.out.println("Enter Details Below:");
 		System.out.print("Your Name: ");
 		userDetails.personName = input.nextLine();
-		System.out.print("UserName: ");
-		userDetails.userID = input.nextLine();
 		System.out.print("Email: ");
 		userDetails.eMail = input.nextLine();
 		System.out.print("Contact No: ");
@@ -90,7 +88,7 @@ public class LoginHome {
 			user.OwnerRegistration(userDetails);
 			break;
 		case 3:
-			user.UserRegistraion(userDetails);
+			user.DualRegistraion(userDetails);
 			break;
 		case 0:
 			ExitApp();

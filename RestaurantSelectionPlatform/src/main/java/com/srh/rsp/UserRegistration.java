@@ -9,7 +9,7 @@ public class UserRegistration {
 		
 	}
 
-	public void UserRegistraion(RegistrationDetails userDetails) {
+	public void DualRegistraion(RegistrationDetails userDetails) {
 	
 	}
 }

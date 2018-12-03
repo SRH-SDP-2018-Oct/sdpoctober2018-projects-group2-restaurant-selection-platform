@@ -121,8 +121,9 @@ public class MainMenu {
 		Scanner input = new Scanner(System.in);
 		int choice = Integer.parseInt(input.nextLine());
 		switch (choice) {
-		case 1:		//Edit profile functionality
-			break;
+		case 1: UpdateProfile profile = new UpdateProfile();
+		profile.UserProfile();
+		break;
 		case 0:
 			CustomerMainMenu();
 			break;
@@ -166,7 +167,13 @@ public class MainMenu {
 			break;
 		case 2: 	//Monthly Report functionality
 			break;
-		case 3:		//Custom date range report functionality
+		case 3:	System.out.println("Please Enter Date Range in dd/MM/YYYY format");
+		System.out.print("From: ");
+		String fromDate = input.nextLine();
+		System.out.print("To: ");
+		String toDate = input.nextLine();
+		// Custom Report functionality
+		break;
 		case 0:
 			OwnerMainMenu();
 			break;
@@ -197,8 +204,9 @@ public class MainMenu {
 		switch (choice) {
 		case 1:		//Edit restaurant functionality
 			break;
-		case 2:		//Edit profile functionality
-			break;
+		case 2: UpdateProfile profile = new UpdateProfile();
+		profile.UserProfile();
+		break;
 		case 0:
 			OwnerMainMenu();
 			break;
@@ -224,15 +232,16 @@ public class MainMenu {
 		switch (choice) {
 		case 1:		//Edit restaurant functionality
 			break;
-		case 2:		//Edit profile functionality
-			break;
+		case 2:	UpdateProfile profile = new UpdateProfile();
+		profile.UserProfile();
+		break;
 		case 0:
 			DualUserMainMenu();
 			break;
 		}
 		input.close();
 	}
-	
+
 	private void FilterMenu() {
 		System.out.println("Filter your search result:");
 		System.out.println("1. Cuisines \n2. Distance \n3. Type of Restaurants \n4.Ratings \n0. Back to Main Menu");
