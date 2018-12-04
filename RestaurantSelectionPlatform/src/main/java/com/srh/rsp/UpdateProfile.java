@@ -25,7 +25,7 @@ public class UpdateProfile {
 			}
 			input.close();
 		} catch (Exception e) {
-			System.out.println(e);
+			System.out.println("Please enter a valid choice");
 			e.printStackTrace();
 		}
 	}
