@@ -19,7 +19,7 @@ public class LoginHome {
 			ConsoleMenu();
 		}
 	}
-	
+
 	private void LoginHomeSelection(int choice) {
 		switch (choice) {
 		case 1:
@@ -45,13 +45,17 @@ public class LoginHome {
 		System.out.print("Email: ");
 		try {
 			String eMail = input.nextLine();
-			Console console = System.console();
-			char[] password = console.readPassword("Password: ");
-			String passWord = String.valueOf(password);
+			FormatValidation EmailFormat = new FormatValidation();
+			if (EmailFormat.validateEmailAddress(eMail)) {
+				Console console = System.console();
+				char[] password = console.readPassword("Password: ");
+				String passWord = String.valueOf(password);
 
-			LoginSession session = new LoginSession();
-			session.Login(eMail, passWord);
-			input.close();
+				LoginSession session = new LoginSession();
+				session.Login(eMail, passWord);
+				input.close();
+			} else
+				System.out.println("Enter a valid email id");
 		} catch (Exception e) {
 			System.out.println("\n**************Please enter a valid input**************\n");
 			Login();
@@ -65,8 +69,8 @@ public class LoginHome {
 		System.out.print("Your Name: ");
 		try {
 			Console console = System.console();
-			userDetails = enterDetails(userDetails, input, console);
-			
+			userDetails = enterDetails(userDetails, console);
+
 			char[] confirmPassword = console.readPassword("Re-enter Password: ");
 			String confirmPassWord = String.valueOf(confirmPassword);
 
@@ -81,18 +85,33 @@ public class LoginHome {
 			Register();
 		}
 	}
-	
-	private RegistrationDetails enterDetails(RegistrationDetails userDetails, Scanner input, Console console) {
+
+	private RegistrationDetails enterDetails(RegistrationDetails userDetails, Console console) {
+		Scanner input = new Scanner(System.in);
+		FormatValidation EmailFormat = new FormatValidation();
+		FormatValidation ContactNumFormat = new FormatValidation();
 		userDetails.personName = input.nextLine();
 		System.out.print("Email: ");
 		userDetails.eMail = input.nextLine();
+		if(EmailFormat.validateEmailAddress(userDetails.eMail)){		
 		System.out.print("Contact No: ");
-		userDetails.contactNumber = input.nextLine();
-		char[] password = console.readPassword("Select Password: ");
-		userDetails.passWord = String.valueOf(password);
-		
-		return userDetails;
+			if(ContactNumFormat.validateMobileNumber(userDetails.contactNumber)) {
+				userDetails.contactNumber = input.nextLine();
+				char[] password = console.readPassword("Select Password: ");
+				userDetails.passWord = String.valueOf(password);
+				return userDetails;
+			}
+			else {
+				System.out.println("Kindly enter a valid contact number\n Please exit and try again");
+				return userDetails;
+			}
+		}
+			else {
+				System.out.println("enter a valid email id\n Please exit and try again");
+				return userDetails;
+			}
 	}
+			
 
 	private void ProceedAsGuest() {
 		MainMenu startPage = new MainMenu();
