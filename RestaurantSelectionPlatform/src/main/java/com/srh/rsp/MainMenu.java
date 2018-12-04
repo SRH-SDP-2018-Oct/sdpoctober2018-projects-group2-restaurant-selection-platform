@@ -14,32 +14,27 @@ public class MainMenu {
 			CustomerMainSelection(choice);
 			input.close();
 		} catch (Exception e) {
-			System.out.println("Please enter a valid choice");
+			System.out.println("Please enter a valid input");
 			e.printStackTrace();
 		}
 	}
 
 	private void CustomerMainSelection(int choice) {
-		try {
-			switch (choice) {
-			case 1:
-				SearchRestaurant();
-				break;
-			case 2:
-				CustomerNotificaitons();
-				break;
-			case 3:
-				CustomerSettings();
-				break;
-			case 0:
-				System.exit(0);
-				break;
-			default:
-				System.out.println("Wrong input");
-			}
-		} catch (Exception e) {
-			System.out.println("Please enter a valid choice");
-			e.printStackTrace();
+		switch (choice) {
+		case 1:
+			SearchRestaurant();
+			break;
+		case 2:
+			CustomerNotificaitons();
+			break;
+		case 3:
+			CustomerSettings();
+			break;
+		case 0:
+			System.exit(0);
+			break;
+		default:
+			System.out.println("Wrong input");
 		}
 	}
 
@@ -54,38 +49,33 @@ public class MainMenu {
 			OwnerMainSelection(choice);
 			input.close();
 		} catch (Exception e) {
-			System.out.println("Please enter a valid choice");
+			System.out.println("Please enter a valid input");
 			e.printStackTrace();
 		}
 	}
 	
 	private void OwnerMainSelection(int choice) {
-		try {
-			switch (choice) {
-			case 1:
-				AddDeleteRestaurant();
-				break;
-			case 2:
-				GenerateReport();
-				break;
-			case 3:
-				ManageBookings();
-				break;
-			case 4:
-				OwnerNotificaitons();
-				break;
-			case 5:
-				OwnerSettings();
-				break;
-			case 0:
-				System.exit(0);
-				break;
-			default:
-				System.out.println("Wrong input");
-			}
-		} catch (Exception e) {
-			System.out.println("Please enter a valid choice");
-			e.printStackTrace();
+		switch (choice) {
+		case 1:
+			AddDeleteRestaurant();
+			break;
+		case 2:
+			GenerateReport();
+			break;
+		case 3:
+			ManageBookings();
+			break;
+		case 4:
+			OwnerNotificaitons();
+			break;
+		case 5:
+			OwnerSettings();
+			break;
+		case 0:
+			System.exit(0);
+			break;
+		default:
+			System.out.println("Wrong input");
 		}
 	}
 
@@ -98,35 +88,39 @@ public class MainMenu {
 		Scanner input = new Scanner(System.in);
 		try {
 			int choice = Integer.parseInt(input.nextLine());
-			switch (choice) {
-			case 1:
-				AddDeleteRestaurant();
-				break;
-			case 2:
-				GenerateReport();
-				break;
-			case 3:
-				SearchRestaurant();
-				break;
-			case 4:
-				ManageBookings();
-				break;
-			case 5:
-				DualUserNotifications();
-				break;
-			case 6:
-				DualUserSettings();
-				break;
-			case 0:
-				System.exit(0);
-				break;
-			default:
-				System.out.println("Wrong input");
-			}
+			DualUserMainSelection(choice);
 			input.close();
 		} catch (Exception e) {
-			System.out.println("Please enter a valid choice");
+			System.out.println("Please enter a valid input");
 			e.printStackTrace();
+		}
+	}
+	
+	private void DualUserMainSelection(int choice) {
+		switch (choice) {
+		case 1:
+			AddDeleteRestaurant();
+			break;
+		case 2:
+			GenerateReport();
+			break;
+		case 3:
+			SearchRestaurant();
+			break;
+		case 4:
+			ManageBookings();
+			break;
+		case 5:
+			DualUserNotifications();
+			break;
+		case 6:
+			DualUserSettings();
+			break;
+		case 0:
+			System.exit(0);
+			break;
+		default:
+			System.out.println("Wrong input");
 		}
 	}
 
@@ -139,7 +133,7 @@ public class MainMenu {
 
 			input.close();
 		} catch (Exception e) {
-			System.out.println("Please enter a valid choice");
+			System.out.println("Please enter a valid input");
 			e.printStackTrace();
 		}
 	}
@@ -164,10 +158,11 @@ public class MainMenu {
 			case 0:
 				CustomerMainMenu();
 				break;
+				default: System.out.println("Wrong input");
 			}
 			input.close();
 		} catch (Exception e) {
-			System.out.println("Please enter a valid choice");
+			System.out.println("Please enter a valid input");
 			e.printStackTrace();
 		}
 	}
@@ -192,7 +187,7 @@ public class MainMenu {
 			}
 			input.close();
 		} catch (Exception e) {
-			System.out.println("Please enter a valid choice");
+			System.out.println("Please enter a valid input");
 			e.printStackTrace();
 		}
 	}
@@ -224,7 +219,7 @@ public class MainMenu {
 			}
 			input.close();
 		} catch (Exception e) {
-			System.out.println("Please enter a valid choice");
+			System.out.println("Please enter a valid input");
 			e.printStackTrace();
 		}
 	}
@@ -261,7 +256,7 @@ public class MainMenu {
 			}
 			input.close();
 		} catch (Exception e) {
-			System.out.println("Please enter a valid choice");
+			System.out.println("Please enter a valid input");
 			e.printStackTrace();
 		}
 
@@ -293,7 +288,7 @@ public class MainMenu {
 			}
 			input.close();
 		} catch (Exception e) {
-			System.out.println("Please enter a valid choice");
+			System.out.println("Please enter a valid input");
 			e.printStackTrace();
 		}
 	}
@@ -319,7 +314,7 @@ public class MainMenu {
 			}
 			input.close();
 		} catch (Exception e) {
-			System.out.println("Please enter a valid choice");
+			System.out.println("Please enter a valid input");
 			e.printStackTrace();
 		}
 	}
