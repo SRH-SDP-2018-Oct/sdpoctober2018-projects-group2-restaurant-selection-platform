@@ -12,28 +12,31 @@ public class LoginHome {
 		Scanner input = new Scanner(System.in);
 		try {
 			int choice = Integer.parseInt(input.nextLine());
-			switch (choice) {
-			case 1:
-				Login();
-				break;
-			case 2:
-				Register();
-				break;
-			case 3:
-				ProceedAsGuest();
-				break;
-			case 0:
-				ExitApp();
-				break;
-			default:
-				System.out.println("Wrong input");
-			}
+			LoginHomeSelection(choice);
 			input.close();
 		} catch (Exception e) {
-			System.out.println("Please enter a valid input");
-			e.printStackTrace();
+			System.out.println("\n**************Please enter a valid input**************\n");
+			ConsoleMenu();
 		}
-
+	}
+	
+	private void LoginHomeSelection(int choice) {
+		switch (choice) {
+		case 1:
+			Login();
+			break;
+		case 2:
+			Register();
+			break;
+		case 3:
+			ProceedAsGuest();
+			break;
+		case 0:
+			ExitApp();
+			break;
+		default:
+			System.out.println("Wrong input");
+		}
 	}
 
 	private void Login() {
@@ -50,8 +53,8 @@ public class LoginHome {
 			session.Login(eMail, passWord);
 			input.close();
 		} catch (Exception e) {
-			System.out.println("Please enter a valid input");
-			e.printStackTrace();
+			System.out.println("\n**************Please enter a valid input**************\n");
+			Login();
 		}
 	}
 
@@ -61,14 +64,9 @@ public class LoginHome {
 		System.out.println("Enter Details Below:");
 		System.out.print("Your Name: ");
 		try {
-			userDetails.personName = input.nextLine();
-			System.out.print("Email: ");
-			userDetails.eMail = input.nextLine();
-			System.out.print("Contact No: ");
-			userDetails.contactNumber = input.nextLine();
 			Console console = System.console();
-			char[] password = console.readPassword("Select Password: ");
-			userDetails.passWord = String.valueOf(password);
+			userDetails = enterDetails(userDetails, input, console);
+			
 			char[] confirmPassword = console.readPassword("Re-enter Password: ");
 			String confirmPassWord = String.valueOf(confirmPassword);
 
@@ -77,12 +75,23 @@ public class LoginHome {
 				SelectRole(userDetails);
 			} else
 				System.out.println("Passwords do not match");
-
 			input.close();
 		} catch (Exception e) {
-			System.out.println("Please enter a valid input");
-			e.printStackTrace();
+			System.out.println("\n**************Please enter a valid input**************\n");
+			Register();
 		}
+	}
+	
+	private RegistrationDetails enterDetails(RegistrationDetails userDetails, Scanner input, Console console) {
+		userDetails.personName = input.nextLine();
+		System.out.print("Email: ");
+		userDetails.eMail = input.nextLine();
+		System.out.print("Contact No: ");
+		userDetails.contactNumber = input.nextLine();
+		char[] password = console.readPassword("Select Password: ");
+		userDetails.passWord = String.valueOf(password);
+		
+		return userDetails;
 	}
 
 	private void ProceedAsGuest() {
@@ -99,13 +108,9 @@ public class LoginHome {
 			int choice = Integer.parseInt(input.nextLine());
 			switch (choice) {
 			case 1:
-				user.CustomerRegistration(userDetails);
-				break;
 			case 2:
-				user.OwnerRegistration(userDetails);
-				break;
 			case 3:
-				user.DualRegistraion(userDetails);
+				user.NewRegistration(userDetails, choice);
 				break;
 			case 0:
 				ExitApp();
@@ -115,8 +120,8 @@ public class LoginHome {
 			}
 			input.close();
 		} catch (Exception e) {
-			System.out.println("Please enter a valid input");
-			e.printStackTrace();
+			System.out.println("\n**************Please enter a valid input**************\n");
+			SelectRole(userDetails);
 		}
 	}
 
