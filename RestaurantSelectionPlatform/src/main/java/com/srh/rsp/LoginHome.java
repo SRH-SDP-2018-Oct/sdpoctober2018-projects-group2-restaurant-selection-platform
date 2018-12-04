@@ -10,38 +10,49 @@ public class LoginHome {
 		System.out.println("1. Login \n2. Register \n3. Continue as guest \n0. Exit");
 		System.out.print("Enter Choice: ");
 		Scanner input = new Scanner(System.in);
-		int choice = Integer.parseInt(input.nextLine());
-		switch (choice) {
-		case 1:
-			Login();
-			break;
-		case 2:
-			Register();
-			break;
-		case 3:
-			ProceedAsGuest();
-			break;
-		case 0:
-			ExitApp();
-			break;
-		default:
-			System.out.println("Wrong input");
+		try {
+			int choice = Integer.parseInt(input.nextLine());
+			switch (choice) {
+			case 1:
+				Login();
+				break;
+			case 2:
+				Register();
+				break;
+			case 3:
+				ProceedAsGuest();
+				break;
+			case 0:
+				ExitApp();
+				break;
+			default:
+				System.out.println("Wrong input");
+			}
+			input.close();
+		} catch (Exception e) {
+			System.out.println(e);
+			e.printStackTrace();
 		}
-		input.close();
+
 	}
 
 	private void Login() {
 		Scanner input = new Scanner(System.in);
 		System.out.println("Enter Credentials");
 		System.out.print("Email: ");
-		String eMail = input.nextLine();
-		Console console = System.console();
-		char[] password = console.readPassword("Password: ");
-		String passWord = String.valueOf(password);
+		try {
+			String eMail = input.nextLine();
+			Console console = System.console();
+			char[] password = console.readPassword("Password: ");
+			String passWord = String.valueOf(password);
 
-		LoginSession session = new LoginSession();
-		session.Login(eMail, passWord);
-		input.close();
+			LoginSession session = new LoginSession();
+			session.Login(eMail, passWord);
+			input.close();
+		} catch (Exception e) {
+			System.out.println(e);
+			e.printStackTrace();
+		}
 	}
 
 	private void Register() {
@@ -49,24 +60,29 @@ public class LoginHome {
 		RegistrationDetails userDetails = new RegistrationDetails();
 		System.out.println("Enter Details Below:");
 		System.out.print("Your Name: ");
-		userDetails.personName = input.nextLine();
-		System.out.print("Email: ");
-		userDetails.eMail = input.nextLine();
-		System.out.print("Contact No: ");
-		userDetails.contactNumber = input.nextLine();
-		Console console = System.console();
-		char[] password = console.readPassword("Select Password: ");
-		userDetails.passWord = String.valueOf(password);
-		char[] confirmPassword = console.readPassword("Re-enter Password: ");
-		String confirmPassWord = String.valueOf(confirmPassword);
+		try {
+			userDetails.personName = input.nextLine();
+			System.out.print("Email: ");
+			userDetails.eMail = input.nextLine();
+			System.out.print("Contact No: ");
+			userDetails.contactNumber = input.nextLine();
+			Console console = System.console();
+			char[] password = console.readPassword("Select Password: ");
+			userDetails.passWord = String.valueOf(password);
+			char[] confirmPassword = console.readPassword("Re-enter Password: ");
+			String confirmPassWord = String.valueOf(confirmPassword);
 
-		if (PassWordMatch(userDetails, confirmPassWord)) {
-			System.out.println("Please select your role:");
-			SelectRole(userDetails);
-		} else
-			System.out.println("Passwords do not match");
+			if (PassWordMatch(userDetails, confirmPassWord)) {
+				System.out.println("Please select your role:");
+				SelectRole(userDetails);
+			} else
+				System.out.println("Passwords do not match");
 
-		input.close();
+			input.close();
+		} catch (Exception e) {
+			System.out.println(e);
+			e.printStackTrace();
+		}
 	}
 
 	private void ProceedAsGuest() {
@@ -79,24 +95,29 @@ public class LoginHome {
 		UserRegistration user = new UserRegistration();
 		System.out.println("1. Customer \n2. Restaurant Owner \n3. Both \n0. Exit");
 		System.out.print("Enter choice: ");
-		int choice = Integer.parseInt(input.nextLine());
-		switch (choice) {
-		case 1:
-			user.CustomerRegistration(userDetails);
-			break;
-		case 2:
-			user.OwnerRegistration(userDetails);
-			break;
-		case 3:
-			user.DualRegistraion(userDetails);
-			break;
-		case 0:
-			ExitApp();
-			break;
-		default:
-			System.out.println("Wrong input");
+		try {
+			int choice = Integer.parseInt(input.nextLine());
+			switch (choice) {
+			case 1:
+				user.CustomerRegistration(userDetails);
+				break;
+			case 2:
+				user.OwnerRegistration(userDetails);
+				break;
+			case 3:
+				user.DualRegistraion(userDetails);
+				break;
+			case 0:
+				ExitApp();
+				break;
+			default:
+				System.out.println("Wrong input");
+			}
+			input.close();
+		} catch (Exception e) {
+			System.out.println(e);
+			e.printStackTrace();
 		}
-		input.close();
 	}
 
 	private boolean PassWordMatch(RegistrationDetails userDetails, String confirmPassWord) {
