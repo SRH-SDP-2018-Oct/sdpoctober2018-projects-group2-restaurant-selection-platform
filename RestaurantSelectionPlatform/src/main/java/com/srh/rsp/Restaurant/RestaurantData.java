@@ -1,4 +1,4 @@
-package com.srh.rspRestaurantUpdate;
+package com.srh.rsp.Restaurant;
 
 public class RestaurantData {
 	public String restaurantName;

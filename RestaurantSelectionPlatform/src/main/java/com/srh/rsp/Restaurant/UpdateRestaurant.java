@@ -1,4 +1,4 @@
-package com.srh.rspRestaurantUpdate;
+package com.srh.rsp.Restaurant;
 
 import java.util.Scanner;
 
@@ -85,6 +85,7 @@ public class UpdateRestaurant {
 			}
 		} catch (Exception e) {
 			System.out.println("\n**************Please enter a valid input**************\n");
+			e.printStackTrace();
 			ifVegNonVeg(input);
 		}
 		return null;
@@ -106,6 +107,7 @@ public class UpdateRestaurant {
 			}
 		} catch (Exception e) {
 			System.out.println("\n**************Please enter a valid input**************\n");
+			e.printStackTrace();
 			ifPartySpace(input);
 		}
 		return null;
@@ -127,6 +129,7 @@ public class UpdateRestaurant {
 			}
 		} catch (Exception e) {
 			System.out.println("\n**************Please enter a valid input**************\n");
+			e.printStackTrace();
 			ifPetsAllowed(input);
 		}
 		return null;
