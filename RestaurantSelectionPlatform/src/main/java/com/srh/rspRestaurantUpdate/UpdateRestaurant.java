@@ -25,7 +25,6 @@ public class UpdateRestaurant {
 		newRestaurant.partySpace = ifPartySpace(input);
 		newRestaurant.petsAllowed = ifPetsAllowed(input);
 		newRestaurant.pictureLink = enterPictureLink(input);
-		newRestaurant.subscriptionStatus = enterSubscriptionStatus(input);
 		
 		input.close();
 	}
@@ -137,17 +136,4 @@ public class UpdateRestaurant {
 		System.out.print("Enter Restaurant picture link: ");
 		return input.nextLine();
 	}
-	
-	private int enterSubscriptionStatus(Scanner input) {
-		System.out.print("Enter Subscription Status: ");
-		try {
-			return Integer.parseInt(input.nextLine());	
-		}
-		catch(Exception e) {
-			System.out.println("\n**************Please enter a valid input**************\n");
-			enterSubscriptionStatus(input);
-		}
-		return 0;
-	}
-
 }
