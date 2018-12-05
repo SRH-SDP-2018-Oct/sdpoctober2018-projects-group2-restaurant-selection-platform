@@ -2,6 +2,8 @@ package com.srh.rsp;
 
 import java.util.Scanner;
 
+import com.srh.rspRestaurantUpdate.UpdateRestaurant;
+
 public class MainMenu {
 	public void CustomerMainMenu() {
 		System.out.println("--------------Restaurant Selection Platform--------------");
@@ -14,8 +16,8 @@ public class MainMenu {
 			CustomerMainSelection(choice);
 			input.close();
 		} catch (Exception e) {
-			System.out.println("Please enter a valid input");
-			e.printStackTrace();
+			System.out.println("\n**************Please enter a valid input**************\n");
+			CustomerMainMenu();
 		}
 	}
 
@@ -39,21 +41,22 @@ public class MainMenu {
 	}
 
 	public void OwnerMainMenu() {
+		Scanner input = new Scanner(System.in);
 		System.out.println("--------------Restaurant Selection Platform--------------");
 		System.out.println("Please proceed with below options:");
-		System.out.println("1. Add/Delete Restaurant \n2. Generate Report \n3. Manage Bookings \n4. Notifications \n5.Settings \n0. Exit");
+		System.out.println(
+				"1. Add/Delete Restaurant \n2. Generate Report \n3. Manage Bookings \n4. Notifications \n5. Settings \n0. Exit");
 		System.out.println("\nEnter Choice");
 		try {
-			Scanner input = new Scanner(System.in);
 			int choice = Integer.parseInt(input.nextLine());
 			OwnerMainSelection(choice);
 			input.close();
 		} catch (Exception e) {
-			System.out.println("Please enter a valid input");
-			e.printStackTrace();
+			System.out.println("\n**************Please enter a valid input**************\n");
+			OwnerMainMenu();
 		}
 	}
-	
+
 	private void OwnerMainSelection(int choice) {
 		switch (choice) {
 		case 1:
@@ -91,11 +94,11 @@ public class MainMenu {
 			DualUserMainSelection(choice);
 			input.close();
 		} catch (Exception e) {
-			System.out.println("Please enter a valid input");
-			e.printStackTrace();
+			System.out.println("\n**************Please enter a valid input**************\n");
+			DualUserMainMenu();
 		}
 	}
-	
+
 	private void DualUserMainSelection(int choice) {
 		switch (choice) {
 		case 1:
@@ -133,8 +136,8 @@ public class MainMenu {
 
 			input.close();
 		} catch (Exception e) {
-			System.out.println("Please enter a valid input");
-			e.printStackTrace();
+			System.out.println("\n**************Please enter a valid input**************\n");
+			SearchRestaurant();
 		}
 	}
 
@@ -152,24 +155,26 @@ public class MainMenu {
 		try {
 			int choice = Integer.parseInt(input.nextLine());
 			switch (choice) {
-			case 1: UpdateProfile profile = new UpdateProfile();
-			profile.UserProfile();
-			break;
+			case 1:
+				UpdateProfile profile = new UpdateProfile();
+				profile.UserProfile();
+				break;
 			case 0:
 				CustomerMainMenu();
 				break;
-				default: System.out.println("Wrong input");
+			default:
+				System.out.println("Wrong input");
 			}
 			input.close();
 		} catch (Exception e) {
-			System.out.println("Please enter a valid input");
-			e.printStackTrace();
+			System.out.println("\n**************Please enter a valid input**************\n");
+			CustomerSettings();
 		}
 	}
 
 	private void AddDeleteRestaurant() {
 		System.out.println("--------------Restaurant Selection Platform--------------");
-		System.out.println("--------------Search Restaurant--------------");
+		System.out.println("--------------Add/Delete Restaurant--------------");
 		System.out.println("Please make a selection..");
 		System.out.println("1. Add Restaurant \n2. Delete Restaurant \n0. Return to main menu");
 		System.out.print("\nEnter choice: ");
@@ -177,9 +182,11 @@ public class MainMenu {
 		try {
 			int choice = Integer.parseInt(input.nextLine());
 			switch (choice) {
-			case 1:		//Add restaurant functionality
+			case 1:
+				UpdateRestaurant addRestaurant = new UpdateRestaurant();
+				addRestaurant.AddRestaurant();
 				break;
-			case 2:		//Delete restaurant functionality
+			case 2: // Delete restaurant functionality
 				break;
 			case 0:
 				OwnerMainMenu();
@@ -187,8 +194,8 @@ public class MainMenu {
 			}
 			input.close();
 		} catch (Exception e) {
-			System.out.println("Please enter a valid input");
-			e.printStackTrace();
+			System.out.println("\n**************Please enter a valid input**************\n");
+			AddDeleteRestaurant();
 		}
 	}
 
@@ -201,27 +208,40 @@ public class MainMenu {
 		Scanner input = new Scanner(System.in);
 		try {
 			int choice = Integer.parseInt(input.nextLine());
-			switch (choice) {
-			case 1:		//Daily Report functionality
-				break;
-			case 2: 	//Monthly Report functionality
-				break;
-			case 3:	System.out.println("Please Enter Date Range in dd/MM/YYYY format");
-			System.out.print("From: ");
-			String fromDate = input.nextLine();
-			System.out.print("To: ");
-			String toDate = input.nextLine();
-			// Custom Report functionality
-			break;
-			case 0:
-				OwnerMainMenu();
-				break;
-			}
+			ReportDateSelection(choice);
 			input.close();
 		} catch (Exception e) {
-			System.out.println("Please enter a valid input");
-			e.printStackTrace();
+			System.out.println("\n**************Please enter a valid input**************\n");
+			GenerateReport();
 		}
+	}
+
+	private void ReportDateSelection(int choice) {
+		Scanner input = new Scanner(System.in);
+		switch (choice) {
+		case 1: // Daily Report functionality
+			break;
+		case 2: // Monthly Report functionality
+			break;
+		case 3:
+			System.out.println("Please Enter Date Range in dd/MM/YYYY format");
+
+			try {
+				System.out.print("From: ");
+				String fromDate = input.nextLine();
+				System.out.print("To: ");
+				String toDate = input.nextLine();
+			} catch (Exception e) {
+				System.out.println("\n**************Please enter a valid input**************\n");
+				ReportDateSelection(choice);
+			}
+			// Custom Report functionality
+			break;
+		case 0:
+			OwnerMainMenu();
+			break;
+		}
+		input.close();
 	}
 
 	private void ManageBookings() {
@@ -245,19 +265,20 @@ public class MainMenu {
 		try {
 			int choice = Integer.parseInt(input.nextLine());
 			switch (choice) {
-			case 1:		//Edit restaurant functionality
+			case 1: // Edit restaurant functionality
 				break;
-			case 2: UpdateProfile profile = new UpdateProfile();
-			profile.UserProfile();
-			break;
+			case 2:
+				UpdateProfile profile = new UpdateProfile();
+				profile.UserProfile();
+				break;
 			case 0:
 				OwnerMainMenu();
 				break;
 			}
 			input.close();
 		} catch (Exception e) {
-			System.out.println("Please enter a valid input");
-			e.printStackTrace();
+			System.out.println("\n**************Please enter a valid input**************\n");
+			OwnerSettings();
 		}
 
 	}
@@ -277,19 +298,20 @@ public class MainMenu {
 		try {
 			int choice = Integer.parseInt(input.nextLine());
 			switch (choice) {
-			case 1:		//Edit restaurant functionality
+			case 1: // Edit restaurant functionality
 				break;
-			case 2:	UpdateProfile profile = new UpdateProfile();
-			profile.UserProfile();
-			break;
+			case 2:
+				UpdateProfile profile = new UpdateProfile();
+				profile.UserProfile();
+				break;
 			case 0:
 				DualUserMainMenu();
 				break;
 			}
 			input.close();
 		} catch (Exception e) {
-			System.out.println("Please enter a valid input");
-			e.printStackTrace();
+			System.out.println("\n**************Please enter a valid input**************\n");
+			DualUserSettings();
 		}
 	}
 
@@ -304,9 +326,9 @@ public class MainMenu {
 				break;
 			case 2:
 				break;
-			case 3: 
+			case 3:
 				break;
-			case 4: 
+			case 4:
 				break;
 			case 0:
 				CustomerMainMenu();
@@ -314,8 +336,8 @@ public class MainMenu {
 			}
 			input.close();
 		} catch (Exception e) {
-			System.out.println("Please enter a valid input");
-			e.printStackTrace();
+			System.out.println("\n**************Please enter a valid input**************\n");
+			FilterMenu();
 		}
 	}
 

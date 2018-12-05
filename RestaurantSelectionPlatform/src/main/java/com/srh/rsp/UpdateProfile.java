@@ -12,11 +12,11 @@ public class UpdateProfile {
 		try {
 			int choice = Integer.parseInt(input.nextLine());
 			switch (choice) {
-			case 1:		//Edit name functionality
+			case 1: // Edit name functionality
 				break;
-			case 2:		//Edit email functionality
+			case 2: // Edit email functionality
 				break;
-			case 3:		//Edit contact number functionality
+			case 3: // Edit contact number functionality
 				break;
 			case 0:
 				MainMenu loadMenu = new MainMenu();
@@ -25,7 +25,7 @@ public class UpdateProfile {
 			}
 			input.close();
 		} catch (Exception e) {
-			System.out.println("Please enter a valid input");
+			System.out.println("\n**************Please enter a valid input**************\n");
 			e.printStackTrace();
 		}
 	}
