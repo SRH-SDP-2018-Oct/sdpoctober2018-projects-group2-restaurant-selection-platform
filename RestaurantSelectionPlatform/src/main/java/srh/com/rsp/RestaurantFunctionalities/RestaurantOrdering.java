@@ -1,4 +1,4 @@
-package com.srh.rsp;
+package srh.com.rsp.RestaurantFunctionalities;
 import java.io.*;
 
 class Ordering {
@@ -91,7 +91,7 @@ class dispOrder implements Runnable
 		}
 	}
 }
-class Restaurant
+class RestaurantOrdering
 {
 	public static void main(String args[])
 	{

@@ -2,7 +2,7 @@ package com.srh.rsp;
 
 import java.util.Scanner;
 
-import com.srh.rspRestaurantUpdate.UpdateRestaurant;
+import com.srh.rsp.Restaurant.UpdateRestaurant;
 
 public class MainMenu {
 	public void CustomerMainMenu() {
@@ -17,6 +17,7 @@ public class MainMenu {
 			input.close();
 		} catch (Exception e) {
 			System.out.println("\n**************Please enter a valid input**************\n");
+			e.printStackTrace();
 			CustomerMainMenu();
 		}
 	}
@@ -53,6 +54,7 @@ public class MainMenu {
 			input.close();
 		} catch (Exception e) {
 			System.out.println("\n**************Please enter a valid input**************\n");
+			e.printStackTrace();
 			OwnerMainMenu();
 		}
 	}
@@ -95,6 +97,7 @@ public class MainMenu {
 			input.close();
 		} catch (Exception e) {
 			System.out.println("\n**************Please enter a valid input**************\n");
+			e.printStackTrace();
 			DualUserMainMenu();
 		}
 	}
@@ -137,6 +140,7 @@ public class MainMenu {
 			input.close();
 		} catch (Exception e) {
 			System.out.println("\n**************Please enter a valid input**************\n");
+			e.printStackTrace();
 			SearchRestaurant();
 		}
 	}
@@ -168,6 +172,7 @@ public class MainMenu {
 			input.close();
 		} catch (Exception e) {
 			System.out.println("\n**************Please enter a valid input**************\n");
+			e.printStackTrace();
 			CustomerSettings();
 		}
 	}
@@ -195,6 +200,7 @@ public class MainMenu {
 			input.close();
 		} catch (Exception e) {
 			System.out.println("\n**************Please enter a valid input**************\n");
+			e.printStackTrace();
 			AddDeleteRestaurant();
 		}
 	}
@@ -212,6 +218,7 @@ public class MainMenu {
 			input.close();
 		} catch (Exception e) {
 			System.out.println("\n**************Please enter a valid input**************\n");
+			e.printStackTrace();
 			GenerateReport();
 		}
 	}
@@ -233,6 +240,7 @@ public class MainMenu {
 				String toDate = input.nextLine();
 			} catch (Exception e) {
 				System.out.println("\n**************Please enter a valid input**************\n");
+				e.printStackTrace();
 				ReportDateSelection(choice);
 			}
 			// Custom Report functionality
@@ -278,6 +286,7 @@ public class MainMenu {
 			input.close();
 		} catch (Exception e) {
 			System.out.println("\n**************Please enter a valid input**************\n");
+			e.printStackTrace();
 			OwnerSettings();
 		}
 
@@ -311,6 +320,7 @@ public class MainMenu {
 			input.close();
 		} catch (Exception e) {
 			System.out.println("\n**************Please enter a valid input**************\n");
+			e.printStackTrace();
 			DualUserSettings();
 		}
 	}
@@ -337,6 +347,7 @@ public class MainMenu {
 			input.close();
 		} catch (Exception e) {
 			System.out.println("\n**************Please enter a valid input**************\n");
+			e.printStackTrace();
 			FilterMenu();
 		}
 	}

@@ -1,9 +1,9 @@
 package com.srh.rsp;
 
 import java.io.Console;
-import java.util.ArrayList;
 import java.util.Scanner;
-import com.srh.rsp.Validations.*;
+
+import com.srh.rsp.Validations.FormatValidation;
 
 public class LoginHome {
 	public void ConsoleMenu() {
@@ -18,6 +18,7 @@ public class LoginHome {
 			input.close();
 		} catch (Exception e) {
 			System.out.println("\n**************Please enter a valid input**************\n");
+			e.printStackTrace();
 			ConsoleMenu();
 		}
 	}
@@ -59,6 +60,7 @@ public class LoginHome {
 				System.out.println("Enter a valid email id");
 		} catch (Exception e) {
 			System.out.println("\n**************Please enter a valid input**************\n");
+			e.printStackTrace();
 			Login();
 		}
 	}
@@ -83,6 +85,7 @@ public class LoginHome {
 			input.close();
 		} catch (Exception e) {
 			System.out.println("\n**************Please enter a valid input**************\n");
+			e.printStackTrace();
 			Register();
 		}
 	}
@@ -113,7 +116,6 @@ public class LoginHome {
 			}
 	}
 			
-
 	private void ProceedAsGuest() {
 		MainMenu startPage = new MainMenu();
 		startPage.CustomerMainMenu();
@@ -141,6 +143,7 @@ public class LoginHome {
 			input.close();
 		} catch (Exception e) {
 			System.out.println("\n**************Please enter a valid input**************\n");
+			e.printStackTrace();
 			SelectRole(userDetails);
 		}
 	}

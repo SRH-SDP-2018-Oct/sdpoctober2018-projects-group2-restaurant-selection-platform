@@ -27,6 +27,7 @@ public class UpdateProfile {
 		} catch (Exception e) {
 			System.out.println("\n**************Please enter a valid input**************\n");
 			e.printStackTrace();
+			UserProfile();
 		}
 	}
 }
