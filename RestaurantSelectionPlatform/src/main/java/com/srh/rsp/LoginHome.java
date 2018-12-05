@@ -1,6 +1,6 @@
 package com.srh.rsp;
-
 import java.io.Console;
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class LoginHome {
@@ -35,7 +35,6 @@ public class LoginHome {
 		}
 
 	}
-
 	private void Login() {
 		Scanner input = new Scanner(System.in);
 		System.out.println("Enter Credentials");
@@ -131,3 +130,4 @@ public class LoginHome {
 		System.exit(0);
 	}
 }
+	
