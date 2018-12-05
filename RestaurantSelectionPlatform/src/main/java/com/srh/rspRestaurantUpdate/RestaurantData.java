@@ -13,5 +13,4 @@ public class RestaurantData {
 	public Boolean partySpace;
 	public Boolean petsAllowed;
 	public String pictureLink;
-	public int subscriptionStatus;
 }
