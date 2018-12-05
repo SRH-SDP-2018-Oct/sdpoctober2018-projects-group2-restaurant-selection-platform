@@ -26,7 +26,7 @@ public class CustomerLogin {
 
 	@Column(name = "phone_Number")
 	private long phoneNumber;
-	
+
 	public String getEmailId() {
 		return emailId;
 	}
@@ -45,10 +45,6 @@ public class CustomerLogin {
 
 	public long getCustomerId() {
 		return customerId;
-	}
-
-	public void setCustomerId(long customerId) {
-		this.customerId = customerId;
 	}
 
 	public String getUserName() {
@@ -74,13 +70,5 @@ public class CustomerLogin {
 	public void setCustomerType(String customerType) {
 		this.customerType = customerType;
 	}
-
-	@Override
-	public String toString() {
-		return "CustomerLogin [customerId=" + customerId + ", userName=" + userName + ", password=" + password
-				+ ", customerType=" + customerType + ", emailId=" + emailId + ", phoneNumber=" + phoneNumber + "]";
-	}
-
-	
 
 }
