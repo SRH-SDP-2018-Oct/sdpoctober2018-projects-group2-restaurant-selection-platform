@@ -1,7 +1,7 @@
 package com.srh.rsp;
 
 public class UserRegistration {
-	public void NewRegistration(RegistrationDetails userDetails, int userRole) {
+	public void NewRegistration(RegistrationData userDetails, int userRole) {
 		
 	}
 }

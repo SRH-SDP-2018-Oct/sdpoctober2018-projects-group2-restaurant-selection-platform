@@ -5,7 +5,7 @@ import LogException.*;
 
 public class UpdateRestaurant {
 	WriteExceptionToFile log = new WriteExceptionToFile();
-	
+
 	public void AddRestaurant() {
 		System.out.println("--------------Restaurant Selection Platform--------------");
 		System.out.println("--------------Add Restaurant--------------");
@@ -13,7 +13,7 @@ public class UpdateRestaurant {
 		System.out.println("Enter Details Below:");
 		enterDetails(newRestaurant);
 	}
-	
+
 	private void enterDetails(RestaurantData newRestaurant) {
 		Scanner input = new Scanner(System.in);
 		newRestaurant.restaurantName = enterRestaurantName(input);
@@ -28,53 +28,53 @@ public class UpdateRestaurant {
 		newRestaurant.partySpace = ifPartySpace(input);
 		newRestaurant.petsAllowed = ifPetsAllowed(input);
 		newRestaurant.pictureLink = enterPictureLink(input);
-		
+
 		CusineDishes addNewCusine = new CusineDishes();
 		addNewCusine.AddCusine(newRestaurant);
-		
+
 		input.close();
 	}
-	
+
 	private String enterRestaurantName(Scanner input) {
 		System.out.print("Enter Restaurant Name: ");
 		return input.nextLine();
 	}
-	
+
 	private String enterEmailID(Scanner input) {
 		System.out.print("Enter Restaurant Email: ");
 		return input.nextLine();
 	}
-	
+
 	private String enterPhoneNumber(Scanner input) {
 		System.out.print("Enter Phone number: ");
 		return input.nextLine();
 	}
-	
+
 	private String enterCountry(Scanner input) {
 		System.out.print("Enter Country: ");
 		return input.nextLine();
 	}
-	
+
 	private String enterCity(Scanner input) {
 		System.out.print("Enter City: ");
 		return input.nextLine();
 	}
-	
+
 	private String enterPostalCode(Scanner input) {
 		System.out.print("Enter postal code: ");
 		return input.nextLine();
 	}
-	
+
 	private String enterRegion(Scanner input) {
 		System.out.print("Enter Region: ");
 		return input.nextLine();
 	}
-	
+
 	private String enterHouseStreet(Scanner input) {
 		System.out.print("Enter House number, Street: ");
 		return input.nextLine();
 	}
-	
+
 	private Boolean ifVegNonVeg(Scanner input) {
 		System.out.print("Does the restaurant serve Non-Veg? (Enter Y (Yes) / N (NO)): ");
 		try {
@@ -96,7 +96,7 @@ public class UpdateRestaurant {
 		}
 		return null;
 	}
-	
+
 	private Boolean ifPartySpace(Scanner input) {
 		System.out.print("Is party sapce available? (Enter Y (Yes) / N (NO)): ");
 		try {
@@ -118,7 +118,7 @@ public class UpdateRestaurant {
 		}
 		return null;
 	}
-	
+
 	private Boolean ifPetsAllowed(Scanner input) {
 		System.out.print("Are pets allowed? (Enter Y (Yes) / N (NO)): ");
 		try {
@@ -140,7 +140,7 @@ public class UpdateRestaurant {
 		}
 		return null;
 	}
-	
+
 	private String enterPictureLink(Scanner input) {
 		System.out.print("Enter Restaurant picture link: ");
 		return input.nextLine();

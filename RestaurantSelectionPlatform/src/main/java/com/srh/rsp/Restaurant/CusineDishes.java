@@ -69,7 +69,6 @@ public class CusineDishes {
 		} catch (NumberFormatException e) {
 			System.out.println("\n**************Please enter a valid input**************\n");
 			log.appendToFile(e);
-			addNewDish(dish);
 		}
 		input.close();
 		return dish;
