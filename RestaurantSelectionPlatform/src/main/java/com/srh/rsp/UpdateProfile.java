@@ -1,8 +1,11 @@
 package com.srh.rsp;
 
 import java.util.Scanner;
+import LogException.*;
 
 public class UpdateProfile {
+	WriteExceptionToFile log = new WriteExceptionToFile();
+	
 	public void UserProfile() {
 		System.out.println("--------------Restaurant Selection Platform--------------");
 		System.out.println("--------------Update Profile--------------");
@@ -26,7 +29,7 @@ public class UpdateProfile {
 			input.close();
 		} catch (Exception e) {
 			System.out.println("\n**************Please enter a valid input**************\n");
-			e.printStackTrace();
+			log.appendToFile(e);
 			UserProfile();
 		}
 	}

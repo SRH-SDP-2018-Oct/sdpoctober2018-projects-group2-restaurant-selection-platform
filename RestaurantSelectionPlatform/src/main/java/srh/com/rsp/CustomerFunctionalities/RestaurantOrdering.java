@@ -1,4 +1,4 @@
-package srh.com.rsp.RestaurantFunctionalities;
+package srh.com.rsp.CustomerFunctionalities;
 import java.io.*;
 
 class Ordering {

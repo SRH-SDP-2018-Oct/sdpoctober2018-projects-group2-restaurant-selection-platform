@@ -1,8 +1,11 @@
 package com.srh.rsp.Restaurant;
 
 import java.util.Scanner;
+import LogException.*;
 
 public class UpdateRestaurant {
+	WriteExceptionToFile log = new WriteExceptionToFile();
+	
 	public void AddRestaurant() {
 		System.out.println("--------------Restaurant Selection Platform--------------");
 		System.out.println("--------------Add Restaurant--------------");
@@ -25,6 +28,9 @@ public class UpdateRestaurant {
 		newRestaurant.partySpace = ifPartySpace(input);
 		newRestaurant.petsAllowed = ifPetsAllowed(input);
 		newRestaurant.pictureLink = enterPictureLink(input);
+		
+		CusineDishes addNewCusine = new CusineDishes();
+		addNewCusine.AddCusine(newRestaurant);
 		
 		input.close();
 	}
@@ -85,7 +91,7 @@ public class UpdateRestaurant {
 			}
 		} catch (Exception e) {
 			System.out.println("\n**************Please enter a valid input**************\n");
-			e.printStackTrace();
+			log.appendToFile(e);
 			ifVegNonVeg(input);
 		}
 		return null;
@@ -107,7 +113,7 @@ public class UpdateRestaurant {
 			}
 		} catch (Exception e) {
 			System.out.println("\n**************Please enter a valid input**************\n");
-			e.printStackTrace();
+			log.appendToFile(e);
 			ifPartySpace(input);
 		}
 		return null;
@@ -129,7 +135,7 @@ public class UpdateRestaurant {
 			}
 		} catch (Exception e) {
 			System.out.println("\n**************Please enter a valid input**************\n");
-			e.printStackTrace();
+			log.appendToFile(e);
 			ifPetsAllowed(input);
 		}
 		return null;
