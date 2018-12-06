@@ -15,7 +15,7 @@ public class RestaurantDish {
 	private long iD;
 
 	@Column(name = "restaurant_Id")
-	private long restaurant_Id;
+	private long restaurantId;
 
 	@Column(name = "dish_Id")
 	private long dishId;
@@ -28,18 +28,6 @@ public class RestaurantDish {
 
 	public long getiD() {
 		return iD;
-	}
-
-	public void setiD(long iD) {
-		this.iD = iD;
-	}
-
-	public long getRestaurant_Id() {
-		return restaurant_Id;
-	}
-
-	public void setRestaurant_Id(long restaurant_Id) {
-		this.restaurant_Id = restaurant_Id;
 	}
 
 	public long getDishId() {
@@ -66,9 +54,17 @@ public class RestaurantDish {
 		this.dishName = dishName;
 	}
 
+	public long getRestaurantId() {
+		return restaurantId;
+	}
+
+	public void setRestaurantId(long restaurantId) {
+		this.restaurantId = restaurantId;
+	}
+
 	@Override
 	public String toString() {
-		return "Restaurant_Dish [iD=" + iD + ", restaurant_Id=" + restaurant_Id + ", dishId=" + dishId
+		return "RestaurantDish [iD=" + iD + ", restaurantId=" + restaurantId + ", dishId=" + dishId
 				+ ", restaurantName=" + restaurantName + ", dishName=" + dishName + "]";
 	}
 

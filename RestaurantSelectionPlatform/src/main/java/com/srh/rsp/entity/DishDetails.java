@@ -1,6 +1,5 @@
 package com.srh.rsp.entity;
 
-import java.math.BigDecimal;
 import java.util.Currency;
 
 import javax.persistence.Column;
@@ -27,7 +26,7 @@ public class DishDetails {
 	private boolean dishType;
 
 	@Column(name = "price")
-	private BigDecimal price;
+	private float price;
 
 	@Column(name = "currency_Unit")
 	private Currency currency_Unit;
@@ -40,10 +39,6 @@ public class DishDetails {
 
 	public long getDishId() {
 		return dishId;
-	}
-
-	public void setDishId(long dishId) {
-		this.dishId = dishId;
 	}
 
 	public String getDishName() {
@@ -70,11 +65,11 @@ public class DishDetails {
 		this.dishType = dishType;
 	}
 
-	public BigDecimal getPrice() {
+	public float getPrice() {
 		return price;
 	}
 
-	public void setPrice(BigDecimal price) {
+	public void setPrice(float price) {
 		this.price = price;
 	}
 
