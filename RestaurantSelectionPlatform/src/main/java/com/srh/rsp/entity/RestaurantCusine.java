@@ -30,10 +30,6 @@ public class RestaurantCusine {
 		return iD;
 	}
 
-	public void setiD(long iD) {
-		this.iD = iD;
-	}
-
 	public long getRestaurantId() {
 		return restaurantId;
 	}
@@ -72,5 +68,4 @@ public class RestaurantCusine {
 				+ ", restaurantName=" + restaurantName + ", cuisineName=" + cuisineName + "]";
 	}
 
-	
 }

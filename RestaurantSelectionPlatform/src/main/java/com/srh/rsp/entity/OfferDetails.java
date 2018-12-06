@@ -30,10 +30,6 @@ public class OfferDetails {
 		return offerId;
 	}
 
-	public void setOfferId(long offerId) {
-		this.offerId = offerId;
-	}
-
 	public long getRestaurantId() {
 		return restaurantId;
 	}

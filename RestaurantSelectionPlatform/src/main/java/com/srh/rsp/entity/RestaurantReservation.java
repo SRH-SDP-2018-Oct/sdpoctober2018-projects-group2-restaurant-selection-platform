@@ -30,7 +30,7 @@ public class RestaurantReservation {
 	private boolean reservationStatus;
 
 	@Column(name = "booking_Date")
-	private Date booking_Date;
+	private Date bookingDate;
 
 	@Column(name = "from_Time")
 	private Time fromTime;
@@ -78,14 +78,6 @@ public class RestaurantReservation {
 		this.reservationStatus = reservationStatus;
 	}
 
-	public Date getBooking_Date() {
-		return booking_Date;
-	}
-
-	public void setBooking_Date(Date booking_Date) {
-		this.booking_Date = booking_Date;
-	}
-
 	public Time getFromTime() {
 		return fromTime;
 	}
@@ -102,11 +94,19 @@ public class RestaurantReservation {
 		this.toTime = toTime;
 	}
 
+	public Date getBookingDate() {
+		return bookingDate;
+	}
+
+	public void setBookingDate(Date bookingDate) {
+		this.bookingDate = bookingDate;
+	}
+
 	@Override
 	public String toString() {
 		return "RestaurantReservation [reservationId=" + reservationId + ", restaurantId=" + restaurantId
 				+ ", customerId=" + customerId + ", seatId=" + seatId + ", reservationStatus=" + reservationStatus
-				+ ", booking_Date=" + booking_Date + ", fromTime=" + fromTime + ", toTime=" + toTime + "]";
+				+ ", bookingDate=" + bookingDate + ", fromTime=" + fromTime + ", toTime=" + toTime + "]";
 	}
 
 }
