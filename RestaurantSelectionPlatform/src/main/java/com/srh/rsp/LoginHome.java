@@ -4,8 +4,11 @@ import java.io.Console;
 import java.util.Scanner;
 
 import com.srh.rsp.Validations.FormatValidation;
+import LogException.*;
 
 public class LoginHome {
+	WriteExceptionToFile log = new WriteExceptionToFile();
+	
 	public void ConsoleMenu() {
 		System.out.println("-----------------Welcome to Restaurant Selection Platform-----------------");
 		System.out.println("Select an option:");
@@ -18,6 +21,7 @@ public class LoginHome {
 			input.close();
 		} catch (Exception e) {
 			System.out.println("\n**************Please enter a valid input**************\n");
+			log.appendToFile(e);
 			ConsoleMenu();
 		}
 	}
@@ -59,6 +63,7 @@ public class LoginHome {
 				System.out.println("Enter a valid email id");
 		} catch (Exception e) {
 			System.out.println("\n**************Please enter a valid input**************\n");
+			log.appendToFile(e);
 			Login();
 		}
 	}
@@ -83,6 +88,7 @@ public class LoginHome {
 			input.close();
 		} catch (Exception e) {
 			System.out.println("\n**************Please enter a valid input**************\n");
+			log.appendToFile(e);
 			Register();
 		}
 	}
@@ -113,7 +119,6 @@ public class LoginHome {
 			}
 	}
 			
-
 	private void ProceedAsGuest() {
 		MainMenu startPage = new MainMenu();
 		startPage.CustomerMainMenu();
@@ -141,6 +146,7 @@ public class LoginHome {
 			input.close();
 		} catch (Exception e) {
 			System.out.println("\n**************Please enter a valid input**************\n");
+			log.appendToFile(e);
 			SelectRole(userDetails);
 		}
 	}
