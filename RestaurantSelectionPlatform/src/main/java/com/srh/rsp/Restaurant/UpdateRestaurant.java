@@ -92,7 +92,6 @@ public class UpdateRestaurant {
 		} catch (Exception e) {
 			System.out.println("\n**************Please enter a valid input**************\n");
 			log.appendToFile(e);
-			ifVegNonVeg(input);
 		}
 		return null;
 	}
@@ -114,7 +113,6 @@ public class UpdateRestaurant {
 		} catch (Exception e) {
 			System.out.println("\n**************Please enter a valid input**************\n");
 			log.appendToFile(e);
-			ifPartySpace(input);
 		}
 		return null;
 	}
@@ -136,7 +134,6 @@ public class UpdateRestaurant {
 		} catch (Exception e) {
 			System.out.println("\n**************Please enter a valid input**************\n");
 			log.appendToFile(e);
-			ifPetsAllowed(input);
 		}
 		return null;
 	}

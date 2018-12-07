@@ -5,7 +5,7 @@ import LogException.*;
 
 public class UpdateProfile {
 	WriteExceptionToFile log = new WriteExceptionToFile();
-	
+
 	public void UserProfile() {
 		System.out.println("--------------Restaurant Selection Platform--------------");
 		System.out.println("--------------Update Profile--------------");

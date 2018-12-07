@@ -241,7 +241,7 @@ public class MainMenu {
 	}
 
 	private void ReportDateSelection(int choice) {
-		
+
 		switch (choice) {
 		case 1: // Daily Report functionality
 			break;
@@ -258,7 +258,7 @@ public class MainMenu {
 			System.out.println("Wrong input.");
 		}
 	}
-	
+
 	private void CustomReportDate() {
 		Scanner input = new Scanner(System.in);
 		try {
@@ -266,7 +266,7 @@ public class MainMenu {
 			String fromDate = input.nextLine();
 			System.out.print("To: ");
 			String toDate = input.nextLine();
-			
+
 			// Custom Report functionality
 		} catch (Exception e) {
 			System.out.println("\n**************Please enter a valid input**************\n");
@@ -348,7 +348,7 @@ public class MainMenu {
 		System.out.print("\nEnter choice: ");
 		BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
 		try {
-	        int choice = Integer.parseInt(bufferedReader.readLine());
+			int choice = Integer.parseInt(bufferedReader.readLine());
 			enterFilter(choice, location);
 		} catch (Exception e) {
 			System.out.println("\n**************Please enter a valid input**************\n");

@@ -5,7 +5,7 @@ import LogException.*;
 
 public class CusineDishes {
 	WriteExceptionToFile log = new WriteExceptionToFile();
-	
+
 	public void AddCusine(RestaurantData newRestaurant) {
 		System.out.println("--------------Restaurant Selection Platform--------------");
 		System.out.println("--------------Add Cuisines--------------");
