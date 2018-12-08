@@ -1,4 +1,4 @@
-package com.srh.rsp.setEntity;
+package com.srh.rsp.dbAccess;
 
 import java.util.Currency;
 
