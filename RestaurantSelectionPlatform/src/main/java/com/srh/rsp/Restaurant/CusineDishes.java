@@ -1,7 +1,10 @@
 package com.srh.rsp.Restaurant;
 
 import java.util.Scanner;
-import LogException.*;
+
+import com.srh.rsp.MainMenu;
+
+import LogException.WriteExceptionToFile;
 
 public class CusineDishes {
 	WriteExceptionToFile log = new WriteExceptionToFile();
@@ -18,43 +21,41 @@ public class CusineDishes {
 				System.out.println("Press 0 to stop adding cusines or 1 to continue adding");
 				choice = Integer.parseInt(input.nextLine());
 			}
-		} catch (NumberFormatException e) {
+		} catch (Exception e) {
 			System.out.println("Please enter a valid input 0 to exit");
 			log.appendToFile(e);
 		}
-
 		AddDishes();
-		input.close();
+		//input.close();
 	}
 
 	private void newCusine(CusineData cusine) {
 		// DB call to fetch cusines
+		System.out.println("Cusine added");
 	}
 
-	private void AddDishes() {
+	public void AddDishes() {
 		System.out.println("--------------Restaurant Selection Platform--------------");
 		System.out.println("--------------Add Dishes--------------");
-		DishData dish = new DishData();
-		Scanner input = new Scanner(System.in);
 		int choice = 1;
 		try {
-			while (choice != 0) {
-				dish = addNewDish(dish);
-				if (dish.dishName != "") {
-					// Add dish to DB
-				}
-				System.out.println("Press 0 to stop adding dishes");
-				choice = Integer.parseInt(input.nextLine());
-			}
-		} catch (NumberFormatException e) {
-			System.out.println("Please enter a valid input 0 to exit");
+			Scanner input = new Scanner(System.in);
+			do {
+				addNewDish();
+				System.out.println("Press 0 to stop adding dishes or 1 to add dish: ");
+				choice = input.nextInt();
+			} while (choice != 0);
+			MainMenu menu = new MainMenu();
+			menu.OwnerMainMenu();
+		} catch (Exception e) {
+			System.out.println("\n**************Please enter a valid input**************\n");
 			log.appendToFile(e);
 		}
-		input.close();
 	}
 
-	private DishData addNewDish(DishData dish) {
+	private void addNewDish() {
 		Scanner input = new Scanner(System.in);
+		DishData dish = new DishData();
 		System.out.print("Enter dish name: ");
 		dish.dishName = input.nextLine();
 		System.out.print("Enter dish description: ");
@@ -66,11 +67,11 @@ public class CusineDishes {
 			dish.price = Double.parseDouble(input.nextLine());
 			System.out.print("Enter calories in the dish: ");
 			dish.calories = Double.parseDouble(input.nextLine());
-		} catch (NumberFormatException e) {
+			// Add dish to db
+			System.out.println("Dish added");
+		} catch (Exception e) {
 			System.out.println("\n**************Please enter a valid input**************\n");
 			log.appendToFile(e);
 		}
-		input.close();
-		return dish;
 	}
 }

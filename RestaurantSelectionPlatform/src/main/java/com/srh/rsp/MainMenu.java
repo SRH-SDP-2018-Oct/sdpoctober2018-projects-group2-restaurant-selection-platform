@@ -91,7 +91,7 @@ public class MainMenu {
 		System.out.println("--------------Restaurant Selection Platform--------------");
 		System.out.println("Please proceed with below options:");
 		System.out.println("1. Add/Delete Restaurant \n2. Generate Report \n3. Search Restaurant \n4. Manage Bookings");
-		System.out.println("n5. Notifications \n6.Settings \n0. Exit");
+		System.out.println("5. Notifications \n6. Settings \n0. Exit");
 		System.out.println("\nEnter Choice");
 		Scanner input = new Scanner(System.in);
 		try {

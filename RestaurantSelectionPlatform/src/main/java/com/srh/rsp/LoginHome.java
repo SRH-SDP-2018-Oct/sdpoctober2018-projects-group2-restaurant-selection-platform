@@ -59,8 +59,10 @@ public class LoginHome {
 				LoginSession session = new LoginSession();
 				session.Login(eMail, passWord);
 				input.close();
-			} else
+			} else {
 				System.out.println("Enter a valid email id");
+				Login();
+			}
 		} catch (Exception e) {
 			System.out.println("\n**************Please enter a valid input**************\n");
 			log.appendToFile(e);
