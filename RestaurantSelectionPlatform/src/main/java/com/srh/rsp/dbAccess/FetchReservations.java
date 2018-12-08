@@ -14,7 +14,7 @@ public class FetchReservations {
 
 	public List<RestaurantReservation> fetchReservationDetails(long restaurantid, long customerid) {
 
-		// if restaurantid is not null then fetch for owner
+		// if restaurantid is not null then fetch for the owner
 		// elseif customerid is not null then fetch for customer
 
 		EntityManager em = PersistenceManager.INSTANCE.getEntityManager();
