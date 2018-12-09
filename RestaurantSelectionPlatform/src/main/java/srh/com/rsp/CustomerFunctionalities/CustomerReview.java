@@ -5,7 +5,7 @@ import java.util.Scanner;
 	public class CustomerReview {
 			
 			
-				static void Rating() {
+				public void Rating() {
 				
 				 System.out.println("Please rate our restaurant");
 				 System.out.println("\n 1 Poor \n 2 Average \n 3 Good \n 4 Very good \n 5 Excellent");
@@ -15,7 +15,7 @@ import java.util.Scanner;
 				 System.out.println("Thank you for the ratings\n"+input2 );
 				}
 				
-				static void Feedback() {
+				public void Feedback() {
 					
 			     System.out.println("Please provide your feedback");
 			     Scanner input1 = new Scanner(System.in);

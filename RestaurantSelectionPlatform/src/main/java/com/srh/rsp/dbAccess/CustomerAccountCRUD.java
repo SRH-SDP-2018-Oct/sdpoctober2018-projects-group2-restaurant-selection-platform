@@ -1,6 +1,11 @@
 package com.srh.rsp.dbAccess;
 
+import java.util.List;
+
 import javax.persistence.EntityManager;
+import javax.persistence.criteria.CriteriaBuilder;
+import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.Root;
 
 import com.srh.rsp.PersistenceManager;
 import com.srh.rsp.entity.CustomerLogin;
@@ -25,5 +30,18 @@ public class CustomerAccountCRUD {
 		em.getTransaction().commit();
 		em.close();
 		PersistenceManager.INSTANCE.close();
+	}
+
+	public List<CustomerLogin> fetchCustomerLoginOnCustomerid(Long customerid) {
+		EntityManager em = PersistenceManager.INSTANCE.getEntityManager();
+		CriteriaBuilder cbuilder = PersistenceManager.INSTANCE.getCriteriaBuilder();
+		CriteriaQuery<CustomerLogin> criteriaQuery = cbuilder.createQuery(CustomerLogin.class);
+		Root<CustomerLogin> customerLoginRoot = criteriaQuery.from(CustomerLogin.class);
+		criteriaQuery.select(customerLoginRoot);
+		criteriaQuery.where(cbuilder.equal(customerLoginRoot.get("customerId"), customerid));
+		List<CustomerLogin> listofCustomerLogin = em.createQuery(criteriaQuery).getResultList();
+
+		return listofCustomerLogin;
+
 	}
 }
