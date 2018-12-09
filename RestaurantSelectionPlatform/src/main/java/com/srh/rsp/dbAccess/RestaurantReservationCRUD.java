@@ -8,7 +8,7 @@ import javax.persistence.EntityManager;
 import com.srh.rsp.PersistenceManager;
 import com.srh.rsp.entity.RestaurantReservation;
 
-public class NewRestaurantReservation {
+public class RestaurantReservationCRUD {
 	long restaurantid, customerid;
 	String seatid;
 	boolean reservaionstaus;

@@ -1,17 +1,23 @@
 package com.srh.rsp.dbAccess;
 
 import java.util.Currency;
+import java.util.List;
 
 import javax.persistence.EntityManager;
+import javax.persistence.criteria.CriteriaBuilder;
+import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.Root;
 
 import com.srh.rsp.PersistenceManager;
 import com.srh.rsp.entity.DishDetails;
 
-public class NewDish {
+public class DishCRUD {
 	String dishname, dishdescription, picturelink;
 	boolean dishtype;
 	Currency currencyunit;
 	float calories, price;
+	EntityManager em = PersistenceManager.INSTANCE.getEntityManager();
+	CriteriaBuilder cbuilder = PersistenceManager.INSTANCE.getCriteriaBuilder();
 
 	public void setNewDish(String dishname, String dishdescription, String picturelink, boolean dishtype,
 			Currency currencyunit, float calories, float price) {
@@ -31,5 +37,15 @@ public class NewDish {
 		em.getTransaction().commit();
 		em.close();
 		PersistenceManager.INSTANCE.close();
+	}
+
+	public List<DishDetails> listOfDishOnName(String dishname) {
+		CriteriaQuery<DishDetails> criteriaQuery = cbuilder.createQuery(DishDetails.class);
+		Root<DishDetails> dishDetailsRoot = criteriaQuery.from(DishDetails.class);
+		criteriaQuery.select(dishDetailsRoot);
+		criteriaQuery.where(cbuilder.like(dishDetailsRoot.<String>get("dishName"), dishname));
+		List<DishDetails> listOfDishDetails = em.createQuery(criteriaQuery).getResultList();
+		return listOfDishDetails;
+
 	}
 }

@@ -139,6 +139,7 @@ public class MainMenu {
 		try {
 			String location = input.nextLine();
 			// Search results in location
+			
 			System.out.println("\n1. Select Restaurant \n2. Apply Filters \n0. Return to Main Menu ");
 			System.out.print("\nEnter choice: ");
 			int choice = Integer.parseInt(input.nextLine());

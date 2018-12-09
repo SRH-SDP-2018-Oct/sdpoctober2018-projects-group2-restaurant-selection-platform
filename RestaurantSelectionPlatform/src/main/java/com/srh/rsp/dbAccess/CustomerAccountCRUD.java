@@ -5,7 +5,7 @@ import javax.persistence.EntityManager;
 import com.srh.rsp.PersistenceManager;
 import com.srh.rsp.entity.CustomerLogin;
 
-public class NewCustomerAccount {
+public class CustomerAccountCRUD {
 	String username, password, email;
 	long phonenumber;
 

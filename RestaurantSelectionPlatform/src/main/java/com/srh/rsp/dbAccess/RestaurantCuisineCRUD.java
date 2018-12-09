@@ -5,7 +5,7 @@ import javax.persistence.EntityManager;
 import com.srh.rsp.PersistenceManager;
 import com.srh.rsp.entity.RestaurantCusine;
 
-public class NewRestaurantCuisine {
+public class RestaurantCuisineCRUD {
 	long restaurantid, cusineid;
 	String restaurantname, cuisinename;
 
