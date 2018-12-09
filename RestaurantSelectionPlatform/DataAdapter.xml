@@ -1,0 +1,2 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<jdbcDataAdapter class="net.sf.jasperreports.data.jdbc.JdbcDataAdapterImpl"><name>New Data Adapter 1</name><driver>com.mysql.jdbc.Driver</driver><username>root</username><password>Aa1Bb2Cc3Dd4#</password><savePassword>true</savePassword><url>jdbc:mysql://localhost:3306/restaurant_selection</url><database></database><serverAddress></serverAddress></jdbcDataAdapter>
