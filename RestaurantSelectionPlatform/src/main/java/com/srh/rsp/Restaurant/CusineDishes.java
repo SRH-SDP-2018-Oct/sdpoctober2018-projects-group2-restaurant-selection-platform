@@ -26,7 +26,6 @@ public class CusineDishes {
 			log.appendToFile(e);
 		}
 		AddDishes();
-		//input.close();
 	}
 
 	private void newCusine(CusineData cusine) {
@@ -34,7 +33,7 @@ public class CusineDishes {
 		System.out.println("Cusine added");
 	}
 
-	public void AddDishes() {
+	private void AddDishes() {
 		System.out.println("--------------Restaurant Selection Platform--------------");
 		System.out.println("--------------Add Dishes--------------");
 		int choice = 1;
@@ -56,22 +55,49 @@ public class CusineDishes {
 	private void addNewDish() {
 		Scanner input = new Scanner(System.in);
 		DishData dish = new DishData();
+		dish.dishName = enterDishName(input);
+		dish.dishDescription = enterDescription(input);
+		dish.picture = enterPictureLink(input);
+		dish.price = enterPrice(input);
+		dish.calories = enterCalories(input);
+		// Add dish to db
+		System.out.println("Dish added");
+	}
+	
+	private String enterDishName(Scanner input) {
 		System.out.print("Enter dish name: ");
-		dish.dishName = input.nextLine();
+		return input.nextLine();
+	}
+	
+	private String enterDescription(Scanner input) {
 		System.out.print("Enter dish description: ");
-		dish.dishDescription = input.nextLine();
+		return input.nextLine();
+	}
+	
+	private String enterPictureLink(Scanner input) {
 		System.out.print("Enter picture link for the dish: ");
-		dish.picture = input.nextLine();
+		return input.nextLine();
+	}
+	
+	private Double enterPrice(Scanner input) {
 		try {
 			System.out.print("Enter price of dish: ");
-			dish.price = Double.parseDouble(input.nextLine());
-			System.out.print("Enter calories in the dish: ");
-			dish.calories = Double.parseDouble(input.nextLine());
-			// Add dish to db
-			System.out.println("Dish added");
-		} catch (Exception e) {
+			return Double.parseDouble(input.nextLine());
+		} catch(Exception e) {
 			System.out.println("\n**************Please enter a valid input**************\n");
 			log.appendToFile(e);
 		}
+		return null;
+	}
+	
+	private Double enterCalories(Scanner input) {
+		try {
+			System.out.print("Enter calories in the dish: ");
+			return Double.parseDouble(input.nextLine());
+		} catch(Exception e) {
+			System.out.println("\n**************Please enter a valid input**************\n");
+			log.appendToFile(e);
+		}
+		return null;
 	}
 }
