@@ -55,7 +55,7 @@ public class FetchForSearch {
 			listOfDishDetails.forEach(dish -> {
 				// call searchhit entity for updation
 				updateSearchHit(dish.getDishId());
-				// call restaurantdish entity for getting restaurantids
+				// call restaurantdish entity for getting restaurant ids
 				List<RestaurantDish> listOfRestaurantDishDetails = rDishCRUD.listOfRestarantDish(dish.getDishId());
 			});
 		return listofRestaurantDetails;

@@ -4,7 +4,7 @@ import javax.persistence.EntityManager;
 
 import com.srh.rsp.PersistenceManager;
 import com.srh.rsp.entity.OfferDetails;
-
+//
 public class OfferCRUD {
 	long restaurantid, dishid;
 	float offerpercentage;
