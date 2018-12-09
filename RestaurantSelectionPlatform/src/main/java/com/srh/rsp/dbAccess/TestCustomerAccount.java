@@ -7,7 +7,7 @@ public class TestCustomerAccount {
 
 	public void testCustomerAccount() {
 
-		NewCustomerAccount createCustomer = new NewCustomerAccount();
+		CustomerAccountCRUD createCustomer = new CustomerAccountCRUD();
 		createCustomer.setCustomerAccount(username, password, email, customertype, phonenumber);
 	}
 }

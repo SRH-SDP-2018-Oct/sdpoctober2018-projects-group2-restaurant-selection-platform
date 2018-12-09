@@ -8,7 +8,7 @@ import javax.persistence.EntityManager;
 import com.srh.rsp.PersistenceManager;
 import com.srh.rsp.entity.RestaurantReview;
 
-public class NewRestaurantReview {
+public class RestaurantReviewCRUD {
 	long restaurantid, customerid;
 	String reviewtext;
 	float raing;

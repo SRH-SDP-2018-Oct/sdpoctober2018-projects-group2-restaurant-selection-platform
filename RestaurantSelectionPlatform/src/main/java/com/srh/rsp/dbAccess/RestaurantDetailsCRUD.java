@@ -5,7 +5,7 @@ import javax.persistence.EntityManager;
 import com.srh.rsp.PersistenceManager;
 import com.srh.rsp.entity.RestaurantDetails;
 
-public class NewRestaurantDetails {
+public class RestaurantDetailsCRUD {
 	String restaurantname, emailid, city, region, housenumberstreet, picturelink;
 	int countrykey, postalcode, subscriptionstatus;
 	boolean petsallowed, partyspace, vegnon;
