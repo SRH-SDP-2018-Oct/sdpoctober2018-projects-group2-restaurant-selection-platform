@@ -1,10 +1,15 @@
 package com.srh.rsp;
 
+import java.io.*;
 import java.util.Scanner;
 
 import com.srh.rsp.Restaurant.UpdateRestaurant;
 
+import LogException.WriteExceptionToFile;
+
 public class MainMenu {
+	WriteExceptionToFile log = new WriteExceptionToFile();
+
 	public void CustomerMainMenu() {
 		System.out.println("--------------Restaurant Selection Platform--------------");
 		System.out.println("Please proceed with below options:");
@@ -17,8 +22,7 @@ public class MainMenu {
 			input.close();
 		} catch (Exception e) {
 			System.out.println("\n**************Please enter a valid input**************\n");
-			e.printStackTrace();
-			CustomerMainMenu();
+			log.appendToFile(e);
 		}
 	}
 
@@ -54,8 +58,7 @@ public class MainMenu {
 			input.close();
 		} catch (Exception e) {
 			System.out.println("\n**************Please enter a valid input**************\n");
-			e.printStackTrace();
-			OwnerMainMenu();
+			log.appendToFile(e);
 		}
 	}
 
@@ -88,7 +91,7 @@ public class MainMenu {
 		System.out.println("--------------Restaurant Selection Platform--------------");
 		System.out.println("Please proceed with below options:");
 		System.out.println("1. Add/Delete Restaurant \n2. Generate Report \n3. Search Restaurant \n4. Manage Bookings");
-		System.out.println("n5. Notifications \\n6.Settings \\n0. Exit");
+		System.out.println("5. Notifications \n6. Settings \n0. Exit");
 		System.out.println("\nEnter Choice");
 		Scanner input = new Scanner(System.in);
 		try {
@@ -97,8 +100,7 @@ public class MainMenu {
 			input.close();
 		} catch (Exception e) {
 			System.out.println("\n**************Please enter a valid input**************\n");
-			e.printStackTrace();
-			DualUserMainMenu();
+			log.appendToFile(e);
 		}
 	}
 
@@ -136,12 +138,30 @@ public class MainMenu {
 		Scanner input = new Scanner(System.in);
 		try {
 			String location = input.nextLine();
-
+			// Search results in location
+			System.out.println("\n1. Select Restaurant \n2. Apply Filters \n0. Return to Main Menu ");
+			System.out.print("\nEnter choice: ");
+			int choice = Integer.parseInt(input.nextLine());
+			MakeSelection(choice, location);
 			input.close();
 		} catch (Exception e) {
 			System.out.println("\n**************Please enter a valid input**************\n");
-			e.printStackTrace();
-			SearchRestaurant();
+			log.appendToFile(e);
+		}
+	}
+
+	private void MakeSelection(int choice, String location) {
+		switch (choice) {
+		case 1: // Restaurant Selection
+			break;
+		case 2:
+			FilterMenu(location);
+			break;
+		case 0:
+			CustomerMainMenu();
+			break;
+		default:
+			System.out.println("Wrong input");
 		}
 	}
 
@@ -172,8 +192,7 @@ public class MainMenu {
 			input.close();
 		} catch (Exception e) {
 			System.out.println("\n**************Please enter a valid input**************\n");
-			e.printStackTrace();
-			CustomerSettings();
+			log.appendToFile(e);
 		}
 	}
 
@@ -200,8 +219,7 @@ public class MainMenu {
 			input.close();
 		} catch (Exception e) {
 			System.out.println("\n**************Please enter a valid input**************\n");
-			e.printStackTrace();
-			AddDeleteRestaurant();
+			log.appendToFile(e);
 		}
 	}
 
@@ -218,13 +236,12 @@ public class MainMenu {
 			input.close();
 		} catch (Exception e) {
 			System.out.println("\n**************Please enter a valid input**************\n");
-			e.printStackTrace();
-			GenerateReport();
+			log.appendToFile(e);
 		}
 	}
 
 	private void ReportDateSelection(int choice) {
-		Scanner input = new Scanner(System.in);
+
 		switch (choice) {
 		case 1: // Daily Report functionality
 			break;
@@ -232,22 +249,28 @@ public class MainMenu {
 			break;
 		case 3:
 			System.out.println("Please Enter Date Range in dd/MM/YYYY format");
-
-			try {
-				System.out.print("From: ");
-				String fromDate = input.nextLine();
-				System.out.print("To: ");
-				String toDate = input.nextLine();
-			} catch (Exception e) {
-				System.out.println("\n**************Please enter a valid input**************\n");
-				e.printStackTrace();
-				ReportDateSelection(choice);
-			}
-			// Custom Report functionality
+			CustomReportDate();
 			break;
 		case 0:
 			OwnerMainMenu();
 			break;
+		default:
+			System.out.println("Wrong input.");
+		}
+	}
+
+	private void CustomReportDate() {
+		Scanner input = new Scanner(System.in);
+		try {
+			System.out.print("From: ");
+			String fromDate = input.nextLine();
+			System.out.print("To: ");
+			String toDate = input.nextLine();
+
+			// Custom Report functionality
+		} catch (Exception e) {
+			System.out.println("\n**************Please enter a valid input**************\n");
+			log.appendToFile(e);
 		}
 		input.close();
 	}
@@ -255,13 +278,11 @@ public class MainMenu {
 	private void ManageBookings() {
 		System.out.println("--------------Restaurant Selection Platform--------------");
 		System.out.println("--------------Manage Bookings--------------");
-
 	}
 
 	private void OwnerNotificaitons() {
 		System.out.println("--------------Restaurant Selection Platform--------------");
 		System.out.println("--------------Notifications--------------");
-
 	}
 
 	private void OwnerSettings() {
@@ -286,16 +307,13 @@ public class MainMenu {
 			input.close();
 		} catch (Exception e) {
 			System.out.println("\n**************Please enter a valid input**************\n");
-			e.printStackTrace();
-			OwnerSettings();
+			log.appendToFile(e);
 		}
-
 	}
 
 	private void DualUserNotifications() {
 		System.out.println("--------------Restaurant Selection Platform--------------");
 		System.out.println("--------------Notifications--------------");
-
 	}
 
 	private void DualUserSettings() {
@@ -320,36 +338,42 @@ public class MainMenu {
 			input.close();
 		} catch (Exception e) {
 			System.out.println("\n**************Please enter a valid input**************\n");
-			e.printStackTrace();
-			DualUserSettings();
+			log.appendToFile(e);
 		}
 	}
 
-	private void FilterMenu() {
+	public void FilterMenu(String location) {
 		System.out.println("Filter your search result:");
-		System.out.println("1. Cuisines \n2. Distance \n3. Type of Restaurants \n4.Ratings \n0. Back to Main Menu");
-		Scanner input = new Scanner(System.in);
+		System.out.println("1. Cuisines \n2. Distance \n3. Type of Restaurants \n4. Ratings \n0. Back to Main Menu");
+		System.out.print("\nEnter choice: ");
+		BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
 		try {
-			int choice = Integer.parseInt(input.nextLine());
-			switch (choice) {
-			case 1:
-				break;
-			case 2:
-				break;
-			case 3:
-				break;
-			case 4:
-				break;
-			case 0:
-				CustomerMainMenu();
-				break;
-			}
-			input.close();
+			int choice = Integer.parseInt(bufferedReader.readLine());
+			enterFilter(choice, location);
 		} catch (Exception e) {
 			System.out.println("\n**************Please enter a valid input**************\n");
-			e.printStackTrace();
-			FilterMenu();
+			log.appendToFile(e);
 		}
 	}
 
+	private void enterFilter(int choice, String location) {
+		Filters filter = new Filters();
+		switch (choice) {
+		case 1:
+			filter.CuisineFilter(location);
+			break;
+		case 2:
+			filter.DistanceFilter(location);
+			break;
+		case 3:
+			filter.TypeFilter(location);
+			break;
+		case 4:
+			filter.RatingsFilter(location);
+			break;
+		case 0:
+			CustomerMainMenu();
+			break;
+		}
+	}
 }

@@ -14,13 +14,13 @@ public class RestaurantReview {
 
 	@Id
 	@Column(name = "review_Id")
-	private long review_Id;
+	private long reviewId;
 
 	@Column(name = "restaurant_Id")
-	private long restaurant_Id;
+	private long restaurantId;
 
 	@Column(name = "customer_Id")
-	private String customer_Id;
+	private long customerId;
 
 	@Column(name = "rating")
 	private float rating;
@@ -35,27 +35,7 @@ public class RestaurantReview {
 	private Date date;
 
 	public long getReview_Id() {
-		return review_Id;
-	}
-
-	public void setReview_Id(long review_Id) {
-		this.review_Id = review_Id;
-	}
-
-	public long getRestaurant_Id() {
-		return restaurant_Id;
-	}
-
-	public void setRestaurant_Id(long restaurant_Id) {
-		this.restaurant_Id = restaurant_Id;
-	}
-
-	public String getCustomer_Id() {
-		return customer_Id;
-	}
-
-	public void setCustomer_Id(String customer_Id) {
-		this.customer_Id = customer_Id;
+		return reviewId;
 	}
 
 	public float getRating() {
@@ -90,12 +70,35 @@ public class RestaurantReview {
 		this.date = date;
 	}
 
+	public long getReviewId() {
+		return reviewId;
+	}
+
+	public void setReviewId(long reviewId) {
+		this.reviewId = reviewId;
+	}
+
+	public long getRestaurantId() {
+		return restaurantId;
+	}
+
+	public void setRestaurantId(long restaurantId) {
+		this.restaurantId = restaurantId;
+	}
+
+	public long getCustomerId() {
+		return customerId;
+	}
+
+	public void setCustomerId(long customerId) {
+		this.customerId = customerId;
+	}
+
 	@Override
 	public String toString() {
-		return "Restaurant_Review [review_Id=" + review_Id + ", restaurant_Id=" + restaurant_Id + ", customer_Id="
-				+ customer_Id + ", rating=" + rating + ", reviewText=" + reviewText + ", timeStamp=" + timeStamp
+		return "RestaurantReview [reviewId=" + reviewId + ", restaurantId=" + restaurantId + ", customerId="
+				+ customerId + ", rating=" + rating + ", reviewText=" + reviewText + ", timeStamp=" + timeStamp
 				+ ", date=" + date + "]";
 	}
 
-	
 }

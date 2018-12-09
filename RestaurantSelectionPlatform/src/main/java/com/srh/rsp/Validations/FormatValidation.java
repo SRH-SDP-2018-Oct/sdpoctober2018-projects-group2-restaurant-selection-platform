@@ -3,6 +3,8 @@ package com.srh.rsp.Validations;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import com.srh.rsp.RegistrationData;
+
 public class FormatValidation {
 
 	private Pattern regexPattern;
@@ -18,5 +20,12 @@ public class FormatValidation {
 		regexPattern = Pattern.compile("^\\+[0-9]{2,3}-[0-9]{11}$");
 		regMatcher = regexPattern.matcher(mobileNumber);
 		return regMatcher.matches() ? true : false;
+	}
+
+	public boolean PassWordMatch(RegistrationData userDetails, String confirmPassWord) {
+		if (userDetails.passWord.equals(confirmPassWord))
+			return true;
+		else
+			return false;
 	}
 }

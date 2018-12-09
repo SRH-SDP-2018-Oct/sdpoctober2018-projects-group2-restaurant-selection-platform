@@ -1,9 +1,9 @@
-package com.srh.rsp.setEntity;
+package com.srh.rsp.dbAccess;
 
 public class TestCustomerAccount {
 
-	String username = "Sreehari", password = "Aa1Bb2CC3DD4#", email = "sreehari.sm@gmail.com", customertype = "Both";
-	long phonenumber = 9791154550L;
+	String username = "Sree", password = "Aa1Bb2#", email = "sreehari@gmail.com", customertype = "Both";
+	long phonenumber = 9791154557L;
 
 	public void testCustomerAccount() {
 

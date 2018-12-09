@@ -47,7 +47,7 @@ public class RestaurantDetails {
 	private boolean vegNon;
 
 	@Column(name = "party_Space")
-	private boolean party_Space;
+	private boolean partySpace;
 
 	@Column(name = "pets_Allowed")
 	private boolean petsAllowed;
@@ -60,10 +60,6 @@ public class RestaurantDetails {
 
 	public long getRestaurantId() {
 		return restaurantId;
-	}
-
-	public void setRestaurantId(long restaurantId) {
-		this.restaurantId = restaurantId;
 	}
 
 	public String getRestaurantName() {
@@ -154,12 +150,12 @@ public class RestaurantDetails {
 		this.vegNon = vegNon;
 	}
 
-	public boolean isParty_Space() {
-		return party_Space;
+	public boolean isPartySpace() {
+		return partySpace;
 	}
 
-	public void setParty_Space(boolean party_Space) {
-		this.party_Space = party_Space;
+	public void setPartySpace(boolean partySpace) {
+		this.partySpace = partySpace;
 	}
 
 	public boolean isPetsAllowed() {
@@ -191,9 +187,17 @@ public class RestaurantDetails {
 		return "RestaurantDetails [restaurantId=" + restaurantId + ", restaurantName=" + restaurantName + ", lineItem="
 				+ lineItem + ", customerId=" + customerId + ", emailId=" + emailId + ", phoneNumber=" + phoneNumber
 				+ ", countryKey=" + countryKey + ", city=" + city + ", postalCode=" + postalCode + ", region=" + region
-				+ ", housenumberStreet=" + housenumberStreet + ", vegNon=" + vegNon + ", party_Space=" + party_Space
+				+ ", housenumberStreet=" + housenumberStreet + ", vegNon=" + vegNon + ", partySpace=" + partySpace
 				+ ", petsAllowed=" + petsAllowed + ", pictureLink=" + pictureLink + ", subscriptionStatus="
-				+ subscriptionStatus + "]";
+				+ subscriptionStatus + ", getRestaurantId()=" + getRestaurantId() + ", getRestaurantName()="
+				+ getRestaurantName() + ", getLineItem()=" + getLineItem() + ", getCustomerId()=" + getCustomerId()
+				+ ", getEmailId()=" + getEmailId() + ", getPhoneNumber()=" + getPhoneNumber() + ", getCountryKey()="
+				+ getCountryKey() + ", getCity()=" + getCity() + ", getPostalCode()=" + getPostalCode()
+				+ ", getRegion()=" + getRegion() + ", getHousenumberStreet()=" + getHousenumberStreet()
+				+ ", isVegNon()=" + isVegNon() + ", isPartySpace()=" + isPartySpace() + ", isPetsAllowed()="
+				+ isPetsAllowed() + ", getPictureLink()=" + getPictureLink() + ", getSubscriptionStatus()="
+				+ getSubscriptionStatus() + ", getClass()=" + getClass() + ", hashCode()=" + hashCode()
+				+ ", toString()=" + super.toString() + "]";
 	}
 
 }
