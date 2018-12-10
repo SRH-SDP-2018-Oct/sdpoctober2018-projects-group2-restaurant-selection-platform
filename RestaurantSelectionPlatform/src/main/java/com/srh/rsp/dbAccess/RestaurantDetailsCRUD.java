@@ -10,7 +10,10 @@ import javax.persistence.criteria.Root;
 import com.srh.rsp.PersistenceManager;
 import com.srh.rsp.entity.RestaurantDetails;
 
+import LogException.WriteExceptionToFile;
+
 public class RestaurantDetailsCRUD {
+	WriteExceptionToFile log = new WriteExceptionToFile();
 	String restaurantname, emailid, city, region, housenumberstreet, picturelink;
 	int countrykey, postalcode, subscriptionstatus;
 	boolean petsallowed, partyspace, vegnon;
@@ -42,7 +45,6 @@ public class RestaurantDetailsCRUD {
 		em.getTransaction().commit();
 		em.close();
 		PersistenceManager.INSTANCE.close();
-
 	}
 
 	public RestaurantDetails listOfRestaurantDetailsOnRestaurantId(Long restaurantid) {

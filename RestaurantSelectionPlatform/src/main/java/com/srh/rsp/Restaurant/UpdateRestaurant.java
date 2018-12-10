@@ -2,6 +2,7 @@ package com.srh.rsp.Restaurant;
 
 import java.util.Scanner;
 
+import com.srh.rsp.LoginSession;
 import com.srh.rsp.dbAccess.RestaurantDetailsCRUD;
 
 import LogException.*;
@@ -36,10 +37,10 @@ public class UpdateRestaurant {
 
 	private void addRestaurantToDB(RestaurantData newRestaurant) {
 		RestaurantDetailsCRUD restaurant = new RestaurantDetailsCRUD();
-//		restaurant.setRestaurantDetails(newRestaurant.restaurantName, newRestaurant.eMailID, newRestaurant.city,
-//				newRestaurant.region, newRestaurant.houseNumberStreet, newRestaurant.pictureLink, newRestaurant.country,
-//				newRestaurant.postalCode, newRestaurant.petsAllowed, newRestaurant.partySpace, newRestaurant.vegNon,
-//				Long.valueOf(newRestaurant.phoneNumber));
+		restaurant.setRestaurantDetails(newRestaurant.restaurantName, newRestaurant.eMailID, newRestaurant.city,
+				newRestaurant.region, newRestaurant.houseNumberStreet, newRestaurant.pictureLink, LoginSession.userID,
+				newRestaurant.country, newRestaurant.postalCode, newRestaurant.petsAllowed, newRestaurant.partySpace,
+				newRestaurant.vegNon, newRestaurant.phoneNumber);
 
 		CusineDishes addNewCusine = new CusineDishes();
 		addNewCusine.AddCusine(newRestaurant);
