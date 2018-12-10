@@ -13,6 +13,8 @@ import com.srh.rsp.entity.CustomerLogin;
 public class CustomerAccountCRUD {
 	String username, password, email;
 	long phonenumber;
+	EntityManager em = PersistenceManager.INSTANCE.getEntityManager();
+	CriteriaBuilder cbuilder = PersistenceManager.INSTANCE.getCriteriaBuilder();
 
 	public void setCustomerAccount(String username, String password, String email, String customertype,
 			String phonenumber) {
@@ -24,7 +26,6 @@ public class CustomerAccountCRUD {
 		customerLogin.setCustomerType(customertype);
 		customerLogin.setPhoneNumber(phonenumber);
 
-		EntityManager em = PersistenceManager.INSTANCE.getEntityManager();
 		em.getTransaction().begin();
 		em.persist(customerLogin);
 		em.getTransaction().commit();
@@ -32,6 +33,7 @@ public class CustomerAccountCRUD {
 		PersistenceManager.INSTANCE.close();
 	}
 
+<<<<<<< HEAD
 	public List<CustomerLogin> fetchCustomerLoginOnCustomerid(Long customerid) {
 		EntityManager em = PersistenceManager.INSTANCE.getEntityManager();
 		CriteriaBuilder cbuilder = PersistenceManager.INSTANCE.getCriteriaBuilder();
@@ -48,6 +50,10 @@ public class CustomerAccountCRUD {
 	public CustomerLogin fetchCustomerType(String eMail, String password) {
 		EntityManager em = PersistenceManager.INSTANCE.getEntityManager();
 		CriteriaBuilder cbuilder = PersistenceManager.INSTANCE.getCriteriaBuilder();
+=======
+	public CustomerLogin fetchCustomerType(String eMail, String password) {
+
+>>>>>>> d87f525... SearchFunction
 		CriteriaQuery<CustomerLogin> criteriaQuery = cbuilder.createQuery(CustomerLogin.class);
 		Root<CustomerLogin> customerRoot = criteriaQuery.from(CustomerLogin.class);
 		criteriaQuery.select(customerRoot);
@@ -55,11 +61,19 @@ public class CustomerAccountCRUD {
 				cbuilder.equal(customerRoot.get("password"), password));
 		List<CustomerLogin> customerType = em.createQuery(criteriaQuery).getResultList();
 		if (customerType.isEmpty()) {
+<<<<<<< HEAD
 			//list is empty
+=======
+			// list is empty
+>>>>>>> d87f525... SearchFunction
 			return null;
 		}
 		em.close();
 		PersistenceManager.INSTANCE.close();
 		return customerType.get(0);
 	}
+<<<<<<< HEAD
+=======
+
+>>>>>>> d87f525... SearchFunction
 }

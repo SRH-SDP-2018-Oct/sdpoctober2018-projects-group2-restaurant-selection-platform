@@ -16,9 +16,6 @@ public class RestaurantDetails {
 	@Column(name = "restaurant_Name")
 	private String restaurantName;
 
-	@Column(name = "line_Item")
-	private int lineItem;
-
 	@Column(name = "customer_Id")
 	private long customerId;
 
@@ -26,7 +23,7 @@ public class RestaurantDetails {
 	private String emailId;
 
 	@Column(name = "phone_Number")
-	private long phoneNumber;
+	private String phoneNumber;
 
 	@Column(name = "country_Key")
 	private int countryKey;
@@ -70,14 +67,6 @@ public class RestaurantDetails {
 		this.restaurantName = restaurantName;
 	}
 
-	public int getLineItem() {
-		return lineItem;
-	}
-
-	public void setLineItem(int lineItem) {
-		this.lineItem = lineItem;
-	}
-
 	public long getCustomerId() {
 		return customerId;
 	}
@@ -94,11 +83,11 @@ public class RestaurantDetails {
 		this.emailId = emailId;
 	}
 
-	public long getPhoneNumber() {
+	public String getPhoneNumber() {
 		return phoneNumber;
 	}
 
-	public void setPhoneNumber(long phoneNumber) {
+	public void setPhoneNumber(String phoneNumber) {
 		this.phoneNumber = phoneNumber;
 	}
 
@@ -184,20 +173,19 @@ public class RestaurantDetails {
 
 	@Override
 	public String toString() {
-		return "RestaurantDetails [restaurantId=" + restaurantId + ", restaurantName=" + restaurantName + ", lineItem="
-				+ lineItem + ", customerId=" + customerId + ", emailId=" + emailId + ", phoneNumber=" + phoneNumber
+		return "RestaurantDetails [restaurantId=" + restaurantId + ", restaurantName=" + restaurantName
+				+ ", customerId=" + customerId + ", emailId=" + emailId + ", phoneNumber=" + phoneNumber
 				+ ", countryKey=" + countryKey + ", city=" + city + ", postalCode=" + postalCode + ", region=" + region
 				+ ", housenumberStreet=" + housenumberStreet + ", vegNon=" + vegNon + ", partySpace=" + partySpace
 				+ ", petsAllowed=" + petsAllowed + ", pictureLink=" + pictureLink + ", subscriptionStatus="
 				+ subscriptionStatus + ", getRestaurantId()=" + getRestaurantId() + ", getRestaurantName()="
-				+ getRestaurantName() + ", getLineItem()=" + getLineItem() + ", getCustomerId()=" + getCustomerId()
-				+ ", getEmailId()=" + getEmailId() + ", getPhoneNumber()=" + getPhoneNumber() + ", getCountryKey()="
-				+ getCountryKey() + ", getCity()=" + getCity() + ", getPostalCode()=" + getPostalCode()
-				+ ", getRegion()=" + getRegion() + ", getHousenumberStreet()=" + getHousenumberStreet()
-				+ ", isVegNon()=" + isVegNon() + ", isPartySpace()=" + isPartySpace() + ", isPetsAllowed()="
-				+ isPetsAllowed() + ", getPictureLink()=" + getPictureLink() + ", getSubscriptionStatus()="
-				+ getSubscriptionStatus() + ", getClass()=" + getClass() + ", hashCode()=" + hashCode()
-				+ ", toString()=" + super.toString() + "]";
+				+ getRestaurantName() + ", getCustomerId()=" + getCustomerId() + ", getEmailId()=" + getEmailId()
+				+ ", getPhoneNumber()=" + getPhoneNumber() + ", getCountryKey()=" + getCountryKey() + ", getCity()="
+				+ getCity() + ", getPostalCode()=" + getPostalCode() + ", getRegion()=" + getRegion()
+				+ ", getHousenumberStreet()=" + getHousenumberStreet() + ", isVegNon()=" + isVegNon()
+				+ ", isPartySpace()=" + isPartySpace() + ", isPetsAllowed()=" + isPetsAllowed() + ", getPictureLink()="
+				+ getPictureLink() + ", getSubscriptionStatus()=" + getSubscriptionStatus() + ", getClass()="
+				+ getClass() + ", hashCode()=" + hashCode() + ", toString()=" + super.toString() + "]";
 	}
 
 }

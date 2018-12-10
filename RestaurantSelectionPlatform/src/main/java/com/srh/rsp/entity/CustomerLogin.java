@@ -8,6 +8,10 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "customer_login")
 public class CustomerLogin {
+	public void setCustomerId(long customerId) {
+		this.customerId = customerId;
+	}
+
 	@Id
 	@Column(name = "customer_Id")
 	private long customerId;

@@ -1,5 +1,11 @@
 package com.srh.rsp;
 
+<<<<<<< HEAD
+=======
+import java.util.Arrays;
+import java.util.List;
+
+>>>>>>> d87f525... SearchFunction
 import com.srh.rsp.dbAccess.CustomerAccountCRUD;
 import com.srh.rsp.entity.CustomerLogin;
 

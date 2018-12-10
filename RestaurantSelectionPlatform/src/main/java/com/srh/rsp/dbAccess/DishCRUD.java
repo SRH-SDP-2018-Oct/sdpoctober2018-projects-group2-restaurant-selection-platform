@@ -20,7 +20,7 @@ public class DishCRUD {
 	CriteriaBuilder cbuilder = PersistenceManager.INSTANCE.getCriteriaBuilder();
 
 	public void setNewDish(String dishname, String dishdescription, String picturelink, boolean dishtype,
-			Currency currencyunit, float calories, float price) {
+			String currencyunit, float calories, float price) {
 		DishDetails dishDetails = new DishDetails();
 
 		dishDetails.setDishName(dishname);
@@ -39,11 +39,12 @@ public class DishCRUD {
 		PersistenceManager.INSTANCE.close();
 	}
 
-	public List<DishDetails> listOfDishOnName(String dishname) {
+	public List<DishDetails> listOfDishOnSearch(String search) {
 		CriteriaQuery<DishDetails> criteriaQuery = cbuilder.createQuery(DishDetails.class);
 		Root<DishDetails> dishDetailsRoot = criteriaQuery.from(DishDetails.class);
 		criteriaQuery.select(dishDetailsRoot);
-		criteriaQuery.where(cbuilder.like(dishDetailsRoot.<String>get("dishName"), dishname));
+		criteriaQuery.where(
+				cbuilder.like(cbuilder.lower(dishDetailsRoot.get("dishName")), "%" + search.toLowerCase() + "%"));
 		List<DishDetails> listOfDishDetails = em.createQuery(criteriaQuery).getResultList();
 		return listOfDishDetails;
 

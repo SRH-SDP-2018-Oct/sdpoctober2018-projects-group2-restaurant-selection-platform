@@ -33,13 +33,17 @@ public class RestaurantDishCRUD {
 
 	}
 
-	public List<RestaurantDish> listOfRestarantDish(Long dishid) {
+	public RestaurantDish restaurantDishOnDishId(Long dishid) {
 		CriteriaQuery<RestaurantDish> criteriaQuery = cbuilder.createQuery(RestaurantDish.class);
 		Root<RestaurantDish> restaurantDishDetailsRoot = criteriaQuery.from(RestaurantDish.class);
 		criteriaQuery.select(restaurantDishDetailsRoot);
 		criteriaQuery.where(cbuilder.equal(restaurantDishDetailsRoot.get("dishId"), dishid));
 		List<RestaurantDish> listofRestaurantDishDetails = em.createQuery(criteriaQuery).getResultList();
-		return listofRestaurantDishDetails;
+		if (listofRestaurantDishDetails.isEmpty()) {
+			// list is empty
+			return null;
+		}
+		return listofRestaurantDishDetails.get(0);
 
 	}
 }
