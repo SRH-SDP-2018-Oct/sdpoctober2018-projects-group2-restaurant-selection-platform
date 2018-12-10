@@ -1,1 +1,6 @@
 /target/
+.settings
+.classpath
+.project
+exception.txt
+bin/

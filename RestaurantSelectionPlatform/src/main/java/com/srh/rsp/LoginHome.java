@@ -6,7 +6,8 @@ import javax.swing.JOptionPane;
 import javax.swing.JPasswordField;
 
 import com.srh.rsp.Validations.FormatValidation;
-import LogException.*;
+
+import LogException.WriteExceptionToFile;
 
 public class LoginHome {
 	WriteExceptionToFile log = new WriteExceptionToFile();
@@ -74,7 +75,7 @@ public class LoginHome {
 			log.appendToFile(e);
 		}
 	}
-	
+
 	public String enterPassword() {
 		String message = "Enter password";
 		if (System.console() == null) { // inside IDE like Eclipse or NetBeans

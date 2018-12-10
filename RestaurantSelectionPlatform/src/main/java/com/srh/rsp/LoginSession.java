@@ -15,12 +15,10 @@ public class LoginSession {
 		userType = customerType.getCustomerType();
 		if (customerType.getCustomerType().equals("Both")) {
 			loadMenu.DualUserMainMenu();
-		}
-		else if (customerType.getCustomerType().equals("Owner")) {
+		} else if (customerType.getCustomerType().equals("Owner")) {
 			loadMenu.OwnerMainMenu();
-		}
-		else if (customerType.getCustomerType().equals("User")) {
+		} else if (customerType.getCustomerType().equals("User")) {
 			loadMenu.CustomerMainMenu();
-		}		
+		}
 	}
 }

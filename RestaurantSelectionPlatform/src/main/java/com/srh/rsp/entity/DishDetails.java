@@ -1,7 +1,5 @@
 package com.srh.rsp.entity;
 
-import java.util.Currency;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -29,12 +27,12 @@ public class DishDetails {
 	private float price;
 
 	@Column(name = "currency_Unit")
-	private Currency currency_Unit;
+	private String currency_Unit;
 
 	@Column(name = "calories")
 	private float calories;
 
-	@Column(name = "picture")
+	@Column(name = "picture_Link")
 	private String pictureLink;
 
 	public long getDishId() {
@@ -73,11 +71,11 @@ public class DishDetails {
 		this.price = price;
 	}
 
-	public Currency getCurrency_Unit() {
+	public String getCurrency_Unit() {
 		return currency_Unit;
 	}
 
-	public void setCurrency_Unit(Currency currency_Unit) {
+	public void setCurrency_Unit(String currency_Unit) {
 		this.currency_Unit = currency_Unit;
 	}
 

@@ -13,6 +13,8 @@ import com.srh.rsp.entity.CustomerLogin;
 public class CustomerAccountCRUD {
 	String username, password, email;
 	long phonenumber;
+	EntityManager em = PersistenceManager.INSTANCE.getEntityManager();
+	CriteriaBuilder cbuilder = PersistenceManager.INSTANCE.getCriteriaBuilder();
 
 	public void setCustomerAccount(String username, String password, String email, String customertype,
 			String phonenumber) {
@@ -24,7 +26,6 @@ public class CustomerAccountCRUD {
 		customerLogin.setCustomerType(customertype);
 		customerLogin.setPhoneNumber(phonenumber);
 
-		EntityManager em = PersistenceManager.INSTANCE.getEntityManager();
 		em.getTransaction().begin();
 		em.persist(customerLogin);
 		em.getTransaction().commit();
@@ -43,7 +44,7 @@ public class CustomerAccountCRUD {
 
 		return listofCustomerLogin;
 	}
-	
+
 	public CustomerLogin fetchCustomerType(String eMail, String password) {
 		EntityManager em = PersistenceManager.INSTANCE.getEntityManager();
 		CriteriaBuilder cbuilder = PersistenceManager.INSTANCE.getCriteriaBuilder();
@@ -54,7 +55,7 @@ public class CustomerAccountCRUD {
 				cbuilder.equal(customerRoot.get("password"), password));
 		List<CustomerLogin> customerType = em.createQuery(criteriaQuery).getResultList();
 		if (customerType.isEmpty()) {
-			//list is empty
+			// list is empty
 			return null;
 		}
 		em.close();
