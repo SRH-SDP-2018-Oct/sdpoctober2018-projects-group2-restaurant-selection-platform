@@ -5,15 +5,19 @@ import javax.persistence.EntityManager;
 import com.srh.rsp.PersistenceManager;
 import com.srh.rsp.entity.RestaurantDetails;
 
+import LogException.WriteExceptionToFile;
+
 public class RestaurantDetailsCRUD {
+	WriteExceptionToFile log = new WriteExceptionToFile();
 	String restaurantname, emailid, city, region, housenumberstreet, picturelink;
 	int countrykey, postalcode, subscriptionstatus;
 	boolean petsallowed, partyspace, vegnon;
-	long phonenumber,customerid;
+	long phonenumber, customerid;
+	EntityManager em = PersistenceManager.INSTANCE.getEntityManager();
 
 	public void setRestaurantDetails(String restaurantname, String emailid, String city, String region,
 			String housenumberstreet, String picturelink, long customerid, int countrykey, int postalcode,
-			int subscriptionstatus, boolean petsallowed, boolean partyspace, boolean vegnon, long phonenumber) {
+			boolean petsallowed, boolean partyspace, boolean vegnon, String phonenumber) {
 
 		RestaurantDetails restaurantDetails = new RestaurantDetails();
 		restaurantDetails.setRestaurantName(restaurantname);
@@ -30,12 +34,10 @@ public class RestaurantDetailsCRUD {
 		restaurantDetails.setVegNon(vegnon);
 		restaurantDetails.setPhoneNumber(phonenumber);
 
-		EntityManager em = PersistenceManager.INSTANCE.getEntityManager();
 		em.getTransaction().begin();
 		em.persist(restaurantDetails);
 		em.getTransaction().commit();
 		em.close();
 		PersistenceManager.INSTANCE.close();
-
 	}
 }

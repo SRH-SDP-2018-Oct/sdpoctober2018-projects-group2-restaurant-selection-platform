@@ -26,7 +26,7 @@ public class RestaurantDetails {
 	private String emailId;
 
 	@Column(name = "phone_Number")
-	private long phoneNumber;
+	private String phoneNumber;
 
 	@Column(name = "country_Key")
 	private int countryKey;
@@ -94,11 +94,11 @@ public class RestaurantDetails {
 		this.emailId = emailId;
 	}
 
-	public long getPhoneNumber() {
+	public String getPhoneNumber() {
 		return phoneNumber;
 	}
 
-	public void setPhoneNumber(long phoneNumber) {
+	public void setPhoneNumber(String phoneNumber) {
 		this.phoneNumber = phoneNumber;
 	}
 

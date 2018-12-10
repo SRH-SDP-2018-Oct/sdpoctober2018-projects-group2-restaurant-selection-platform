@@ -26,6 +26,13 @@ public class LoginHome {
 			log.appendToFile(e);
 		}
 	}
+	
+	public void afterRegistration() {
+		System.out.println("-----------------Welcome to Restaurant Selection Platform-----------------");
+		System.out.println("Please login");
+		
+		Login();
+	}
 
 	private void LoginHomeSelection(int choice) {
 		switch (choice) {
