@@ -1,19 +1,18 @@
 package com.srh.rsp;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 import com.srh.rsp.dbAccess.RestaurantDetailsCRUD;
 
 >>>>>>> d87f525... SearchFunction
+=======
+>>>>>>> 4e6bb58... Search Function Updated
 public class App {
 
 	public static void main(String[] args) {
 
-		// LoginHome mainPage = new LoginHome();
-		// mainPage.ConsoleMenu();
-
-		RestaurantDetailsCRUD rdCRUD = new RestaurantDetailsCRUD();
-		rdCRUD.setRestaurantDetails("Lalit Ashok", "Lalit.Ashok@gmail.com", "Heidelberg", "BismarkPlatz", "45", "linkf",
-				1L, 49, 678954, true, true, true, "9791154550");
+		LoginHome mainPage = new LoginHome();
+		mainPage.ConsoleMenu();
 	}
 }
