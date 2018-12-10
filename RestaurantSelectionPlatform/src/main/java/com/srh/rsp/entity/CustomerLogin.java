@@ -25,7 +25,7 @@ public class CustomerLogin {
 	private String emailId;
 
 	@Column(name = "phone_Number")
-	private long phoneNumber;
+	private String phoneNumber;
 
 	public String getEmailId() {
 		return emailId;
@@ -35,11 +35,11 @@ public class CustomerLogin {
 		this.emailId = emailId;
 	}
 
-	public long getPhoneNumber() {
+	public String getPhoneNumber() {
 		return phoneNumber;
 	}
 
-	public void setPhoneNumber(long phoneNumber) {
+	public void setPhoneNumber(String phoneNumber) {
 		this.phoneNumber = phoneNumber;
 	}
 

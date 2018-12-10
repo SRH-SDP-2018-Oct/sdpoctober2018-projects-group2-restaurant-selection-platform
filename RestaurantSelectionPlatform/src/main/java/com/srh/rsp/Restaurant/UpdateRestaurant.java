@@ -1,6 +1,9 @@
 package com.srh.rsp.Restaurant;
 
 import java.util.Scanner;
+
+import com.srh.rsp.dbAccess.RestaurantDetailsCRUD;
+
 import LogException.*;
 
 public class UpdateRestaurant {
@@ -28,11 +31,18 @@ public class UpdateRestaurant {
 		newRestaurant.partySpace = ifPartySpace(input);
 		newRestaurant.petsAllowed = ifPetsAllowed(input);
 		newRestaurant.pictureLink = enterPictureLink(input);
+		addRestaurantToDB(newRestaurant);
+	}
+
+	private void addRestaurantToDB(RestaurantData newRestaurant) {
+		RestaurantDetailsCRUD restaurant = new RestaurantDetailsCRUD();
+//		restaurant.setRestaurantDetails(newRestaurant.restaurantName, newRestaurant.eMailID, newRestaurant.city,
+//				newRestaurant.region, newRestaurant.houseNumberStreet, newRestaurant.pictureLink, newRestaurant.country,
+//				newRestaurant.postalCode, newRestaurant.petsAllowed, newRestaurant.partySpace, newRestaurant.vegNon,
+//				Long.valueOf(newRestaurant.phoneNumber));
 
 		CusineDishes addNewCusine = new CusineDishes();
 		addNewCusine.AddCusine(newRestaurant);
-
-		input.close();
 	}
 
 	private String enterRestaurantName(Scanner input) {
@@ -50,9 +60,15 @@ public class UpdateRestaurant {
 		return input.nextLine();
 	}
 
-	private String enterCountry(Scanner input) {
-		System.out.print("Enter Country: ");
-		return input.nextLine();
+	private int enterCountry(Scanner input) {
+		System.out.print("Enter Country code: ");
+		try {
+			return Integer.parseInt(input.nextLine());
+		} catch (NumberFormatException e) {
+			System.out.println("\n**************Please enter a valid input**************\n");
+			log.appendToFile(e);
+		}
+		return 0;
 	}
 
 	private String enterCity(Scanner input) {
@@ -60,9 +76,15 @@ public class UpdateRestaurant {
 		return input.nextLine();
 	}
 
-	private String enterPostalCode(Scanner input) {
+	private int enterPostalCode(Scanner input) {
 		System.out.print("Enter postal code: ");
-		return input.nextLine();
+		try {
+			return Integer.parseInt(input.nextLine());
+		} catch (NumberFormatException e) {
+			System.out.println("\n**************Please enter a valid input**************\n");
+			log.appendToFile(e);
+		}
+		return 0;
 	}
 
 	private String enterRegion(Scanner input) {

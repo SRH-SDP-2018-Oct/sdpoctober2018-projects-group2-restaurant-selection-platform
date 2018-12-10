@@ -8,8 +8,6 @@ import java.util.Scanner;
 
 import com.mysql.cj.xdevapi.Statement;
 
-import android.database.SQLException;
-
 public class Notifications {
 	// Customer should be notified about the restaurants nearby
 	// Customer should get the notification about the discounts from the restaurant
@@ -32,20 +30,20 @@ public class Notifications {
 class Restaurant {
 	private final String DBConnection = null;
 
-	public ArrayList<Restaurant> getRestaurant() throws ClassNotFoundException, SQLException {
-		Connection conn = DBConnection.getDBConnection().getConnection();
-		Statement stm;
-		stm = (Statement) conn.createStatement();
-		String sql = "Select * From Restaurant";
-		ResultSet rst;
-		rst = ((java.sql.Statement) stm).executeQuery(sql);
-		ArrayList<Restaurant> restaurantList = new ArrayList<Restaurant>();
-		while (rst.next()) {
-			Restaurant restaurant = new Restaurant();
-			restaurantList.add(restaurant);
-		}
-		return restaurantList;
-	}
+//	public ArrayList<Restaurant> getRestaurant() throws ClassNotFoundException, SQLException {
+//		Connection conn = DBConnection.getDBConnection().getConnection();
+//		Statement stm;
+//		stm = (Statement) conn.createStatement();
+//		String sql = "Select * From Restaurant";
+//		ResultSet rst;
+//		rst = ((java.sql.Statement) stm).executeQuery(sql);
+//		ArrayList<Restaurant> restaurantList = new ArrayList<Restaurant>();
+//		while (rst.next()) {
+//			Restaurant restaurant = new Restaurant();
+//			restaurantList.add(restaurant);
+//		}
+//		return restaurantList;
+//	}
 
 	protected void OfferDescription(String location) {
 		Scanner input = new Scanner(System.in);

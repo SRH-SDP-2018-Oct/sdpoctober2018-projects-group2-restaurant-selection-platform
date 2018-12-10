@@ -17,7 +17,7 @@ public class FormatValidation {
 	}
 
 	public Boolean validateMobileNumber(String mobileNumber) {
-		regexPattern = Pattern.compile("^\\+[0-9]{2,3}-[0-9]{11}$");
+		regexPattern = Pattern.compile("^[0-9]{10,11}$");
 		regMatcher = regexPattern.matcher(mobileNumber);
 		return regMatcher.matches() ? true : false;
 	}

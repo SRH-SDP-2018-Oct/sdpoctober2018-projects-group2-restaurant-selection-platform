@@ -4,9 +4,9 @@ public class RestaurantData {
 	public String restaurantName;
 	public String eMailID;
 	public String phoneNumber;
-	public String country;
+	public int country;
 	public String city;
-	public String postalCode;
+	public int postalCode;
 	public String region;
 	public String houseNumberStreet;
 	public Boolean vegNon;

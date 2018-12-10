@@ -15,7 +15,7 @@ public class CustomerAccountCRUD {
 	long phonenumber;
 
 	public void setCustomerAccount(String username, String password, String email, String customertype,
-			long phonenumber) {
+			String phonenumber) {
 		CustomerLogin customerLogin = new CustomerLogin();
 
 		customerLogin.setUserName(username);
@@ -43,5 +43,23 @@ public class CustomerAccountCRUD {
 
 		return listofCustomerLogin;
 
+	}
+	
+	public CustomerLogin fetchCustomerType(String eMail, String password) {
+		EntityManager em = PersistenceManager.INSTANCE.getEntityManager();
+		CriteriaBuilder cbuilder = PersistenceManager.INSTANCE.getCriteriaBuilder();
+		CriteriaQuery<CustomerLogin> criteriaQuery = cbuilder.createQuery(CustomerLogin.class);
+		Root<CustomerLogin> customerRoot = criteriaQuery.from(CustomerLogin.class);
+		criteriaQuery.select(customerRoot);
+		criteriaQuery.where(cbuilder.equal(customerRoot.get("emailId"), eMail),
+				cbuilder.equal(customerRoot.get("password"), password));
+		List<CustomerLogin> customerType = em.createQuery(criteriaQuery).getResultList();
+		if (customerType.isEmpty()) {
+			//list is empty
+			return null;
+		}
+		em.close();
+		PersistenceManager.INSTANCE.close();
+		return customerType.get(0);
 	}
 }

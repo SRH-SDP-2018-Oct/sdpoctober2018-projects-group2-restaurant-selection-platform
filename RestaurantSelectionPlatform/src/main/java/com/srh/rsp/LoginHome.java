@@ -1,7 +1,9 @@
 package com.srh.rsp;
 
-import java.io.Console;
 import java.util.Scanner;
+
+import javax.swing.JOptionPane;
+import javax.swing.JPasswordField;
 
 import com.srh.rsp.Validations.FormatValidation;
 import LogException.*;
@@ -52,10 +54,7 @@ public class LoginHome {
 			String eMail = input.nextLine();
 			FormatValidation EmailFormat = new FormatValidation();
 			if (EmailFormat.validateEmailAddress(eMail)) {
-				Console console = System.console();
-				char[] password = console.readPassword("Password: ");
-				String passWord = String.valueOf(password);
-
+				String passWord = enterPassword();
 				LoginSession session = new LoginSession();
 				session.Login(eMail, passWord);
 				input.close();
@@ -68,6 +67,16 @@ public class LoginHome {
 			log.appendToFile(e);
 		}
 	}
+	
+	public String enterPassword() {
+		String message = "Enter password";
+		if (System.console() == null) { // inside IDE like Eclipse or NetBeans
+			final JPasswordField pf = new JPasswordField();
+			return JOptionPane.showConfirmDialog(null, pf, message, JOptionPane.OK_CANCEL_OPTION,
+					JOptionPane.QUESTION_MESSAGE) == JOptionPane.OK_OPTION ? new String(pf.getPassword()) : "";
+		} else
+			return new String(System.console().readPassword("%s> ", message));
+	}
 
 	private void Register() {
 		Scanner input = new Scanner(System.in);
@@ -75,11 +84,11 @@ public class LoginHome {
 		System.out.println("Enter Details Below:");
 		System.out.print("Your Name: ");
 		try {
-			Console console = System.console();
-			userDetails = enterDetails(userDetails, console);
+			userDetails = enterDetails(userDetails);
 			FormatValidation validation = new FormatValidation();
-			char[] confirmPassword = console.readPassword("Re-enter Password: ");
-			String confirmPassWord = String.valueOf(confirmPassword);
+			String confirmPassWord = null;
+			if (userDetails != null)
+				confirmPassWord = enterPassword();
 
 			if (validation.PassWordMatch(userDetails, confirmPassWord)) {
 				System.out.println("Please select your role:");
@@ -93,26 +102,25 @@ public class LoginHome {
 		}
 	}
 
-	private RegistrationData enterDetails(RegistrationData userDetails, Console console) {
+	private RegistrationData enterDetails(RegistrationData userDetails) {
 		Scanner input = new Scanner(System.in);
 		FormatValidation validation = new FormatValidation();
 		userDetails.personName = input.nextLine();
 		System.out.print("Email: ");
 		userDetails.eMail = input.nextLine();
-		if (validation.validateEmailAddress(userDetails.eMail)) {
+		if (userDetails.eMail != null && validation.validateEmailAddress(userDetails.eMail)) {
 			System.out.print("Contact No: ");
 			userDetails.contactNumber = input.nextLine();
-			if (validation.validateMobileNumber(userDetails.contactNumber)) {
-				char[] password = console.readPassword("Select Password: ");
-				userDetails.passWord = String.valueOf(password);
+			if (userDetails.contactNumber != null && validation.validateMobileNumber(userDetails.contactNumber)) {
+				userDetails.passWord = enterPassword();
 				return userDetails;
 			} else {
-				System.out.println("Kindly enter a valid contact number\n Please exit and try again");
-				return userDetails;
+				System.out.println("Kindly enter a valid contact number");
+				return null;
 			}
 		} else {
-			System.out.println("enter a valid email id\n Please exit and try again");
-			return userDetails;
+			System.out.println("enter a valid email id");
+			return null;
 		}
 	}
 
