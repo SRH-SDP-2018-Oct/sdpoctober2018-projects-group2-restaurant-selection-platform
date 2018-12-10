@@ -1,7 +1,6 @@
 package com.srh.rsp;
 
 import java.util.List;
-import java.util.Scanner;
 
 import com.srh.rsp.dbAccess.DishCRUD;
 import com.srh.rsp.dbAccess.RestaurantDetailsCRUD;
@@ -12,26 +11,6 @@ import com.srh.rsp.entity.RestaurantDish;
 
 public class SearchFunction {
 
-	public void searchInput() {
-		System.out.println("--------------Restaurant Selection Platform--------------");
-		System.out.println("Search Dish or Restaurant: ");
-		Scanner search = new Scanner(System.in);
-		
-		System.out.print("Please enter location for search: ");
-		Scanner input = new Scanner(System.in);
-		try {
-			String location = input.nextLine();
-			// Search results in location
-			
-			System.out.println("\n1. Select Restaurant \n2. Apply Filters \n0. Return to Main Menu ");
-			System.out.print("\nEnter choice: ");
-			int choice = Integer.parseInt(input.nextLine());
-			MakeSelection(choice, location);
-			input.close();
-		} catch (Exception e) {
-			System.out.println("\n**************Please enter a valid input**************\n");
-			log.appendToFile(e);
-	}
 	public List<RestaurantDetails> fetchRestaurantsOnSearch(String search) {
 
 		// veg_non - filter
