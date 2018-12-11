@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.6.0.final using JasperReports Library version 6.6.0  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="Restaurant_Owner" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="86787ba3-186a-4425-b04d-c90ebde22aab">
+	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="New Data Adapter "/>
+	<queryString language="SQL">
+		<![CDATA[select  restaurant_selection.restaurant_details.`restaurant_Id` ,
+ restaurant_selection.restaurant_reservation.`reservation_Id` ,
+  restaurant_selection.restaurant_reservation.`customer_Id` ,
+   restaurant_selection.restaurant_reservation.`reservation_Status` ,
+    restaurant_selection.restaurant_reservation.`booking_Date` 
+  from  restaurant_selection.restaurant_details,restaurant_selection.restaurant_reservation]]>
+	</queryString>
+	<field name="restaurant_Id" class="java.lang.Integer">
+		<property name="com.jaspersoft.studio.field.label" value="restaurant_Id"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="restaurant_details"/>
+		<property name="net.sf.jasperreports.sql.field.column.name" value="restaurant_Id"/>
+		<property name="net.sf.jasperreports.sql.field.column.label" value="Restaurant ID"/>
+	</field>
+	<field name="reservation_Id" class="java.lang.Integer">
+		<property name="com.jaspersoft.studio.field.label" value="reservation_Id"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="restaurant_reservation"/>
+	</field>
+	<field name="customer_Id" class="java.lang.Integer">
+		<property name="com.jaspersoft.studio.field.label" value="customer_Id"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="restaurant_reservation"/>
+	</field>
+	<field name="reservation_Status" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="reservation_Status"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="restaurant_reservation"/>
+	</field>
+	<field name="booking_Date" class="java.sql.Date">
+		<property name="com.jaspersoft.studio.field.label" value="booking_Date"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="restaurant_reservation"/>
+	</field>
+	<variable name="booking_Date1" class="java.lang.Integer" resetType="Column" calculation="Count">
+		<variableExpression><![CDATA[$F{booking_Date}]]></variableExpression>
+	</variable>
+	<variable name="$V{REPORT_COUNT}" class="java.lang.String" calculation="Count"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="79" splitType="Stretch">
+			<textField>
+				<reportElement x="130" y="0" width="303" height="50" uuid="2a37911a-eccd-4543-8cbb-30b918847151"/>
+				<textElement>
+					<font size="20" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Detailed Restaurant Report"]]></textFieldExpression>
+			</textField>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="45" splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="75" splitType="Stretch">
+			<staticText>
+				<reportElement x="70" y="0" width="101" height="30" uuid="858e5a60-785c-4de0-9626-48e74230b9c0">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="a43699ae-e780-4e0a-911b-e6f05d593874"/>
+				</reportElement>
+				<textElement>
+					<font fontName="Raavi" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[restaurant_Id]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="180" y="0" width="92" height="30" uuid="4480e38f-4097-4d2e-b41b-021bfe1ab0f4">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="ba6c9aaf-dd88-4685-87dc-3ebe83697f9b"/>
+				</reportElement>
+				<textElement>
+					<font fontName="Raavi" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[reservation_Id]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="280" y="0" width="93" height="30" uuid="a7982d6f-a916-4da2-b480-fe8bb088b529">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="1e037643-8bd2-488a-9887-b61762fc976a"/>
+				</reportElement>
+				<textElement>
+					<font fontName="Raavi" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[customer_Id]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="380" y="0" width="94" height="30" uuid="906564a6-9649-44de-ad6c-f7abd44cdcea">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="0e2d058a-6a63-4e99-947a-46f8ed2126ea"/>
+				</reportElement>
+				<textElement>
+					<font fontName="Raavi" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[reservation_Status]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="480" y="0" width="95" height="30" uuid="fc2eaec5-65e0-4d24-83d7-b682196d3b98">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="cf9da5c8-299e-48ff-af0c-20fbced6713c"/>
+				</reportElement>
+				<textElement>
+					<font fontName="Raavi" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[booking_Date]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="45" splitType="Stretch">
+			<textField>
+				<reportElement x="70" y="0" width="101" height="30" uuid="53beb456-5004-4c71-a399-6d984320bc20">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="a43699ae-e780-4e0a-911b-e6f05d593874"/>
+				</reportElement>
+				<textFieldExpression><![CDATA[$F{restaurant_Id}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="180" y="0" width="92" height="30" uuid="0937f6f3-111c-497f-a76d-fd2254113d55">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="ba6c9aaf-dd88-4685-87dc-3ebe83697f9b"/>
+				</reportElement>
+				<textFieldExpression><![CDATA[$F{reservation_Id}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="280" y="0" width="93" height="30" uuid="c3b953cd-fe8b-4dcc-9014-744a455d10bb">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="1e037643-8bd2-488a-9887-b61762fc976a"/>
+				</reportElement>
+				<textFieldExpression><![CDATA[$F{customer_Id}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="380" y="0" width="94" height="30" uuid="3f1b6cbd-a5a7-41be-9d0b-699b9add72e7">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="0e2d058a-6a63-4e99-947a-46f8ed2126ea"/>
+				</reportElement>
+				<textFieldExpression><![CDATA[$F{reservation_Status}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="480" y="0" width="85" height="30" uuid="0d63bb96-8ba7-4c3c-9f55-43c3d9e5f0bb">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="cf9da5c8-299e-48ff-af0c-20fbced6713c"/>
+				</reportElement>
+				<textFieldExpression><![CDATA[$F{booking_Date}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="65" splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="54" splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band height="42" splitType="Stretch"/>
+	</summary>
+</jasperReport>
