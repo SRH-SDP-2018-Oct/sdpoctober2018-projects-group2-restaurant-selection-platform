@@ -36,7 +36,20 @@ public class DishCRUD {
 		em.persist(dishDetails);
 		em.getTransaction().commit();
 		em.close();
-		PersistenceManager.INSTANCE.close();
+	}
+	
+	public DishDetails getDishID(String dishName) {
+		CriteriaQuery<DishDetails> criteriaQuery = cbuilder.createQuery(DishDetails.class);
+		Root<DishDetails> dishDetailsRoot = criteriaQuery.from(DishDetails.class);
+		criteriaQuery.select(dishDetailsRoot);
+		criteriaQuery.where(cbuilder.equal(dishDetailsRoot.get("dishName"), dishName));
+		List<DishDetails> dishDetails = em.createQuery(criteriaQuery).getResultList();
+		if (dishDetails.isEmpty()) {
+			// list is empty
+			return null;
+		}
+		em.close();
+		return dishDetails.get(0);
 	}
 
 	public List<DishDetails> listOfDishOnSearch(String search) {

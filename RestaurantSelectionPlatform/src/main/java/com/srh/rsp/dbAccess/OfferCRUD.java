@@ -23,8 +23,6 @@ public class OfferCRUD {
 		em.persist(offerDetails);
 		em.getTransaction().commit();
 		em.close();
-		PersistenceManager.INSTANCE.close();
-
 	}
 
 }

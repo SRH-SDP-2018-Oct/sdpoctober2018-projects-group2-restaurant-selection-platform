@@ -16,7 +16,7 @@ public class RestaurantDishCRUD {
 	EntityManager em = PersistenceManager.INSTANCE.getEntityManager();
 	CriteriaBuilder cbuilder = PersistenceManager.INSTANCE.getCriteriaBuilder();
 
-	public void setRestaurantDish(int restaurantid, int dishid, String restaurantname, String dishname) {
+	public void setRestaurantDish(long restaurantid, long dishid, String restaurantname, String dishname) {
 
 		RestaurantDish restaurantDish = new RestaurantDish();
 		restaurantDish.setRestaurantId(restaurantid);
@@ -29,8 +29,6 @@ public class RestaurantDishCRUD {
 		em.persist(restaurantDish);
 		em.getTransaction().commit();
 		em.close();
-		PersistenceManager.INSTANCE.close();
-
 	}
 
 	public RestaurantDish restaurantDishOnDishId(Long dishid) {

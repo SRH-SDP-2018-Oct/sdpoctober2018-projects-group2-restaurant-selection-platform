@@ -1,6 +1,7 @@
 package com.srh.rsp;
 
-import java.io.*;
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
 import java.util.Scanner;
 
 import com.srh.rsp.Restaurant.UpdateRestaurant;
@@ -51,7 +52,7 @@ public class MainMenu {
 		System.out.println("Please proceed with below options:");
 		System.out.println(
 				"1. Add/Delete Restaurant \n2. Generate Report \n3. Manage Bookings \n4. Notifications \n5. Settings \n0. Exit");
-		System.out.println("\nEnter Choice");
+		System.out.print("\nEnter Choice: ");
 		try {
 			int choice = Integer.parseInt(input.nextLine());
 			OwnerMainSelection(choice);
@@ -159,7 +160,10 @@ public class MainMenu {
 			FilterMenu(location);
 			break;
 		case 0:
-			CustomerMainMenu();
+			if (LoginSession.userType.equals("User"))
+				CustomerMainMenu();
+			else if (LoginSession.userType.equals("Both"))
+				DualUserMainMenu();
 			break;
 		default:
 			System.out.println("Wrong input");
@@ -214,7 +218,10 @@ public class MainMenu {
 			case 2: // Delete restaurant functionality
 				break;
 			case 0:
-				OwnerMainMenu();
+				if (LoginSession.userType.equals("Owner"))
+					OwnerMainMenu();
+				else if (LoginSession.userType.equals("Both"))
+					DualUserMainMenu();
 				break;
 			}
 			input.close();
@@ -253,7 +260,10 @@ public class MainMenu {
 			CustomReportDate();
 			break;
 		case 0:
-			OwnerMainMenu();
+			if (LoginSession.userType.equals("Owner"))
+				OwnerMainMenu();
+			else if (LoginSession.userType.equals("Both"))
+				DualUserMainMenu();
 			break;
 		default:
 			System.out.println("Wrong input.");

@@ -17,7 +17,7 @@ public class CusineType {
 	@Column(name = "cuisine_Name")
 	private String cusineName;
 
-	@Column(name = "cusine_Description")
+	@Column(name = "cuisine_Description")
 	private String cusine_Description;
 
 	public long getCuisineId() {

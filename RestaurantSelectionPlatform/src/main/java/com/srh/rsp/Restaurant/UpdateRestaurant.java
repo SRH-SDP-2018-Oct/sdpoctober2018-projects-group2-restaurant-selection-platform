@@ -4,11 +4,13 @@ import java.util.Scanner;
 
 import com.srh.rsp.LoginSession;
 import com.srh.rsp.dbAccess.RestaurantDetailsCRUD;
+import com.srh.rsp.entity.RestaurantDetails;
 
 import LogException.*;
 
 public class UpdateRestaurant {
 	WriteExceptionToFile log = new WriteExceptionToFile();
+	public static long restaurantID;
 
 	public void AddRestaurant() {
 		System.out.println("--------------Restaurant Selection Platform--------------");
@@ -41,7 +43,8 @@ public class UpdateRestaurant {
 				newRestaurant.region, newRestaurant.houseNumberStreet, newRestaurant.pictureLink, LoginSession.userID,
 				newRestaurant.country, newRestaurant.postalCode, newRestaurant.petsAllowed, newRestaurant.partySpace,
 				newRestaurant.vegNon, newRestaurant.phoneNumber);
-
+		RestaurantDetails getID = restaurant.getRestaurantID(newRestaurant.restaurantName);
+		restaurantID = getID.getRestaurantId();
 		CusineDishes addNewCusine = new CusineDishes();
 		addNewCusine.AddCusine(newRestaurant);
 	}
