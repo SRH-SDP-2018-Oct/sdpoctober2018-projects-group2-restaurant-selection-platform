@@ -13,7 +13,7 @@ public class RestaurantCuisineCRUD {
 
 		RestaurantCusine restaurantCusine = new RestaurantCusine();
 		restaurantCusine.setRestaurantId(restaurantid);
-		restaurantCusine.setRestaurantId(restaurantid);
+		restaurantCusine.setCusineId(cuisineid);
 		restaurantCusine.setRestaurantName(restaurantname);
 		restaurantCusine.setCuisineName(cuisinename);
 
@@ -22,6 +22,5 @@ public class RestaurantCuisineCRUD {
 		em.persist(restaurantCusine);
 		em.getTransaction().commit();
 		em.close();
-		PersistenceManager.INSTANCE.close();
 	}
 }

@@ -29,6 +29,5 @@ public class RestaurantReviewCRUD {
 		em.persist(restaurantReview);
 		em.getTransaction().commit();
 		em.close();
-		PersistenceManager.INSTANCE.close();
 	}
 }

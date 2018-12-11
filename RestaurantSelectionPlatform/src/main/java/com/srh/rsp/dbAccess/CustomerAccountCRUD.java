@@ -30,7 +30,6 @@ public class CustomerAccountCRUD {
 		em.persist(customerLogin);
 		em.getTransaction().commit();
 		em.close();
-		PersistenceManager.INSTANCE.close();
 	}
 
 	public List<CustomerLogin> fetchCustomerLoginOnCustomerid(Long customerid) {
@@ -59,7 +58,6 @@ public class CustomerAccountCRUD {
 			return null;
 		}
 		em.close();
-		PersistenceManager.INSTANCE.close();
 		return customerType.get(0);
 	}
 	
@@ -77,7 +75,6 @@ public class CustomerAccountCRUD {
 			return null;
 		}
 		em.close();
-		PersistenceManager.INSTANCE.close();
 		return customerType.get(0);
 	}
 }

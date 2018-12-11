@@ -43,8 +43,21 @@ public class RestaurantDetailsCRUD {
 		em.getTransaction().begin();
 		em.persist(restaurantDetails);
 		em.getTransaction().commit();
-		em.close();
-		PersistenceManager.INSTANCE.close();
+		//em.close();
+	}
+	
+	public RestaurantDetails getRestaurantID(String restaurantName) {
+		CriteriaQuery<RestaurantDetails> criteriaQuery = cbuilder.createQuery(RestaurantDetails.class);
+		Root<RestaurantDetails> restaurantDetailsRoot = criteriaQuery.from(RestaurantDetails.class);
+		criteriaQuery.select(restaurantDetailsRoot);
+		criteriaQuery.where(cbuilder.equal(restaurantDetailsRoot.get("restaurantName"), restaurantName));
+		List<RestaurantDetails> restaurantDetails = em.createQuery(criteriaQuery).getResultList();
+		if (restaurantDetails.isEmpty()) {
+			// list is empty
+			return null;
+		}
+		//em.close();
+		return restaurantDetails.get(0);
 	}
 
 	public RestaurantDetails listOfRestaurantDetailsOnRestaurantId(Long restaurantid) {
@@ -59,7 +72,6 @@ public class RestaurantDetailsCRUD {
 			return null;
 		}
 		em.close();
-		PersistenceManager.INSTANCE.close();
 		return restaurantDetails.get(0);
 	}
 

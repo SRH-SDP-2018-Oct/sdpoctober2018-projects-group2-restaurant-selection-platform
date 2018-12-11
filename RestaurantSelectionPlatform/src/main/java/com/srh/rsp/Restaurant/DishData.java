@@ -7,4 +7,5 @@ public class DishData {
 	public double price;
 	public double calories;
 	public String picture;
+	public String currencyUnit;
 }

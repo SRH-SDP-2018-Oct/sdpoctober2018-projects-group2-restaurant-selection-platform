@@ -32,8 +32,5 @@ public class RestaurantReservationCRUD {
 		em.persist(restaurantReservaion);
 		em.getTransaction().commit();
 		em.close();
-		PersistenceManager.INSTANCE.close();
-
 	}
-
 }

@@ -19,6 +19,8 @@
 			<!-- The database password -->
 			<property name="javax.persistence.jdbc.password"
 				value="Aa1Bb2Cc3Dd4#" />
+				
+			<property name="hibernate.physical_naming_strategy" value="org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl" />
 		</properties>
 	</persistence-unit>
 </persistence>

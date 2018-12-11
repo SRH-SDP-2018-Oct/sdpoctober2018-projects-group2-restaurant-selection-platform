@@ -21,7 +21,6 @@ public class SearchHitCRUD {
 		em.persist(searchHit);
 		em.getTransaction().commit();
 		em.close();
-		PersistenceManager.INSTANCE.close();
 	}
 
 }
