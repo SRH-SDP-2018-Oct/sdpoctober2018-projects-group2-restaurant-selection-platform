@@ -77,6 +77,9 @@ public class CusineDishes {
 	private void AddDishToRestaurant(String restaurantName, String dishName) {
 		RestaurantDishCRUD dishRestaurant = new RestaurantDishCRUD();
 		dishRestaurant.setRestaurantDish(UpdateRestaurant.restaurantID, dishID, restaurantName, dishName);
+		
+		RestaurantOffers offers = new RestaurantOffers();
+		offers.addOffer();
 	}
 
 	private void addNewDish(String restaurantName) {
