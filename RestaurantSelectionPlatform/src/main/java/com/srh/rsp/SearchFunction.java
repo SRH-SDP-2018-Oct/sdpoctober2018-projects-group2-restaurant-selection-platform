@@ -76,23 +76,50 @@ public class SearchFunction {
 			// call main menu
 
 		} else {
-			applyFiltersOnRestaurants(restaurantDetails);
+			chooseFiltersOnRestaurants(restaurantDetails);
 		}
 
 	}
 
-	private void applyFiltersOnRestaurants(List<RestaurantDetails> restaurantDetails) {
-		System.out.print("Veg or NonVeg(Enter Y (Yes) / N (NO): ");
+	private void chooseFiltersOnRestaurants(List<RestaurantDetails> restaurantDetails) {
+		boolean vFlag = true;
+		System.out.print("Do you need to display only Veg hotels ?(Enter Y (Yes) / N (NO): ");
 		Scanner input = new Scanner(System.in);
 		try {
+			char choice = input.nextLine().charAt(0);
+			switch (choice) {
+			case 'Y':
+			case 'y':
+				vFlag = false;
+			case 'N':
+			case 'n':
+				vFlag = true;
+			default:
+				System.out.println("Wrong Input");
+			}
+			applyFiltersOnRestaurants(restaurantDetails, vFlag);
 			input.close();
 		} catch (Exception e) {
 			System.out.println("\n**************Please enter a valid input**************\n");
 
 		}
 
+		/*
+		 * System.out.print("Need Party Space ?"); Scanner partyFlag = new
+		 * Scanner(System.in); try { partyFlag.close(); } catch (Exception e) {
+		 * 
+		 * }
+		 * 
+		 * System.out.print("Pets allowed ?"); Scanner petFlag = new Scanner(System.in);
+		 * try { petFlag.close(); } catch (Exception e) {
+		 * 
+		 * }
+		 */
+	}
+
+	private void applyFiltersOnRestaurants(List<RestaurantDetails> restaurantDetails, boolean vFlag) {
 		for (int i = 0; i < restaurantDetails.size(); i++) {
-			if (vegFlag.nextBoolean() == true)
+			if (vFlag == true)
 				System.out.println(i + 1 + ". " + restaurantDetails.get(i).getRestaurantName());
 			else if (restaurantDetails.get(i).isVegNon() == false)
 				System.out.println(i + 1 + ". " + restaurantDetails.get(i).getRestaurantName());
@@ -108,17 +135,7 @@ public class SearchFunction {
 		} catch (Exception e) {
 			System.out.println("\n**************Please enter a valid input**************\n");
 		}
-		/*
-		 * System.out.print("Need Party Space ?"); Scanner partyFlag = new
-		 * Scanner(System.in); try { partyFlag.close(); } catch (Exception e) {
-		 * 
-		 * }
-		 * 
-		 * System.out.print("Pets allowed ?"); Scanner petFlag = new Scanner(System.in);
-		 * try { petFlag.close(); } catch (Exception e) {
-		 * 
-		 * }
-		 */
+
 	}
 
 	private void makeSelectionFilter(List<RestaurantDetails> restaurantDetails, int choice) {
