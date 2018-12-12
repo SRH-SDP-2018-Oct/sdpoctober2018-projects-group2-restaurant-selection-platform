@@ -1,97 +1,53 @@
 package srh.com.rsp.CustomerFunctionalities;
-import java.util.Scanner;
-import java.text.SimpleDateFormat;
+
 import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Scanner;
 
+import com.srh.rsp.LoginSession;
+import com.srh.rsp.dbAccess.RestaurantReservationCRUD;
 
-class TableReservation {
+import LogException.WriteExceptionToFile;
 
-		static void TableNumber() 
-		{
-			int reserved_table_number_1 = 1;
-			int reserved_table_number_5 = 5;
-			int reserved_table_number_7 = 7;
-			int reserved_table_number_11 = 11;
-			int total_tables_available = 15;
-			Scanner scan = new Scanner(System.in);
-			System.out.println("Enter a table number");
-			int num = scan.nextInt();
+public class TableReservation {
+	WriteExceptionToFile log = new WriteExceptionToFile();
+	ReservationInputData data = new ReservationInputData();
 
-			if (num == reserved_table_number_1 || num == reserved_table_number_5 || num == reserved_table_number_7
-					|| num == reserved_table_number_11) {
-				System.out.println("Sorry table already reserved , Please choose another table!!");
-				System.exit(1);
-			}
-			if ((num <= 0) || (num > total_tables_available)) {
-				System.out.println("Sorry booking not possible,Please enter a valid table number");
-				System.exit(1);
-			}
+	public void reservationRequest() {
+		Scanner input = new Scanner(System.in);
+		DateFormat formatter = new SimpleDateFormat("HH:mm");
+		System.out.println("-----------------Welcome to Restaurant Selection Platform-----------------");
+		System.out.println("-----------------Reservation Request-----------------");
+		System.out.print("\nPlease enter the date in yyyy-MM-dd format: ");
+		try {
+			java.util.Date fromDate = new SimpleDateFormat("yyyy-MM-dd").parse(input.nextLine());
+			data.date = new java.sql.Date(fromDate.getTime());
+			System.out.print("Please enter FROM time in hh:mm format: ");
+			data.timeFrom = new java.sql.Time(formatter.parse(input.nextLine()).getTime());
+			System.out.print("Please enter TO time in hh:mm format: ");
+			data.timeTo = new java.sql.Time(formatter.parse(input.nextLine()).getTime());
+			System.out.print("Enter number of people: ");
+			data.noOfPeople = Integer.parseInt(input.nextLine());
 
-			else {
-				System.out.println("Table number:" + num);
-
-			}
+			MakeReservation();
+		} catch (ParseException e) {
+			System.out.println("\n**************Something went wrong**************\n");
+			log.appendToFile(e);
+			System.exit(0);
+		} catch (NumberFormatException e) {
+			System.out.println("\n**************Please enter a valid input**************\n");
+			log.appendToFile(e);
+		} catch (Exception e) {
+			System.out.println("\n**************Please enter a valid input**************\n");
+			log.appendToFile(e);
 		}
+	}
 
-		static void SeatNumber() {
-
-			int total_seats_available = 50;
-			Scanner scan1 = new Scanner(System.in);
-			System.out.println("Enter number of seats to book");
-			int num2 = scan1.nextInt();
-			int seats_left;
-			seats_left = total_seats_available - num2;
-			System.out.println("seats left:" + seats_left);
-			System.out.println('\n');
-
-			if (num2 <= 0) {
-				System.out.println(" Please enter a valid seat number");
-				System.exit(1);
-			}
-
-			if (num2 > total_seats_available) {
-				System.out.println("Sorry booking full");
-				System.exit(1);
-			}
-
-			else {
-
-				System.out.println("Number of seats:" + num2);
-			}
-
-		}
-
-		static void StatusConfirmation() {
-			
-			System.out.println("Thank you,Your booking is confirmed!!");
-			System.out.println("Booking ID:******\n Booking status:Confirmed");
-		}
-		
-
-			public static void main(String args[]) {
-				TableNumber();
-			    SeatNumber();
-			    Scanner input1 = new Scanner(System.in);
-				 System.out.print("Enter the date of reservation (DD:MM:YYYY) ");
-				 String Correctformat="[1-31]:[0-12]:[0-2025]";
-				 String date = input1.nextLine();
-				 if(date==Correctformat) {
-					 System.out.println("reserved ar:"+date);
-				 }
-				 else
-				 {
-					 System.out.println("enter correct format");
-					 System.exit(1);
-				 }
-			     Scanner input = new Scanner(System.in);
-				 System.out.print("Enter the time of reservation (hh:mm aa): ");
-				 String time = input.nextLine();
-				 StatusConfirmation();
-				 System.out.println("Your Reservation confirmed at:"+date);
-				 System.out.println("Your Reservation confirmed at:"+time);
-				    
-			    
-			}
-		}
-
-
+	private void MakeReservation() {
+		RestaurantReservationCRUD request = new RestaurantReservationCRUD();
+		request.setRestaurantReservation(20L, LoginSession.userID, data.noOfPeople, "Processing", data.date,
+				data.timeFrom, data.timeTo);
+		LoginSession.loadMenu();
+	}
+}

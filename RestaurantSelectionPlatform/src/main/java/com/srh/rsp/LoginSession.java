@@ -8,16 +8,20 @@ public class LoginSession {
 	public static String userType;
 	
 	public void Login(String Email, String Password) {
-		MainMenu loadMenu = new MainMenu();
 		CustomerAccountCRUD loginSuccess = new CustomerAccountCRUD();
 		CustomerLogin customerType = loginSuccess.fetchCustomerType(Email, Password);
 		userID = customerType.getCustomerId();
 		userType = customerType.getCustomerType();
-		if (customerType.getCustomerType().equals("Both")) {
+		loadMenu();
+	}
+	
+	public static void loadMenu() {
+		MainMenu loadMenu = new MainMenu();
+		if (userType.equals("Both")) {
 			loadMenu.DualUserMainMenu();
-		} else if (customerType.getCustomerType().equals("Owner")) {
+		} else if (userType.equals("Owner")) {
 			loadMenu.OwnerMainMenu();
-		} else if (customerType.getCustomerType().equals("User")) {
+		} else if (userType.equals("User")) {
 			loadMenu.CustomerMainMenu();
 		}
 	}

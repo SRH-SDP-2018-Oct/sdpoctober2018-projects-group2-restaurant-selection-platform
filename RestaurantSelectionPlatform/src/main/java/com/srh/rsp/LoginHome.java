@@ -62,7 +62,7 @@ public class LoginHome {
 			String eMail = input.nextLine();
 			FormatValidation EmailFormat = new FormatValidation();
 			if (EmailFormat.validateEmailAddress(eMail)) {
-				String passWord = enterPassword();
+				String passWord = enterPassword("Enter password");
 				LoginSession session = new LoginSession();
 				session.Login(eMail, passWord);
 				input.close();
@@ -76,8 +76,8 @@ public class LoginHome {
 		}
 	}
 
-	public String enterPassword() {
-		String message = "Enter password";
+	public String enterPassword(String message) {
+		//String message = "Enter password";
 		if (System.console() == null) { // inside IDE like Eclipse or NetBeans
 			final JPasswordField pf = new JPasswordField();
 			return JOptionPane.showConfirmDialog(null, pf, message, JOptionPane.OK_CANCEL_OPTION,
@@ -96,13 +96,15 @@ public class LoginHome {
 			FormatValidation validation = new FormatValidation();
 			String confirmPassWord = null;
 			if (userDetails != null)
-				confirmPassWord = enterPassword();
+				confirmPassWord = enterPassword("Confirm password");
 
 			if (validation.PassWordMatch(userDetails, confirmPassWord)) {
 				System.out.println("Please select your role:");
 				SelectRole(userDetails);
-			} else
-				System.out.println("Passwords do not match");
+			} else {
+				System.out.println("Passwords do not match. Please try again.");
+				Register();
+			}
 			input.close();
 		} catch (Exception e) {
 			System.out.println("\n**************Please enter a valid input**************\n");
@@ -120,7 +122,7 @@ public class LoginHome {
 			System.out.print("Contact No: ");
 			userDetails.contactNumber = input.nextLine();
 			if (userDetails.contactNumber != null && validation.validateMobileNumber(userDetails.contactNumber)) {
-				userDetails.passWord = enterPassword();
+				userDetails.passWord = enterPassword("Enter password");
 				return userDetails;
 			} else {
 				System.out.println("Kindly enter a valid contact number");

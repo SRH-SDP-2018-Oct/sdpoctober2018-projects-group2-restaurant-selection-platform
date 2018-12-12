@@ -9,6 +9,7 @@ import javax.persistence.criteria.Root;
 
 import com.srh.rsp.PersistenceManager;
 import com.srh.rsp.entity.CustomerLogin;
+import com.srh.rsp.entity.RestaurantReservation;
 
 public class CustomerAccountCRUD {
 	String username, password, email;
@@ -33,8 +34,6 @@ public class CustomerAccountCRUD {
 	}
 
 	public List<CustomerLogin> fetchCustomerLoginOnCustomerid(Long customerid) {
-		EntityManager em = PersistenceManager.INSTANCE.getEntityManager();
-		CriteriaBuilder cbuilder = PersistenceManager.INSTANCE.getCriteriaBuilder();
 		CriteriaQuery<CustomerLogin> criteriaQuery = cbuilder.createQuery(CustomerLogin.class);
 		Root<CustomerLogin> customerLoginRoot = criteriaQuery.from(CustomerLogin.class);
 		criteriaQuery.select(customerLoginRoot);
@@ -76,5 +75,39 @@ public class CustomerAccountCRUD {
 		}
 		em.close();
 		return customerType.get(0);
+	}
+	
+	public CustomerLogin fetchCustomerProfile(long userID) {
+		CriteriaQuery<CustomerLogin> criteriaQuery = cbuilder.createQuery(CustomerLogin.class);
+		Root<CustomerLogin> customerLoginRoot = criteriaQuery.from(CustomerLogin.class);
+		criteriaQuery.select(customerLoginRoot);
+		criteriaQuery.where(cbuilder.equal(customerLoginRoot.get("customerId"), userID));
+		List<CustomerLogin> customerProfile = em.createQuery(criteriaQuery).getResultList();
+
+		return customerProfile.get(0);
+	}
+	
+	public void editName(String name, CustomerLogin details) {
+		CustomerLogin oldDetails = em.find(CustomerLogin.class, details.getCustomerId());
+		em.getTransaction().begin();
+		oldDetails.setUserName(name);
+		em.getTransaction().commit();
+		System.out.println("Name updated to " + name);
+	}
+	
+	public void editEmail(String eMail, CustomerLogin details) {
+		CustomerLogin oldDetails = em.find(CustomerLogin.class, details.getCustomerId());
+		em.getTransaction().begin();
+		oldDetails.setEmailId(eMail);
+		em.getTransaction().commit();
+		System.out.println("Email updated to " + eMail);
+	}
+	
+	public void editPhoneNumber(String phoneNumber, CustomerLogin details) {
+		CustomerLogin oldDetails = em.find(CustomerLogin.class, details.getCustomerId());
+		em.getTransaction().begin();
+		oldDetails.setPhoneNumber(phoneNumber);
+		em.getTransaction().commit();
+		System.out.println("Contact updated to " + phoneNumber);
 	}
 }

@@ -23,11 +23,11 @@ public class RestaurantReservation {
 	@Column(name = "customer_Id")
 	private long customerId;
 
-	@Column(name = "seat_Id")
-	private String seatId;
+	@Column(name = "number_of_people")
+	private int NoOfPeople;
 
 	@Column(name = "reservation_Status")
-	private boolean reservationStatus;
+	private String reservationStatus;
 
 	@Column(name = "booking_Date")
 	private Date bookingDate;
@@ -62,19 +62,19 @@ public class RestaurantReservation {
 		this.customerId = customerId;
 	}
 
-	public String getSeatId() {
-		return seatId;
+	public int getNoOfPeople() {
+		return NoOfPeople;
 	}
 
-	public void setSeatId(String seatId) {
-		this.seatId = seatId;
+	public void setNoOfPeople(int noOfPeople) {
+		this.NoOfPeople = noOfPeople;
 	}
 
-	public boolean isReservationStatus() {
+	public String getReservationStatus() {
 		return reservationStatus;
 	}
 
-	public void setReservationStatus(boolean reservationStatus) {
+	public void setReservationStatus(String reservationStatus) {
 		this.reservationStatus = reservationStatus;
 	}
 
@@ -105,8 +105,8 @@ public class RestaurantReservation {
 	@Override
 	public String toString() {
 		return "RestaurantReservation [reservationId=" + reservationId + ", restaurantId=" + restaurantId
-				+ ", customerId=" + customerId + ", seatId=" + seatId + ", reservationStatus=" + reservationStatus
-				+ ", bookingDate=" + bookingDate + ", fromTime=" + fromTime + ", toTime=" + toTime + "]";
+				+ ", customerId=" + customerId + ", NoOfPeople=" + NoOfPeople + ", reservationStatus="
+				+ reservationStatus + ", bookingDate=" + bookingDate + ", fromTime=" + fromTime + ", toTime=" + toTime
+				+ "]";
 	}
-
 }
