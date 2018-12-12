@@ -13,7 +13,14 @@ import com.srh.rsp.entity.RestaurantDetails;
 import com.srh.rsp.entity.RestaurantDish;
 import com.srh.rsp.entity.RestaurantReview;
 
+import LogException.WriteExceptionToFile;
+import srh.com.rsp.CustomerFunctionalities.CustomerReview;
+import srh.com.rsp.CustomerFunctionalities.TableReservation;
+
 public class RestaurantDetailsSelect {
+	public static long restaurantID;
+	WriteExceptionToFile log = new WriteExceptionToFile();
+	
 	public void displayRestaurantDetails(Long restaurantid, Long userid) {
 		RestaurantDetailsCRUD rDetailsCRUD = new RestaurantDetailsCRUD();
 		RestaurantDishCRUD rDishCRUD = new RestaurantDishCRUD();
@@ -29,8 +36,7 @@ public class RestaurantDetailsSelect {
 				listOfDishDetails.add(dishDetail);
 			}
 		});
-
-		
+		restaurantID = restaurantid;
 		
 		List<RestaurantReview> rReview = rReviewCRUD.getRestaurantReviewsOnRestaurantId(restaurantid);
 
@@ -87,24 +93,27 @@ public class RestaurantDetailsSelect {
 
 		System.out.println("\n****************************************************** ");
 		System.out.println("Select an option:");
-		System.out.println("1.Make a reservation \n2.Give review \n3.Go back to search \n0. Exit");
+		System.out.println("1.Make a reservation \n2.Give review \n3.Go back to search \n0. Back to Mail Menu");
 		System.out.print("Enter Choice: ");
 		Scanner input = new Scanner(System.in);
 		try {
 			int choice = Integer.parseInt(input.nextLine());
 			if (choice == 1) {
-				// call reservation module
+				TableReservation request = new TableReservation();
+				request.reservationRequest();
 			} else if (choice == 2) {
-				// call review function
+				CustomerReview review = new CustomerReview();
+				review.giveRating();
 			} else if (choice == 3) {
 				SearchFunction sf = new SearchFunction();
 				sf.searchInput(userid);
 			} else {
-				// call exit
+				LoginSession.loadMenu();
 			}
 
 		} catch (Exception e) {
-
+			System.out.println("\n**************Please enter a valid input**************\n");
+			log.appendToFile(e);
 		}
 
 	}

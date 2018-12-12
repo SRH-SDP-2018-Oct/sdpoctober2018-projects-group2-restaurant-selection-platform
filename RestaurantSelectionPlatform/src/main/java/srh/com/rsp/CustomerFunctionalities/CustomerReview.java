@@ -4,6 +4,7 @@ import java.sql.Timestamp;
 import java.util.Scanner;
 
 import com.srh.rsp.LoginSession;
+import com.srh.rsp.RestaurantDetailsSelect;
 import com.srh.rsp.dbAccess.RestaurantReviewCRUD;
 
 import LogException.WriteExceptionToFile;
@@ -35,8 +36,8 @@ public class CustomerReview {
 		String review = input.nextLine();
 		
 		// DB call to enter rating & review
-//		RestaurantReviewCRUD newReview = new RestaurantReviewCRUD();
-//		newReview.setRestaurantReview(restaurantid, LoginSession.userID, review, rating, new Timestamp(System.currentTimeMillis()), null);
+		RestaurantReviewCRUD newReview = new RestaurantReviewCRUD();
+		newReview.setRestaurantReview(RestaurantDetailsSelect.restaurantID, LoginSession.userID, review, rating, new Timestamp(System.currentTimeMillis()), null);
 		System.out.println("Thank you for your feedback ");
 		LoginSession.loadMenu();
 	}
