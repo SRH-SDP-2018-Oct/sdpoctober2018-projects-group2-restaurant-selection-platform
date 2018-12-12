@@ -19,6 +19,8 @@ public class RestaurantReservationCRUD {
 	Date bookingdate;
 	Time fromtime;
 	Time totime;
+	EntityManager em = PersistenceManager.INSTANCE.getEntityManager();
+	CriteriaBuilder cbuilder = PersistenceManager.INSTANCE.getCriteriaBuilder();
 
 	EntityManager em = PersistenceManager.INSTANCE.getEntityManager();
 	CriteriaBuilder cbuilder = PersistenceManager.INSTANCE.getCriteriaBuilder();
@@ -34,7 +36,6 @@ public class RestaurantReservationCRUD {
 		restaurantReservaion.setFromTime(fromtime);
 		restaurantReservaion.setToTime(totime);
 
-		EntityManager em = PersistenceManager.INSTANCE.getEntityManager();
 		em.getTransaction().begin();
 		em.persist(restaurantReservaion);
 		em.getTransaction().commit();
@@ -74,4 +75,5 @@ public class RestaurantReservationCRUD {
 		}
 		return restaurantDetails;
 	}
+
 }
