@@ -206,7 +206,7 @@ public class SearchFunction {
 		try {
 			int choiceRestaurant = Integer.parseInt(input.nextLine());
 			Long restaurantId = listOfRestaurantDetails.get(choiceRestaurant).getRestaurantId();
-			RestaurantDetailsSelect restaurantDetailsSelect = new RestaurantDetailsSelect();
+			//RestaurantDetailsSelect restaurantDetailsSelect = new RestaurantDetailsSelect();
 			// Call method to proceed fruther with restaurantId and CustomerLogin
 			// information
 			input.close();
