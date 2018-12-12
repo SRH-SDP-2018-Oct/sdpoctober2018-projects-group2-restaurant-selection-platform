@@ -1,0 +1,218 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.6.0.final using JasperReports Library version 6.6.0  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="Blank_A4" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="9d87c1f5-2580-49f0-9988-a613b7999904">
+	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="DataAdapter.xml"/>
+	<queryString language="SQL">
+		<![CDATA[select * from restaurant_review]]>
+	</queryString>
+	<field name="review_Id" class="java.lang.Integer">
+		<property name="com.jaspersoft.studio.field.label" value="review_Id"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="restaurant_review"/>
+	</field>
+	<field name="restaurant_Id" class="java.lang.Integer">
+		<property name="com.jaspersoft.studio.field.label" value="restaurant_Id"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="restaurant_review"/>
+	</field>
+	<field name="customer_Id" class="java.lang.Integer">
+		<property name="com.jaspersoft.studio.field.label" value="customer_Id"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="restaurant_review"/>
+	</field>
+	<field name="rating" class="java.lang.Float">
+		<property name="com.jaspersoft.studio.field.label" value="rating"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="restaurant_review"/>
+	</field>
+	<field name="review_Text" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="review_Text"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="restaurant_review"/>
+	</field>
+	<field name="time_Stamp" class="java.sql.Timestamp">
+		<property name="com.jaspersoft.studio.field.label" value="time_Stamp"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="restaurant_review"/>
+	</field>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="79" splitType="Stretch">
+			<staticText>
+				<reportElement x="140" y="0" width="291" height="30" uuid="fcf13116-5366-445d-b47b-d4ab31dd6939"/>
+				<textElement>
+					<font size="19" isBold="true"/>
+				</textElement>
+				<text><![CDATA[User Detailed Report]]></text>
+			</staticText>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="35" splitType="Stretch">
+			<rectangle>
+				<reportElement x="-20" y="1" width="591" height="31" backcolor="#6F71FC" uuid="3b8de555-040a-4fcc-93cf-f4669f059b3d"/>
+			</rectangle>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band height="39" splitType="Stretch">
+			<staticText>
+				<reportElement x="60" y="0" width="60" height="30" uuid="2f68d50f-ab02-4349-8d01-5b8357acaff7">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="9d1018d4-ed67-4843-8c31-d7272d381338"/>
+				</reportElement>
+				<textElement>
+					<font size="12"/>
+				</textElement>
+				<text><![CDATA[review_Id]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="141" y="0" width="79" height="30" uuid="bbe79d7d-314f-4b00-a183-f589f57c362e">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="0b0711a3-c1f2-4b01-ac54-8b226421146f"/>
+				</reportElement>
+				<textElement>
+					<font size="12"/>
+				</textElement>
+				<text><![CDATA[restaurant_Id]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="240" y="0" width="79" height="30" uuid="b0a9e2ca-908a-49d9-b7b7-251355e341fe">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="8e702f99-1c56-4246-9762-579e0a4b0470"/>
+				</reportElement>
+				<textElement>
+					<font size="12"/>
+				</textElement>
+				<text><![CDATA[customer_Id]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="339" y="0" width="51" height="30" uuid="b5213112-9d27-441b-9d9d-5621d918b639">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="643dbac6-9ea5-4cd2-953c-41014889c78a"/>
+				</reportElement>
+				<textElement>
+					<font size="12"/>
+				</textElement>
+				<text><![CDATA[rating]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="408" y="0" width="72" height="30" uuid="f02d7f04-297d-4a46-9059-c053cd6276ed">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="e5e5d757-2595-4c5c-91af-55dece098392"/>
+				</reportElement>
+				<textElement>
+					<font size="12"/>
+				</textElement>
+				<text><![CDATA[review_Text]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="500" y="0" width="66" height="30" uuid="1b37d0a6-a183-4719-acff-16c1e6dbfb28">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="9a165ad6-70df-4123-a7ef-3e14eda3fa0f"/>
+				</reportElement>
+				<textElement>
+					<font size="12"/>
+				</textElement>
+				<text><![CDATA[time_Stamp]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="-7" y="0" width="57" height="20" uuid="e62fec95-05a5-481e-b5eb-ada4487f549f"/>
+				<textElement textAlignment="Center">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[S.NO]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="50" splitType="Stretch">
+			<textField>
+				<reportElement x="70" y="10" width="40" height="30" uuid="37b384fc-1f17-43f3-8143-f0d602eca067">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="9d1018d4-ed67-4843-8c31-d7272d381338"/>
+				</reportElement>
+				<textElement>
+					<font size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{review_Id}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="161" y="10" width="29" height="30" uuid="9a86806f-dde1-47df-9aeb-306e4248e689">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="0b0711a3-c1f2-4b01-ac54-8b226421146f"/>
+				</reportElement>
+				<textElement>
+					<font size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{restaurant_Id}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="260" y="10" width="30" height="30" uuid="592afd8c-040b-43d1-ade2-5c3e93c01826">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="8e702f99-1c56-4246-9762-579e0a4b0470"/>
+				</reportElement>
+				<textElement>
+					<font size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{customer_Id}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="339" y="10" width="41" height="30" uuid="a90f12af-7a86-4d55-8547-f4746e699bc5">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="643dbac6-9ea5-4cd2-953c-41014889c78a"/>
+				</reportElement>
+				<textElement>
+					<font size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{rating}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="390" y="10" width="100" height="30" uuid="5432f6a0-98f7-4db7-a472-d45035138321">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="e5e5d757-2595-4c5c-91af-55dece098392"/>
+				</reportElement>
+				<textElement>
+					<font size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{review_Text}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="500" y="10" width="66" height="30" uuid="e8a48913-ad10-403f-a910-6408319cbe96">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="9a165ad6-70df-4123-a7ef-3e14eda3fa0f"/>
+				</reportElement>
+				<textElement>
+					<font size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{time_Stamp}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="13" y="10" width="37" height="30" uuid="3015d9d5-6ba0-4401-897a-36fb2773a544"/>
+				<textElement>
+					<font size="12" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{REPORT_COUNT}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="45" splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="35" splitType="Stretch">
+			<textField>
+				<reportElement x="408" y="0" width="158" height="26" uuid="fec806b0-a925-4157-9c11-9e1075b67e1f"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA["Page " + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+			<textField pattern="MMMMM dd, yyyy">
+				<reportElement x="-20" y="0" width="100" height="26" uuid="85f443a9-7259-48de-91f0-2a5912a85e88"/>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageFooter>
+	<summary>
+		<band height="50" splitType="Stretch">
+			<staticText>
+				<reportElement x="10" y="-3" width="100" height="30" uuid="0eafb455-5a51-47a1-85f3-7869373f2a15"/>
+				<textElement>
+					<font size="12" isBold="true" isUnderline="true"/>
+				</textElement>
+				<text><![CDATA[Total Reviews:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="125" y="0" width="100" height="20" uuid="8aaa2fe8-9781-4198-ad84-fb349cde19af"/>
+				<textElement>
+					<font size="12" isBold="true" isItalic="false" isUnderline="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{REPORT_COUNT}]]></textFieldExpression>
+			</textField>
+		</band>
+	</summary>
+</jasperReport>

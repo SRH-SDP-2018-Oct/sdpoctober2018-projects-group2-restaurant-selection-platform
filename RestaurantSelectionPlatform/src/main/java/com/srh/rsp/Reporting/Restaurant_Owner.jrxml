@@ -2,7 +2,7 @@
 <!-- Created with Jaspersoft Studio version 6.6.0.final using JasperReports Library version 6.6.0  -->
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="Restaurant_Owner" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="86787ba3-186a-4425-b04d-c90ebde22aab">
 	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
-	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="New Data Adapter "/>
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="DataAdapter.xml"/>
 	<queryString language="SQL">
 		<![CDATA[select  restaurant_selection.restaurant_details.`restaurant_Id` ,
  				restaurant_selection.restaurant_reservation.`reservation_Id` ,
@@ -114,7 +114,7 @@
 		</band>
 	</columnHeader>
 	<detail>
-		<band height="81" splitType="Stretch">
+		<band height="50" splitType="Stretch">
 			<textField>
 				<reportElement x="110" y="10" width="40" height="30" uuid="53beb456-5004-4c71-a399-6d984320bc20">
 					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="a43699ae-e780-4e0a-911b-e6f05d593874"/>
