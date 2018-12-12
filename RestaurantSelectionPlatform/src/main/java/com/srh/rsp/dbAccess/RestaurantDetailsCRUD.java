@@ -71,7 +71,7 @@ public class RestaurantDetailsCRUD {
 			// list is empty
 			return null;
 		}
-		em.close();
+		//em.close();
 		return restaurantDetails.get(0);
 	}
 
@@ -92,5 +92,19 @@ public class RestaurantDetailsCRUD {
 		List<RestaurantDetails> listofRestaurantDetails = em.createQuery(criteriaQuery).getResultList();
 		return listofRestaurantDetails;
 
+	}
+	
+	public List<RestaurantDetails> listOfRestaurantDetailsOnCustomerId(Long customerID) {
+		CriteriaQuery<RestaurantDetails> criteriaQuery = cbuilder.createQuery(RestaurantDetails.class);
+		Root<RestaurantDetails> restaurantDetailsRoot = criteriaQuery.from(RestaurantDetails.class);
+		criteriaQuery.select(restaurantDetailsRoot);
+		criteriaQuery.where(cbuilder.equal(restaurantDetailsRoot.get("customerId"), customerID));
+		List<RestaurantDetails> restaurantDetails = em.createQuery(criteriaQuery).getResultList();
+		if (restaurantDetails.isEmpty()) {
+			// list is empty
+			return null;
+		}
+		//em.close();
+		return restaurantDetails;
 	}
 }
