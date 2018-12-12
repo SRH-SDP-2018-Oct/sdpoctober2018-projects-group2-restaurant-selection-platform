@@ -1,7 +1,11 @@
 package com.srh.rsp;
 
 import java.util.Scanner;
-import LogException.*;
+
+import com.srh.rsp.dbAccess.CustomerAccountCRUD;
+import com.srh.rsp.entity.CustomerLogin;
+
+import LogException.WriteExceptionToFile;
 
 public class UpdateProfile {
 	WriteExceptionToFile log = new WriteExceptionToFile();
@@ -41,17 +45,23 @@ public class UpdateProfile {
 		Scanner input = new Scanner(System.in);
 		System.out.print("Enter New name: ");
 		String name = input.nextLine();
-		// Edit name functionality
-		
+
+		CustomerAccountCRUD getProfile = new CustomerAccountCRUD();
+		CustomerLogin details = getProfile.fetchCustomerProfile(LoginSession.userID);
+		getProfile.editName(name, details);
 		input.close();
+		LoginSession.loadMenu();
 	}
 	
 	private void editEmail() {
 		Scanner input = new Scanner(System.in);
 		System.out.print("Enter new Email: ");
 		String eMail = input.nextLine();
-		// Edit email functionality
 		
+		CustomerAccountCRUD getProfile = new CustomerAccountCRUD();
+		CustomerLogin details = getProfile.fetchCustomerProfile(LoginSession.userID);
+		getProfile.editEmail(eMail, details);
+		LoginSession.loadMenu();
 		input.close();
 	}
 	
@@ -59,8 +69,11 @@ public class UpdateProfile {
 		Scanner input = new Scanner(System.in);
 		System.out.print("Enter new Contact Number: ");
 		String contact = input.nextLine();
-		// Edit contact number functionality
 		
+		CustomerAccountCRUD getProfile = new CustomerAccountCRUD();
+		CustomerLogin details = getProfile.fetchCustomerProfile(LoginSession.userID);
+		getProfile.editPhoneNumber(contact, details);
+		LoginSession.loadMenu();
 		input.close();
 	}
 }

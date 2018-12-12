@@ -1,61 +1,89 @@
 package srh.com.rsp.CustomerFunctionalities;
 
-import java.sql.Connection;
-import java.sql.ResultSet;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
-import com.mysql.cj.xdevapi.Statement;
+import com.srh.rsp.dbAccess.OfferCRUD;
+import com.srh.rsp.dbAccess.RestaurantDetailsCRUD;
+import com.srh.rsp.dbAccess.RestaurantReservationCRUD;
+import com.srh.rsp.entity.OfferDetails;
+import com.srh.rsp.entity.RestaurantDetails;
+import com.srh.rsp.entity.RestaurantReservation;
+
+import LogException.WriteExceptionToFile;
 
 public class Notifications {
-	// Customer should be notified about the restaurants nearby
+	// Customer should be notified about the new restaurants nearby
 	// Customer should get the notification about the discounts from the restaurant
+	String region;
 
-	public void entry() {
-		List listStrings = (List) new ArrayList<String>();
-		System.out.println(listStrings);
-		OfferDetails("Heidelberg");
+	WriteExceptionToFile log = new WriteExceptionToFile();
+
+	public void displayNotification(String customertype, long restaurantid) {
+		if (customertype == "User" || customertype == "Both") {
+			System.out.println("Please choose a region:");
+			RestaurantDetailsCRUD rDetailsCRUD = new RestaurantDetailsCRUD();
+			List<String> regionList = rDetailsCRUD.fetchAllRestaurantRegion();
+			for (int i = 0; i < regionList.size(); i++) {
+				System.out.println(i + 1 + "." + regionList.get(i));
+			}
+			System.out.println("\nEnter Choice");
+			Scanner input = new Scanner(System.in);
+			try {
+				region = regionList.get(Integer.parseInt(input.nextLine()) - 1);
+				restaurantdetails(region);
+				input.close();
+			}
+
+			catch (Exception e) {
+				System.out.println("\n**************Please enter a valid input**************\n");
+				log.appendToFile(e);
+			}
+
+		}
 	}
 
-	protected void OfferDetails(String location) {
-		List listStrings = (List) new ArrayList<String>();
-		listStrings.add("Raja Rani");
-		listStrings.add("Saffron");
-		listStrings.add("Punjab Curry");
-		System.out.println(listStrings);
-	}
-}
+	public void restaurantdetails(String region) {
 
-class Restaurant {
-	private final String DBConnection = null;
+		RestaurantDetailsCRUD rCrud = new RestaurantDetailsCRUD();
+		List<RestaurantDetails> restaurntDetails = rCrud.fetchRestaurantDetailsOnRegion(region);
 
-//	public ArrayList<Restaurant> getRestaurant() throws ClassNotFoundException, SQLException {
-//		Connection conn = DBConnection.getDBConnection().getConnection();
-//		Statement stm;
-//		stm = (Statement) conn.createStatement();
-//		String sql = "Select * From Restaurant";
-//		ResultSet rst;
-//		rst = ((java.sql.Statement) stm).executeQuery(sql);
-//		ArrayList<Restaurant> restaurantList = new ArrayList<Restaurant>();
-//		while (rst.next()) {
-//			Restaurant restaurant = new Restaurant();
-//			restaurantList.add(restaurant);
-//		}
-//		return restaurantList;
-//	}
+		for (int i = 0; i < restaurntDetails.size(); i++) {
 
-	protected void OfferDescription(String location) {
-		Scanner input = new Scanner(System.in);
-		System.out.println("Please select the restaurant");
-		OfferPercentage("Heidelberg");
+			System.out.println((i + 1 + "." + restaurntDetails.get(i).getRestaurantId()
+					+ restaurntDetails.get(i).getRestaurantName()));
+			System.out.println("restaurant name");
+			System.out.println("restaurantid");
+
+			offerdetails(restaurntDetails.get(i).getRestaurantId());
+		}
 	}
 
-	protected void OfferPercentage(String location) {
-		Scanner input = new Scanner(System.in);
-		System.out.println("Please select the restaurant");
-		int type = input.nextInt();
-		System.out.println(type);
+	private void offerdetails(Long restaurantid) {
+
+		OfferCRUD oc = new OfferCRUD();
+		List<OfferDetails> offerdetails = oc.offerdetailsonRestaurantId(restaurantid);
+		for (int i = 0; i < offerdetails.size(); i++) {
+
+			System.out.println(offerdetails.get(i).getOfferId() + offerdetails.get(i).getOfferDescription()
+					+ offerdetails.get(i).getOfferPercentage());
+			System.out.println("offer id");
+			System.out.println("offer percentage");
+			System.out.println("offer description");
+		}
 	}
 
+	private void restaurantreservation(long userId) 
+	{
+		RestaurantReservationCRUD rrc = new RestaurantReservationCRUD();
+		List<RestaurantReservation> restaurantreservation = rrc.restaurantreservationonUserId(userId);
+		for (int i = 0; i < restaurantreservation.size(); i++) {
+			System.out.println(restaurantreservation.get(i).getReservationId()+restaurantreservation.get(i).getReservationStatus()+restaurantreservation.get(i).getBookingDate()+restaurantreservation.get(i).getFromTime()+restaurantreservation.get(i).getToTime());
+			System.out.println("Reservationid");
+			System.out.println("ReservationStautus");
+			System.out.println("BookingStatus");
+			System.out.println("FromTime");
+			System.out.println("ToTime");
+		}
+	}
 }
