@@ -25,7 +25,7 @@ public class SearchFunction {
 		System.out.println("\nEnter Choice");
 		Scanner input = new Scanner(System.in);
 		try {
-			region = regionList.get(Integer.parseInt(input.nextLine()));
+			region = regionList.get(Integer.parseInt(input.nextLine())-1);
 			askToSearch(region, userid);
 			input.close();
 		} catch (Exception e) {
