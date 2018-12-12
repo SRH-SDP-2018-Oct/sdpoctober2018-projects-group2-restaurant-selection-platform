@@ -33,11 +33,11 @@ public class OfferCRUD {
 		em.close();
 	}
 
-	public List<OfferDetails> offerdetailsonRestaurantId(Long restaurantid) {
+	public List<OfferDetails> offerdetailsonRestaurantId(long restaurantid) {
 		CriteriaQuery<OfferDetails> criteriaQuery = cbuilder.createQuery(OfferDetails.class);
 		Root<OfferDetails> offerdetailsRoot = criteriaQuery.from(OfferDetails.class);
 		criteriaQuery.select(offerdetailsRoot);
-		criteriaQuery.where(cbuilder.equal(offerdetailsRoot.get("RestaurantId"), restaurantid));
+		criteriaQuery.where(cbuilder.equal(offerdetailsRoot.get("restaurantId"), restaurantid));
 		List<OfferDetails> listofofferdetailsDetails = em.createQuery(criteriaQuery).getResultList();
 		if (listofofferdetailsDetails.isEmpty()) {
 			// list is empty

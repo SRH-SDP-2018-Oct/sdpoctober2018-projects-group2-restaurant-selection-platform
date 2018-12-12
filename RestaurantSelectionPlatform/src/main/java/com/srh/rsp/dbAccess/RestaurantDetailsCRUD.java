@@ -111,8 +111,6 @@ public class RestaurantDetailsCRUD {
 	}
 
 	public List<RestaurantDetails> fetchRestaurantDetailsOnRegion(String region) {
-		EntityManager em = PersistenceManager.INSTANCE.getEntityManager();
-		CriteriaBuilder cbuilder = PersistenceManager.INSTANCE.getCriteriaBuilder();
 		CriteriaQuery<RestaurantDetails> criteriaQuery = cbuilder.createQuery(RestaurantDetails.class);
 		Root<RestaurantDetails> restaurantdetailsRoot = criteriaQuery.from(RestaurantDetails.class);
 		criteriaQuery.select(restaurantdetailsRoot);
