@@ -99,7 +99,7 @@ public class RestaurantDetailsCRUD {
 	public List<String> fetchAllRestaurantRegion() {
 		CriteriaQuery<String> criteriaQuery = cbuilder.createQuery(String.class);
 		Root<RestaurantDetails> restaurantDetailsRoot = criteriaQuery.from(RestaurantDetails.class);
-		criteriaQuery.select(restaurantDetailsRoot.get("region").as(String.class));
+		criteriaQuery.select(restaurantDetailsRoot.get("city").as(String.class));
 
 		List<String> listOfRegions = em.createQuery(criteriaQuery).getResultList();
 

@@ -15,7 +15,7 @@ public class LoginHome {
 	public void ConsoleMenu() {
 		System.out.println("-----------------Welcome to Restaurant Selection Platform-----------------");
 		System.out.println("Select an option:");
-		System.out.println("1. Login \n2. Register \n3. Continue as guest \n0. Exit");
+		System.out.println("1. Login \n2. Register \n0. Exit");
 		System.out.print("Enter Choice: ");
 		Scanner input = new Scanner(System.in);
 		try {
@@ -42,9 +42,6 @@ public class LoginHome {
 			break;
 		case 2:
 			Register();
-			break;
-		case 3:
-			ProceedAsGuest();
 			break;
 		case 0:
 			ExitApp();
@@ -132,11 +129,6 @@ public class LoginHome {
 			System.out.println("enter a valid email id");
 			return null;
 		}
-	}
-
-	private void ProceedAsGuest() {
-		MainMenu startPage = new MainMenu();
-		startPage.CustomerMainMenu();
 	}
 
 	private void SelectRole(RegistrationData userDetails) {

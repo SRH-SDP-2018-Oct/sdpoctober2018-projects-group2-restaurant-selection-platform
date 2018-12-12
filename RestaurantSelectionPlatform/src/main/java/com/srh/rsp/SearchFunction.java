@@ -20,16 +20,18 @@ public class SearchFunction {
 	public void searchInput(Long userid) {
 		System.out.println("--------------Restaurant Selection Platform--------------");
 
-		System.out.print("\nLocations available for search: ");
+		System.out.println("\nLocations available for search: ");
 		RestaurantDetailsCRUD rDetailsCRUD = new RestaurantDetailsCRUD();
 		List<String> regionList = rDetailsCRUD.fetchAllRestaurantRegion();
 		for (int i = 0; i < regionList.size(); i++) {
 			System.out.println(i + 1 + "." + regionList.get(i));
 		}
-		System.out.println("\nInput Choice of location");
+		System.out.println("\nInput Choice of location or enter 0 to go back to main menu");
 		Scanner input = new Scanner(System.in);
 		try {
 			int choice = Integer.parseInt(input.nextLine());
+			if (choice == 0)
+				LoginSession.loadMenu();
 			region = regionList.get(choice - 1);
 			askToSearch(region, userid);
 			input.close();
