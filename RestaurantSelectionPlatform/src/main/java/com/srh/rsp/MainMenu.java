@@ -12,6 +12,7 @@ import com.srh.rsp.Restaurant.Bookings;
 import com.srh.rsp.Restaurant.UpdateRestaurant;
 
 import LogException.WriteExceptionToFile;
+import srh.com.rsp.CustomerFunctionalities.Notifications;
 
 public class MainMenu {
 	WriteExceptionToFile log = new WriteExceptionToFile();
@@ -142,40 +143,20 @@ public class MainMenu {
 
 	private void SearchRestaurant() {
 		System.out.println("--------------Restaurant Selection Platform--------------");
-		System.out.print("Please enter location for search: ");
-		Scanner input = new Scanner(System.in);
 		try {
-			String location = input.nextLine();
-			// Search results in location
-			
-			System.out.println("\n1. Select Restaurant \n2. Apply Filters \n0. Return to Main Menu ");
-			System.out.print("\nEnter choice: ");
-			int choice = Integer.parseInt(input.nextLine());
-			MakeSelection(choice, location);
+			SearchFunction searchPage = new SearchFunction();
+			searchPage.searchInput(LoginSession.userID);
 		} catch (Exception e) {
 			System.out.println("\n**************Please enter a valid input**************\n");
 			log.appendToFile(e);
 		}
 	}
 
-	private void MakeSelection(int choice, String location) {
-		switch (choice) {
-		case 1: // Restaurant Selection
-			break;
-		case 2:
-			FilterMenu(location);
-			break;
-		case 0:
-			LoginSession.loadMenu();
-			break;
-		default:
-			System.out.println("Wrong input");
-		}
-	}
-
 	private void CustomerNotificaitons() {
 		System.out.println("--------------Restaurant Selection Platform--------------");
 		System.out.println("--------------Notifications--------------");
+		Notifications showNotification = new Notifications();
+		showNotification.displayNotification();
 	}
 
 	private void Settings() {
@@ -291,40 +272,5 @@ public class MainMenu {
 	private void DualUserNotifications() {
 		System.out.println("--------------Restaurant Selection Platform--------------");
 		System.out.println("--------------Notifications--------------");
-	}
-
-	public void FilterMenu(String location) {
-		System.out.println("Filter your search result:");
-		System.out.println("1. Cuisines \n2. Distance \n3. Type of Restaurants \n4. Ratings \n0. Back to Main Menu");
-		System.out.print("\nEnter choice: ");
-		BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
-		try {
-			int choice = Integer.parseInt(bufferedReader.readLine());
-			enterFilter(choice, location);
-		} catch (Exception e) {
-			System.out.println("\n**************Please enter a valid input**************\n");
-			log.appendToFile(e);
-		}
-	}
-
-	private void enterFilter(int choice, String location) {
-		Filters filter = new Filters();
-		switch (choice) {
-		case 1:
-			filter.CuisineFilter(location);
-			break;
-		case 2:
-			filter.DistanceFilter(location);
-			break;
-		case 3:
-			filter.TypeFilter(location);
-			break;
-		case 4:
-			filter.RatingsFilter(location);
-			break;
-		case 0:
-			LoginSession.loadMenu();
-			break;
-		}
 	}
 }

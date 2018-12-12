@@ -10,10 +10,12 @@ import com.srh.rsp.entity.DishDetails;
 import com.srh.rsp.entity.RestaurantDetails;
 import com.srh.rsp.entity.RestaurantDish;
 
+import LogException.WriteExceptionToFile;
+
 public class SearchFunction {
 	String region, ssearch;
 	RestaurantDetailsSelect rDetailsSelect = new RestaurantDetailsSelect();
-	public static long restaurantID;
+	WriteExceptionToFile log = new WriteExceptionToFile();
 
 	public void searchInput(Long userid) {
 		System.out.println("--------------Restaurant Selection Platform--------------");
@@ -33,7 +35,7 @@ public class SearchFunction {
 			input.close();
 		} catch (Exception e) {
 			System.out.println("\n**************Please enter a valid input**************\n");
-			// log.appendToFile(e);
+			log.appendToFile(e);
 		}
 
 	}
@@ -46,7 +48,7 @@ public class SearchFunction {
 			search.close();
 		} catch (Exception e) {
 			System.out.println("\n**************Please enter a valid input**************\n");
-			// log.appendToFile(e);
+			log.appendToFile(e);
 		}
 
 	}
@@ -66,7 +68,7 @@ public class SearchFunction {
 				input.close();
 			} catch (Exception e) {
 				System.out.println("\n**************Please enter a valid input**************\n");
-
+				log.appendToFile(e);
 			}
 		} else {
 			for (int i = 0; i < restaurantDetails.size(); i++) {
@@ -83,17 +85,16 @@ public class SearchFunction {
 				input.close();
 			} catch (Exception e) {
 				System.out.println("\n**************Please enter a valid input**************\n");
+				log.appendToFile(e);
 			}
 		}
 	}
 
 	private void makeSelection(List<RestaurantDetails> restaurantDetails, int choice, Long userid) {
 		if (choice <= restaurantDetails.size() && choice != 0) {
-
 			rDetailsSelect.displayRestaurantDetails(restaurantDetails.get(choice).getRestaurantId(), userid);
 		} else if (choice == 0) {
 			searchInput(userid);
-
 		} else {
 			chooseFiltersOnRestaurants(restaurantDetails, userid);
 		}
@@ -123,20 +124,8 @@ public class SearchFunction {
 			input.close();
 		} catch (Exception e) {
 			System.out.println("\n**************Please enter a valid input**************\n");
-
+			log.appendToFile(e);
 		}
-
-		/*
-		 * System.out.print("Need Party Space ?"); Scanner partyFlag = new
-		 * Scanner(System.in); try { partyFlag.close(); } catch (Exception e) {
-		 * 
-		 * }
-		 * 
-		 * System.out.print("Pets allowed ?"); Scanner petFlag = new Scanner(System.in);
-		 * try { petFlag.close(); } catch (Exception e) {
-		 * 
-		 * }
-		 */
 	}
 
 	private void applyFiltersOnRestaurants(List<RestaurantDetails> restaurantDetails, boolean vFlag, Long userid) {
@@ -156,6 +145,7 @@ public class SearchFunction {
 			input.close();
 		} catch (Exception e) {
 			System.out.println("\n**************Please enter a valid input**************\n");
+			log.appendToFile(e);
 		}
 
 	}
@@ -165,19 +155,11 @@ public class SearchFunction {
 			rDetailsSelect.displayRestaurantDetails(restaurantDetails.get(choice).getRestaurantId(), userid);
 		} else if (choice == 0) {
 			searchInput(userid);
-
 		}
-
 	}
 
 	public List<RestaurantDetails> fetchRestaurantsOnSearch(String search, String region) {
-
-		// veg_non - filter
-		// partyspace. - filter
-		// petsallowed - filter
-		// rating - filter
 		RestaurantDetailsCRUD restaurantDetails = new RestaurantDetailsCRUD();
-
 		List<RestaurantDetails> listofRestaurantDetails = restaurantDetails.fetchRestaurantDetailsOnSearch(search,
 				region);
 		// if (listofRestaurantDetails != null)
@@ -210,11 +192,6 @@ public class SearchFunction {
 		return listofRestaurantDetails;
 	}
 
-	// private void updateSearchHit(long reservationId) {
-	// TODO Auto-generated method stub
-
-//	}
-
 	private void printRestaurantsForRegion(String region) {
 		RestaurantDetailsCRUD rDetailsCRUD = new RestaurantDetailsCRUD();
 		System.out.print("Please choose a restaurant: ");
@@ -232,7 +209,7 @@ public class SearchFunction {
 			// information
 			input.close();
 		} catch (Exception e) {
+			log.appendToFile(e);
 		}
 	}
-
 }

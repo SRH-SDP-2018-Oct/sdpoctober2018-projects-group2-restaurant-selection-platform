@@ -22,9 +22,6 @@ public class RestaurantReservationCRUD {
 	EntityManager em = PersistenceManager.INSTANCE.getEntityManager();
 	CriteriaBuilder cbuilder = PersistenceManager.INSTANCE.getCriteriaBuilder();
 
-	EntityManager em = PersistenceManager.INSTANCE.getEntityManager();
-	CriteriaBuilder cbuilder = PersistenceManager.INSTANCE.getCriteriaBuilder();
-
 	public void setRestaurantReservation(long restaurantid, long customerid, int noOfPeople, String reservationstatus,
 			Date bookingdate, Time fromtime, Time totime) {
 		RestaurantReservation restaurantReservaion = new RestaurantReservation();

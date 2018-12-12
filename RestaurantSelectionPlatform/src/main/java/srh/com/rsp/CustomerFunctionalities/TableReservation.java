@@ -6,6 +6,7 @@ import java.text.SimpleDateFormat;
 import java.util.Scanner;
 
 import com.srh.rsp.LoginSession;
+import com.srh.rsp.RestaurantDetailsSelect;
 import com.srh.rsp.dbAccess.RestaurantReservationCRUD;
 
 import LogException.WriteExceptionToFile;
@@ -46,7 +47,7 @@ public class TableReservation {
 
 	private void MakeReservation() {
 		RestaurantReservationCRUD request = new RestaurantReservationCRUD();
-		request.setRestaurantReservation(20L, LoginSession.userID, data.noOfPeople, "Processing", data.date,
+		request.setRestaurantReservation(RestaurantDetailsSelect.restaurantID, LoginSession.userID, data.noOfPeople, "Processing", data.date,
 				data.timeFrom, data.timeTo);
 		LoginSession.loadMenu();
 	}
