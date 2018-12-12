@@ -42,7 +42,8 @@ public class MainMenu {
 		case 3:
 			CustomerNotificaitons();
 			break;
-		case 4: Settings();
+		case 4: 
+			Settings();
 			break;
 		case 0:
 			System.exit(0);
@@ -57,7 +58,7 @@ public class MainMenu {
 		System.out.println("--------------Restaurant Selection Platform--------------");
 		System.out.println("Please proceed with below options:");
 		System.out.println(
-				"1. Add/Delete Restaurant \n2. Generate Report \n3. Manage Bookings \n4. Notifications \n5. Settings \n0. Exit");
+				"1. Add/Delete Restaurant \n2. Generate Report \n3. Manage Bookings \n4. Settings \n0. Exit");
 		System.out.print("\nEnter Choice: ");
 		try {
 			int choice = Integer.parseInt(input.nextLine());
@@ -81,9 +82,6 @@ public class MainMenu {
 			ManageBookings();
 			break;
 		case 4:
-			OwnerNotificaitons();
-			break;
-		case 5:
 			Settings();
 			break;
 		case 0:
@@ -126,7 +124,7 @@ public class MainMenu {
 			ManageBookings();
 			break;
 		case 5:
-			DualUserNotifications();
+			CustomerNotificaitons();
 			break;
 		case 6:
 			Settings();
@@ -155,6 +153,25 @@ public class MainMenu {
 		System.out.println("--------------Notifications--------------");
 		Notifications showNotification = new Notifications();
 		showNotification.displayNotification();
+		exitNotification();
+	}
+	
+	private void exitNotification() {
+		Scanner input = new Scanner(System.in);
+		System.out.println("\nPress 0 to go to main menu");
+		try {
+			int choice = Integer.parseInt(input.nextLine());
+			if (choice == 0)
+				LoginSession.loadMenu();
+			else {
+				System.out.println("Please enter a valid input");
+				exitNotification();
+			}
+		} catch (Exception e) {
+			System.out.println("\n**************Please enter a valid input**************\n");
+			log.appendToFile(e);
+			System.exit(0);
+		}
 	}
 
 	private void Settings() {
@@ -260,15 +277,5 @@ public class MainMenu {
 		Bookings booking = new Bookings();
 		booking.showBookings();
 		LoginSession.loadMenu();
-	}
-
-	private void OwnerNotificaitons() {
-		System.out.println("--------------Restaurant Selection Platform--------------");
-		System.out.println("--------------Notifications--------------");
-	}
-
-	private void DualUserNotifications() {
-		System.out.println("--------------Restaurant Selection Platform--------------");
-		System.out.println("--------------Notifications--------------");
 	}
 }
