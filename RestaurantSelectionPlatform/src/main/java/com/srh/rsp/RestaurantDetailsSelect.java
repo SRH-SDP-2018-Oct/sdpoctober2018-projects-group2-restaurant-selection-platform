@@ -65,15 +65,15 @@ public class RestaurantDetailsSelect {
 		boolean vegFlag = rDetails.isVegNon();
 		boolean partyFlag = rDetails.isVegNon();
 		boolean petsFlag = rDetails.isVegNon();
-		if (vegFlag = true)
+		if (vegFlag)
 			System.out.println("Non Vegetarian restaurant ");
 		else
 			System.out.println("Vegetarian restaurant ");
-		if (partyFlag = true)
+		if (partyFlag)
 			System.out.println("Party space available");
 		else
 			System.out.println("Party space not available ");
-		if (petsFlag = true)
+		if (petsFlag)
 			System.out.println("Pets allowed");
 		else
 			System.out.println("Pets not allowed ");
