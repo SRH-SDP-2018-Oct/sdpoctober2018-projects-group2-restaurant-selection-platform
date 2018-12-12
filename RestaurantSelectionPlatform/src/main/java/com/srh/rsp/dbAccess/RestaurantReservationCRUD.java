@@ -4,6 +4,7 @@ import java.sql.Date;
 import java.sql.Time;
 
 import javax.persistence.EntityManager;
+import javax.persistence.criteria.CriteriaBuilder;
 
 import com.srh.rsp.PersistenceManager;
 import com.srh.rsp.entity.RestaurantReservation;
@@ -15,6 +16,8 @@ public class RestaurantReservationCRUD {
 	Date bookingdate;
 	Time fromtime;
 	Time totime;
+	EntityManager em = PersistenceManager.INSTANCE.getEntityManager();
+	CriteriaBuilder cbuilder = PersistenceManager.INSTANCE.getCriteriaBuilder();
 
 	public void setRestaurantReservation(long restaurantid, long customerid, String seatid, boolean reservationstatus,
 			Date bookingdate, Time fromtime, Time totime) {
@@ -27,10 +30,10 @@ public class RestaurantReservationCRUD {
 		restaurantReservaion.setFromTime(fromtime);
 		restaurantReservaion.setToTime(totime);
 
-		EntityManager em = PersistenceManager.INSTANCE.getEntityManager();
 		em.getTransaction().begin();
 		em.persist(restaurantReservaion);
 		em.getTransaction().commit();
 		em.close();
 	}
+
 }

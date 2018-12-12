@@ -10,6 +10,7 @@ import javax.persistence.criteria.Root;
 
 import com.srh.rsp.PersistenceManager;
 import com.srh.rsp.entity.DishDetails;
+import com.srh.rsp.entity.RestaurantDetails;
 
 public class DishCRUD {
 	String dishname, dishdescription, picturelink;
@@ -61,5 +62,20 @@ public class DishCRUD {
 		List<DishDetails> listOfDishDetails = em.createQuery(criteriaQuery).getResultList();
 		return listOfDishDetails;
 
+	}
+
+	public DishDetails dishDetailsOnId(long dishid) {
+		
+		CriteriaQuery<DishDetails> criteriaQuery = cbuilder.createQuery(DishDetails.class);
+		Root<DishDetails> dishDetailsRoot = criteriaQuery.from(DishDetails.class);
+		criteriaQuery.select(dishDetailsRoot);
+		criteriaQuery.where(cbuilder.equal(dishDetailsRoot.get("dishId"), dishid));
+		List<DishDetails> dishDetails = em.createQuery(criteriaQuery).getResultList();
+		if (dishDetails.isEmpty()) {
+			// list is empty
+			return null;
+		}
+		em.close();
+		return dishDetails.get(0);
 	}
 }

@@ -12,20 +12,23 @@ import com.srh.rsp.entity.RestaurantDish;
 
 public class SearchFunction {
 	String region, ssearch;
+	RestaurantDetailsSelect rDetailsSelect = new RestaurantDetailsSelect();
+	public static long restaurantID;
 
 	public void searchInput(Long userid) {
 		System.out.println("--------------Restaurant Selection Platform--------------");
 
-		System.out.print("Please choose a location for search: ");
+		System.out.print("\nLocations available for search: ");
 		RestaurantDetailsCRUD rDetailsCRUD = new RestaurantDetailsCRUD();
 		List<String> regionList = rDetailsCRUD.fetchAllRestaurantRegion();
 		for (int i = 0; i < regionList.size(); i++) {
 			System.out.println(i + 1 + "." + regionList.get(i));
 		}
-		System.out.println("\nEnter Choice");
+		System.out.println("\nInput Choice of location");
 		Scanner input = new Scanner(System.in);
 		try {
-			region = regionList.get(Integer.parseInt(input.nextLine()));
+			int choice = Integer.parseInt(input.nextLine());
+			region = regionList.get(choice - 1);
 			askToSearch(region, userid);
 			input.close();
 		} catch (Exception e) {
@@ -36,11 +39,10 @@ public class SearchFunction {
 	}
 
 	private void askToSearch(String region, Long userid) {
-		System.out.println("Search Dish or Restaurant: ");
+		System.out.println("\nSearch Dish or Restaurant: \n");
 		Scanner search = new Scanner(System.in);
 		try {
-			// call method search.nextline
-			displayRestaurants(search.nextLine(), region);
+			displayRestaurants(search.nextLine(), region, userid);
 			search.close();
 		} catch (Exception e) {
 			System.out.println("\n**************Please enter a valid input**************\n");
@@ -49,41 +51,58 @@ public class SearchFunction {
 
 	}
 
-	private void displayRestaurants(String search, String region) {
+	private void displayRestaurants(String search, String region, Long userid) {
 		List<RestaurantDetails> restaurantDetails = fetchRestaurantsOnSearch(search, region);
-		for (int i = 0; i < restaurantDetails.size(); i++) {
-			System.out.println(i + 1 + ". " + restaurantDetails.get(i).getRestaurantName());
-		}
-		System.out.println("******************************");
-		System.out.println(restaurantDetails.size() + 1 + ". Apply Further Filters \n0. Return to Main Menu ");
-		System.out.print("\nEnter choice: ");
-		Scanner input = new Scanner(System.in);
-		try {
-			int choice = Integer.parseInt(input.nextLine());
-			makeSelection(restaurantDetails, choice);
-			input.close();
-		} catch (Exception e) {
-			System.out.println("\n**************Please enter a valid input**************\n");
-		}
+		if (restaurantDetails.isEmpty()) {
+			System.out.println("\n No restaurants for that search");
+			System.out.println("\n**********************************");
+			System.out.println("\n0. Go back to search");
+			System.out.print("Enter Choice: ");
+			Scanner input = new Scanner(System.in);
+			try {
+				int choice = Integer.parseInt(input.nextLine());
+				if (choice == 0)
+					searchInput(userid);
+				input.close();
+			} catch (Exception e) {
+				System.out.println("\n**************Please enter a valid input**************\n");
 
+			}
+		} else {
+			for (int i = 0; i < restaurantDetails.size(); i++) {
+				System.out.println(i + 1 + ". " + restaurantDetails.get(i).getRestaurantName());
+			}
+			System.out.println("\n******************************");
+			int number = restaurantDetails.size() + 1;
+			System.out.println("\n" + number + ". Apply Further Filters \n0. Return to search ");
+			System.out.print("\nEnter choice: ");
+			Scanner input = new Scanner(System.in);
+			try {
+				int choice = Integer.parseInt(input.nextLine());
+				makeSelection(restaurantDetails, choice, userid);
+				input.close();
+			} catch (Exception e) {
+				System.out.println("\n**************Please enter a valid input**************\n");
+			}
+		}
 	}
 
-	private void makeSelection(List<RestaurantDetails> restaurantDetails, int choice) {
+	private void makeSelection(List<RestaurantDetails> restaurantDetails, int choice, Long userid) {
 		if (choice <= restaurantDetails.size() && choice != 0) {
-			RestaurantDetails rdetails = new RestaurantDetails();
-			// call Restaurant view with restaurant id
+
+			rDetailsSelect.displayRestaurantDetails(restaurantDetails.get(choice).getRestaurantId(), userid);
 		} else if (choice == 0) {
-			// call main menu
+			searchInput(userid);
 
 		} else {
-			chooseFiltersOnRestaurants(restaurantDetails);
+			chooseFiltersOnRestaurants(restaurantDetails, userid);
 		}
 
 	}
 
-	private void chooseFiltersOnRestaurants(List<RestaurantDetails> restaurantDetails) {
+	private void chooseFiltersOnRestaurants(List<RestaurantDetails> restaurantDetails, Long userid) {
 		boolean vFlag = true;
-		System.out.print("Do you need to display only Veg hotels ?(Enter Y (Yes) / N (NO): ");
+		System.out.print("\nDo you need to display only Veg hotels ?(Enter Y (Yes) / N (NO): \n");
 		Scanner input = new Scanner(System.in);
 		try {
 			char choice = input.nextLine().charAt(0);
@@ -91,13 +110,16 @@ public class SearchFunction {
 			case 'Y':
 			case 'y':
 				vFlag = false;
+				break;
 			case 'N':
 			case 'n':
 				vFlag = true;
+				break;
 			default:
 				System.out.println("Wrong Input");
+				break;
 			}
-			applyFiltersOnRestaurants(restaurantDetails, vFlag);
+			applyFiltersOnRestaurants(restaurantDetails, vFlag, userid);
 			input.close();
 		} catch (Exception e) {
 			System.out.println("\n**************Please enter a valid input**************\n");
@@ -117,20 +139,20 @@ public class SearchFunction {
 		 */
 	}
 
-	private void applyFiltersOnRestaurants(List<RestaurantDetails> restaurantDetails, boolean vFlag) {
+	private void applyFiltersOnRestaurants(List<RestaurantDetails> restaurantDetails, boolean vFlag, Long userid) {
 		for (int i = 0; i < restaurantDetails.size(); i++) {
 			if (vFlag == true)
 				System.out.println(i + 1 + ". " + restaurantDetails.get(i).getRestaurantName());
 			else if (restaurantDetails.get(i).isVegNon() == false)
 				System.out.println(i + 1 + ". " + restaurantDetails.get(i).getRestaurantName());
 		}
-		System.out.println("******************************");
-		System.out.println("\n0. Return to Main Menu ");
+		System.out.println("\n******************************");
+		System.out.println("\n0. Return to search ");
 		System.out.print("\nEnter choice: ");
 		Scanner input = new Scanner(System.in);
 		try {
 			int choice = Integer.parseInt(input.nextLine());
-			makeSelectionFilter(restaurantDetails, choice);
+			makeSelectionFilter(restaurantDetails, choice, userid);
 			input.close();
 		} catch (Exception e) {
 			System.out.println("\n**************Please enter a valid input**************\n");
@@ -138,12 +160,11 @@ public class SearchFunction {
 
 	}
 
-	private void makeSelectionFilter(List<RestaurantDetails> restaurantDetails, int choice) {
+	private void makeSelectionFilter(List<RestaurantDetails> restaurantDetails, int choice, Long userid) {
 		if (choice <= restaurantDetails.size() && choice != 0) {
-			RestaurantDetails rdetails = new RestaurantDetails();
-			// call Restaurant view with restaurant id
+			rDetailsSelect.displayRestaurantDetails(restaurantDetails.get(choice).getRestaurantId(), userid);
 		} else if (choice == 0) {
-			// call main menu
+			searchInput(userid);
 
 		}
 

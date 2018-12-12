@@ -60,7 +60,7 @@ public class CustomerAccountCRUD {
 		em.close();
 		return customerType.get(0);
 	}
-	
+
 	public CustomerLogin fetchCustomerID(String eMail, String password) {
 		EntityManager em = PersistenceManager.INSTANCE.getEntityManager();
 		CriteriaBuilder cbuilder = PersistenceManager.INSTANCE.getCriteriaBuilder();
@@ -71,10 +71,27 @@ public class CustomerAccountCRUD {
 				cbuilder.equal(customerRoot.get("password"), password));
 		List<CustomerLogin> customerType = em.createQuery(criteriaQuery).getResultList();
 		if (customerType.isEmpty()) {
-			//list is empty
+			// list is empty
 			return null;
 		}
 		em.close();
 		return customerType.get(0);
+	}
+
+	public void updateTest() {
+
+		CustomerLogin customerLogin = new CustomerLogin();
+
+		customerLogin.setCustomerId(1L);
+		customerLogin.setUserName("Sreehari M");
+		customerLogin.setPassword("abcd123abc#");
+		customerLogin.setEmailId("sreeharinairm@gmail.com");
+		customerLogin.setCustomerType("Both");
+		customerLogin.setPhoneNumber("9791154550");
+
+		em.getTransaction().begin();
+		em.persist(customerLogin);
+		em.getTransaction().commit();
+		em.close();
 	}
 }
