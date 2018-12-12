@@ -61,4 +61,17 @@ public class RestaurantReservationCRUD {
 		em.getTransaction().commit();
 		System.out.println("Request Status updated " + status);
 	}
+	
+	public List<RestaurantReservation> restaurantreservationonUserId(long userID){
+		CriteriaQuery<RestaurantReservation> criteriaQuery = cbuilder.createQuery(RestaurantReservation.class);
+		Root<RestaurantReservation> reservationDetailsRoot = criteriaQuery.from(RestaurantReservation.class);
+		criteriaQuery.select(reservationDetailsRoot);
+		criteriaQuery.where(cbuilder.equal(reservationDetailsRoot.get("userID"), userID));
+		List<RestaurantReservation> restaurantDetails = em.createQuery(criteriaQuery).getResultList();
+		if (restaurantDetails.isEmpty()) {
+			// list is empty
+			return null;
+		}
+		return restaurantDetails;
+	}
 }
