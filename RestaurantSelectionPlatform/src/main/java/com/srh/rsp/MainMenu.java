@@ -10,10 +10,13 @@ import com.srh.rsp.Restaurant.Bookings;
 import com.srh.rsp.Restaurant.UpdateRestaurant;
 
 import LogException.WriteExceptionToFile;
+import net.sf.jasperreports.engine.JasperFillManager;
 import srh.com.rsp.CustomerFunctionalities.Notifications;
+import com.srh.rsp.Reporting.reporting;
 
 public class MainMenu {
 	WriteExceptionToFile log = new WriteExceptionToFile();
+	reporting jasper = new reporting();
 
 	public void CustomerMainMenu() {
 		System.out.println("--------------Restaurant Selection Platform--------------");
@@ -222,6 +225,13 @@ public class MainMenu {
 	private void dailyReport() {
 		// Daily Report functionality
 		Date date = Date.valueOf(LocalDate.now());
+		if(LoginSession.userType.equals("User")) {
+			jasper.CustomerReport(date);
+		}
+		else {			
+		jasper.RestaurantReport(date);
+		}
+	
 	}
 	
 	private void monthlyReport() {
@@ -237,8 +247,14 @@ public class MainMenu {
 			System.out.print("To: ");
 			java.util.Date toDate = new SimpleDateFormat("yyyy-MM-dd").parse(input.nextLine());
 			java.sql.Date dateTo = new java.sql.Date(toDate.getTime());
+			if(LoginSession.userType.equals("User")) {
+				jasper.CustomerReportCustom(dateFrom,dateTo);
+			}
+			else {			
+			jasper.RestaurantReportCustom(dateFrom,dateTo);
+			}
 			
-			// Custom Report functionality
+			jasper.RestaurantReportCustom(dateFrom,dateTo);
 			
 		} catch (ParseException e) {
 			System.out.println("\n**************Something went wrong**************\n");
