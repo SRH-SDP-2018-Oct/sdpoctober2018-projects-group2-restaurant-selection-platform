@@ -2,7 +2,7 @@ package com.srh.rsp.Restaurant;
 
 import java.util.Scanner;
 
-import com.srh.rsp.MainMenu;
+import com.srh.rsp.LoginSession;
 import com.srh.rsp.dbAccess.CuisineCRUD;
 import com.srh.rsp.dbAccess.DishCRUD;
 import com.srh.rsp.dbAccess.RestaurantCuisineCRUD;
@@ -66,11 +66,11 @@ public class CusineDishes {
 				System.out.println("Press 0 to stop adding dishes or 1 to add dish: ");
 				choice = input.nextInt();
 			} while (choice != 0);
-			MainMenu menu = new MainMenu();
-			menu.OwnerMainMenu();
+			LoginSession.loadMenu();
 		} catch (Exception e) {
 			System.out.println("\n**************Please enter a valid input**************\n");
 			log.appendToFile(e);
+			System.exit(0);
 		}
 	}
 	

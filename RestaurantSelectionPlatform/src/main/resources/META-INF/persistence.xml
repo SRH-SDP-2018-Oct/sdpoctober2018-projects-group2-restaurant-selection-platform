@@ -13,7 +13,7 @@
 		<properties>
 			<!-- The JDBC URL to the database instance -->
 			<property name="javax.persistence.jdbc.url"
-				value="jdbc:mysql://localhost:3306/restaurant_schema?autoReconnect=true&amp;useSSL=false" />
+				value="jdbc:mysql://localhost:3306/restaurant_selection?autoReconnect=true&amp;useSSL=false" />
 			<!-- The database username -->
 			<property name="javax.persistence.jdbc.user" value="root" />
 			<!-- The database password -->

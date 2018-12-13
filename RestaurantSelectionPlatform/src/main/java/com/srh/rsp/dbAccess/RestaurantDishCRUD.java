@@ -17,7 +17,6 @@ public class RestaurantDishCRUD {
 	CriteriaBuilder cbuilder = PersistenceManager.INSTANCE.getCriteriaBuilder();
 
 	public void setRestaurantDish(long restaurantid, long dishid, String restaurantname, String dishname) {
-
 		RestaurantDish restaurantDish = new RestaurantDish();
 		restaurantDish.setRestaurantId(restaurantid);
 		restaurantDish.setDishId(dishid);
@@ -31,7 +30,7 @@ public class RestaurantDishCRUD {
 		em.close();
 	}
 
-	public RestaurantDish restaurantDishOnDishId(Long dishid) {
+	public RestaurantDish restaurantDishOnDishId(long dishid) {
 		CriteriaQuery<RestaurantDish> criteriaQuery = cbuilder.createQuery(RestaurantDish.class);
 		Root<RestaurantDish> restaurantDishDetailsRoot = criteriaQuery.from(RestaurantDish.class);
 		criteriaQuery.select(restaurantDishDetailsRoot);
@@ -45,8 +44,7 @@ public class RestaurantDishCRUD {
 
 	}
 
-	public List<RestaurantDish> listOfRestaurantDishOnRestaurantId(Long restaurantid) {
-
+	public List<RestaurantDish> listOfRestaurantDishOnRestaurantId(long restaurantid) {
 		CriteriaQuery<RestaurantDish> criteriaQuery = cbuilder.createQuery(RestaurantDish.class);
 		Root<RestaurantDish> restaurantDishRoot = criteriaQuery.from(RestaurantDish.class);
 		criteriaQuery.select(restaurantDishRoot);
