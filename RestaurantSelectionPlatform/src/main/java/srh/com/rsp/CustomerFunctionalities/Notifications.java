@@ -22,7 +22,7 @@ public class Notifications {
 	WriteExceptionToFile log = new WriteExceptionToFile();
 
 	public void displayNotification() {
-		if (LoginSession.userType == "User" || LoginSession.userType == "Both") {
+		if (LoginSession.userType.equals("User") || LoginSession.userType.equals("Both")) {
 			System.out.println("Please choose a region:");
 			RestaurantDetailsCRUD rDetailsCRUD = new RestaurantDetailsCRUD();
 			List<String> regionList = rDetailsCRUD.fetchAllRestaurantRegion();
@@ -35,7 +35,6 @@ public class Notifications {
 				region = regionList.get(Integer.parseInt(input.nextLine()) - 1);
 				restaurantdetails(region);
 				restaurantreservation();
-				input.close();
 			} catch (Exception e) {
 				System.out.println("\n**************Please enter a valid input**************\n");
 				log.appendToFile(e);
@@ -47,25 +46,19 @@ public class Notifications {
 		RestaurantDetailsCRUD rCrud = new RestaurantDetailsCRUD();
 		List<RestaurantDetails> restaurntDetails = rCrud.fetchRestaurantDetailsOnRegion(region);
 
-		for (int i = 0; i < restaurntDetails.size(); i++) {
-			System.out.println((i + 1 + "." + restaurntDetails.get(i).getRestaurantId()
-					+ restaurntDetails.get(i).getRestaurantName()));
-			System.out.println("restaurant name");
-			System.out.println("restaurantid");
-
-			offerdetails();
+		for (int i = 0; i < restaurntDetails.size()-1; i++) {
+			System.out.println("Restaurant Name: " + restaurntDetails.get(i).getRestaurantName());
+			offerdetails(restaurntDetails.get(i).getRestaurantId());
 		}
 	}
 
-	private void offerdetails() {
-		OfferCRUD oc = new OfferCRUD();
-		List<OfferDetails> offerdetails = oc.offerdetailsonRestaurantId(RestaurantDetailsSelect.restaurantID);
+	private void offerdetails(long restaurantID) {
+		OfferCRUD detailOffer = new OfferCRUD();
+		List<OfferDetails> offerdetails = detailOffer.offerdetailsonRestaurantId(restaurantID);
 		for (int i = 0; i < offerdetails.size(); i++) {
-			System.out.println(offerdetails.get(i).getOfferId() + offerdetails.get(i).getOfferDescription()
-					+ offerdetails.get(i).getOfferPercentage());
-			System.out.println("offer id");
-			System.out.println("offer percentage");
-			System.out.println("offer description");
+			System.out.println("---------------------Offers available---------------------");
+			System.out.println("Offer Description: " + offerdetails.get(i).getOfferDescription());
+			System.out.println("Offer Percentage: " + offerdetails.get(i).getOfferPercentage());
 		}
 	}
 
@@ -73,15 +66,9 @@ public class Notifications {
 		RestaurantReservationCRUD rrc = new RestaurantReservationCRUD();
 		List<RestaurantReservation> restaurantreservation = rrc.restaurantreservationonUserId(LoginSession.userID);
 		for (int i = 0; i < restaurantreservation.size(); i++) {
-			System.out.println(restaurantreservation.get(i).getReservationId()
-					+ restaurantreservation.get(i).getReservationStatus()
-					+ restaurantreservation.get(i).getBookingDate() + restaurantreservation.get(i).getFromTime()
-					+ restaurantreservation.get(i).getToTime());
-			System.out.println("Reservationid");
-			System.out.println("ReservationStautus");
-			System.out.println("BookingStatus");
-			System.out.println("FromTime");
-			System.out.println("ToTime");
+			System.out.println("---------------------Reservation Details---------------------");
+			System.out.println("Reservation from " + restaurantreservation.get(i).getFromTime() + "to " + restaurantreservation.get(i).getToTime());
+			System.out.println("Booking Status: " + restaurantreservation.get(i).getReservationStatus());
 		}
 	}
 }

@@ -10,10 +10,13 @@ import com.srh.rsp.Restaurant.Bookings;
 import com.srh.rsp.Restaurant.UpdateRestaurant;
 
 import LogException.WriteExceptionToFile;
+import net.sf.jasperreports.engine.JasperFillManager;
 import srh.com.rsp.CustomerFunctionalities.Notifications;
+import com.srh.rsp.Reporting.reporting;
 
 public class MainMenu {
 	WriteExceptionToFile log = new WriteExceptionToFile();
+	reporting jasper = new reporting();
 
 	public void CustomerMainMenu() {
 		System.out.println("--------------Restaurant Selection Platform--------------");
@@ -42,7 +45,8 @@ public class MainMenu {
 		case 3:
 			CustomerNotificaitons();
 			break;
-		case 4: Settings();
+		case 4: 
+			Settings();
 			break;
 		case 0:
 			System.exit(0);
@@ -57,7 +61,7 @@ public class MainMenu {
 		System.out.println("--------------Restaurant Selection Platform--------------");
 		System.out.println("Please proceed with below options:");
 		System.out.println(
-				"1. Add/Delete Restaurant \n2. Generate Report \n3. Manage Bookings \n4. Notifications \n5. Settings \n0. Exit");
+				"1. Add/Delete Restaurant \n2. Generate Report \n3. Manage Bookings \n4. Settings \n0. Exit");
 		System.out.print("\nEnter Choice: ");
 		try {
 			int choice = Integer.parseInt(input.nextLine());
@@ -81,9 +85,6 @@ public class MainMenu {
 			ManageBookings();
 			break;
 		case 4:
-			OwnerNotificaitons();
-			break;
-		case 5:
 			Settings();
 			break;
 		case 0:
@@ -126,7 +127,7 @@ public class MainMenu {
 			ManageBookings();
 			break;
 		case 5:
-			DualUserNotifications();
+			CustomerNotificaitons();
 			break;
 		case 6:
 			Settings();
@@ -155,6 +156,25 @@ public class MainMenu {
 		System.out.println("--------------Notifications--------------");
 		Notifications showNotification = new Notifications();
 		showNotification.displayNotification();
+		exitNotification();
+	}
+	
+	private void exitNotification() {
+		Scanner input = new Scanner(System.in);
+		System.out.println("\nPress 0 to go to main menu");
+		try {
+			int choice = Integer.parseInt(input.nextLine());
+			if (choice == 0)
+				LoginSession.loadMenu();
+			else {
+				System.out.println("Please enter a valid input");
+				exitNotification();
+			}
+		} catch (Exception e) {
+			System.out.println("\n**************Please enter a valid input**************\n");
+			log.appendToFile(e);
+			System.exit(0);
+		}
 	}
 
 	private void Settings() {
@@ -222,6 +242,13 @@ public class MainMenu {
 	private void dailyReport() {
 		// Daily Report functionality
 		Date date = Date.valueOf(LocalDate.now());
+		if(LoginSession.userType.equals("User")) {
+			jasper.CustomerReport(date);
+		}
+		else {			
+		jasper.RestaurantReport(date);
+		}
+	
 	}
 	
 	private void monthlyReport() {
@@ -237,8 +264,14 @@ public class MainMenu {
 			System.out.print("To: ");
 			java.util.Date toDate = new SimpleDateFormat("yyyy-MM-dd").parse(input.nextLine());
 			java.sql.Date dateTo = new java.sql.Date(toDate.getTime());
+			if(LoginSession.userType.equals("User")) {
+				jasper.CustomerReportCustom(dateFrom,dateTo);
+			}
+			else {			
+			jasper.RestaurantReportCustom(dateFrom,dateTo);
+			}
 			
-			// Custom Report functionality
+			jasper.RestaurantReportCustom(dateFrom,dateTo);
 			
 		} catch (ParseException e) {
 			System.out.println("\n**************Something went wrong**************\n");
@@ -260,15 +293,5 @@ public class MainMenu {
 		Bookings booking = new Bookings();
 		booking.showBookings();
 		LoginSession.loadMenu();
-	}
-
-	private void OwnerNotificaitons() {
-		System.out.println("--------------Restaurant Selection Platform--------------");
-		System.out.println("--------------Notifications--------------");
-	}
-
-	private void DualUserNotifications() {
-		System.out.println("--------------Restaurant Selection Platform--------------");
-		System.out.println("--------------Notifications--------------");
 	}
 }

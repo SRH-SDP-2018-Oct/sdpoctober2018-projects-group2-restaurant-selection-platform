@@ -64,7 +64,7 @@ public class RestaurantReservationCRUD {
 		CriteriaQuery<RestaurantReservation> criteriaQuery = cbuilder.createQuery(RestaurantReservation.class);
 		Root<RestaurantReservation> reservationDetailsRoot = criteriaQuery.from(RestaurantReservation.class);
 		criteriaQuery.select(reservationDetailsRoot);
-		criteriaQuery.where(cbuilder.equal(reservationDetailsRoot.get("userID"), userID));
+		criteriaQuery.where(cbuilder.equal(reservationDetailsRoot.get("customerId"), userID));
 		List<RestaurantReservation> restaurantDetails = em.createQuery(criteriaQuery).getResultList();
 		if (restaurantDetails.isEmpty()) {
 			// list is empty

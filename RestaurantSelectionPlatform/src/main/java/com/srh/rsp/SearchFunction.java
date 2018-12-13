@@ -21,12 +21,14 @@ public class SearchFunction {
 	public void searchInput(Long userid) {
 		System.out.println("--------------Restaurant Selection Platform--------------");
 
+
 		System.out.print("\nLocations available for search: \n");
 		RestaurantDetailsCRUD rDetailsCRUD = new RestaurantDetailsCRUD();
 		List<String> regionList = rDetailsCRUD.fetchAllRestaurantRegion();
 		for (int i = 0; i < regionList.size(); i++) {
 			System.out.println(i + 1 + "." + regionList.get(i));
 		}
+
 		System.out.println("0. Go back to main menu");
 		System.out.println("\nInput Choice of location :");
 		Scanner input = new Scanner(System.in);
