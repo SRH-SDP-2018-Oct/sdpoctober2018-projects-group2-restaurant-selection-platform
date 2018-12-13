@@ -4,7 +4,7 @@
 	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
 	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="DataAdapter.xml"/>
 	<queryString language="SQL">
-		<![CDATA[select * from restaurant_review]]>
+		<![CDATA[select * from restaurant_review where restaurant_selection.restaurant_review.`time_Stamp`= 20181213]]>
 	</queryString>
 	<field name="review_Id" class="java.lang.Integer">
 		<property name="com.jaspersoft.studio.field.label" value="review_Id"/>

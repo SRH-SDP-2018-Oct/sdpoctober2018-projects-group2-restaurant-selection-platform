@@ -9,7 +9,8 @@
  				 restaurant_selection.restaurant_reservation.`customer_Id` ,
   				 restaurant_selection.restaurant_reservation.`reservation_Status` ,
   				 restaurant_selection.restaurant_reservation.`booking_Date` 
-  				from  restaurant_selection.restaurant_details,restaurant_selection.restaurant_reservation]]>
+  				from  restaurant_selection.restaurant_details,restaurant_selection.restaurant_reservation
+  				where restaurant_selection.restaurant_reservation.`booking_Date`= 20181213]]>
 	</queryString>
 	<field name="restaurant_Id" class="java.lang.Integer">
 		<property name="com.jaspersoft.studio.field.label" value="restaurant_Id"/>
@@ -29,7 +30,7 @@
 		<property name="com.jaspersoft.studio.field.label" value="reservation_Status"/>
 		<property name="com.jaspersoft.studio.field.tree.path" value="restaurant_reservation"/>
 	</field>
-	<field name="booking_Date" class="java.util.Date">
+	<field name="booking_Date" class="java.sql.Timestamp">
 		<property name="com.jaspersoft.studio.field.label" value="booking_Date"/>
 		<property name="com.jaspersoft.studio.field.tree.path" value="restaurant_reservation"/>
 		<property name="net.sf.jasperreports.sql.field.column.name" value="booking_Date"/>
