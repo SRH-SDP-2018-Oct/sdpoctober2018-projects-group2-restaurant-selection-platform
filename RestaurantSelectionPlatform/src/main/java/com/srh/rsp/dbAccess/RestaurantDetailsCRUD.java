@@ -45,9 +45,9 @@ public class RestaurantDetailsCRUD {
 		em.getTransaction().begin();
 		em.persist(restaurantDetails);
 		em.getTransaction().commit();
-		//em.close();
+		// em.close();
 	}
-	
+
 	public RestaurantDetails getRestaurantID(String restaurantName) {
 		CriteriaQuery<RestaurantDetails> criteriaQuery = cbuilder.createQuery(RestaurantDetails.class);
 		Root<RestaurantDetails> restaurantDetailsRoot = criteriaQuery.from(RestaurantDetails.class);
@@ -58,7 +58,7 @@ public class RestaurantDetailsCRUD {
 			// list is empty
 			return null;
 		}
-		//em.close();
+		// em.close();
 		return restaurantDetails.get(0);
 	}
 
@@ -73,7 +73,7 @@ public class RestaurantDetailsCRUD {
 			// list is empty
 			return null;
 		}
-		//em.close();
+		// em.close();
 		return restaurantDetails.get(0);
 	}
 
@@ -82,15 +82,8 @@ public class RestaurantDetailsCRUD {
 		CriteriaQuery<RestaurantDetails> criteriaQuery = cbuilder.createQuery(RestaurantDetails.class);
 		Root<RestaurantDetails> restaurantDetailsRoot = criteriaQuery.from(RestaurantDetails.class);
 		criteriaQuery.select(restaurantDetailsRoot);
-		// EntityType<RestaurantDetails> type =
-		// em.getMetamodel().entity(RestaurantDetails.class);
-		// criteriaQuery.where(cbuilder.like(
-		// cbuilder.lower(
-		// restaurantDetailsRoot.get(type.getDeclaredSingularAttribute("restaurantName",
-		// String.class))),
-		// "%" + search.toLowerCase() + "%"));
 		criteriaQuery.where(cbuilder.like(cbuilder.lower(restaurantDetailsRoot.get("restaurantName")),
-				"%" + search.toLowerCase() + "%"), cbuilder.equal(restaurantDetailsRoot.get("region"), region));
+				"%" + search.toLowerCase() + "%"), cbuilder.equal(restaurantDetailsRoot.get("city"), region));
 		List<RestaurantDetails> listofRestaurantDetails = em.createQuery(criteriaQuery).getResultList();
 		return listofRestaurantDetails;
 
@@ -99,15 +92,15 @@ public class RestaurantDetailsCRUD {
 	public List<String> fetchAllRestaurantRegion() {
 		CriteriaQuery<String> criteriaQuery = cbuilder.createQuery(String.class);
 		Root<RestaurantDetails> restaurantDetailsRoot = criteriaQuery.from(RestaurantDetails.class);
-		criteriaQuery.select(restaurantDetailsRoot.get("region").as(String.class));
+		criteriaQuery.select(restaurantDetailsRoot.get("city").as(String.class));
 
-		List<String> listOfRegions = em.createQuery(criteriaQuery).getResultList();
+		List<String> listOfcities = em.createQuery(criteriaQuery).getResultList();
 
 		Set<String> hs = new HashSet<>();
-		hs.addAll(listOfRegions);
-		listOfRegions.clear();
-		listOfRegions.addAll(hs);
-		return listOfRegions;
+		hs.addAll(listOfcities);
+		listOfcities.clear();
+		listOfcities.addAll(hs);
+		return listOfcities;
 	}
 
 	public List<RestaurantDetails> fetchRestaurantDetailsOnRegion(String region) {
@@ -122,7 +115,7 @@ public class RestaurantDetailsCRUD {
 		return listofRestaurantDetails;
 
 	}
-	
+
 	public List<RestaurantDetails> listOfRestaurantDetailsOnCustomerId(Long customerID) {
 		CriteriaQuery<RestaurantDetails> criteriaQuery = cbuilder.createQuery(RestaurantDetails.class);
 		Root<RestaurantDetails> restaurantDetailsRoot = criteriaQuery.from(RestaurantDetails.class);
@@ -133,7 +126,7 @@ public class RestaurantDetailsCRUD {
 			// list is empty
 			return null;
 		}
-		//em.close();
+
 		return restaurantDetails;
 	}
 }
