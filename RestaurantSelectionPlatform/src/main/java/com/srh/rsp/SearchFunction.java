@@ -16,27 +16,34 @@ public class SearchFunction {
 	String region, ssearch;
 	RestaurantDetailsSelect rDetailsSelect = new RestaurantDetailsSelect();
 	WriteExceptionToFile log = new WriteExceptionToFile();
+	String wrongInput = "**************Please enter a valid input**************\n";
 
 	public void searchInput(Long userid) {
 		System.out.println("--------------Restaurant Selection Platform--------------");
 
-		System.out.println("\nLocations available for search: ");
+
+		System.out.print("\nLocations available for search: \n");
 		RestaurantDetailsCRUD rDetailsCRUD = new RestaurantDetailsCRUD();
 		List<String> regionList = rDetailsCRUD.fetchAllRestaurantRegion();
 		for (int i = 0; i < regionList.size(); i++) {
 			System.out.println(i + 1 + "." + regionList.get(i));
 		}
-		System.out.println("\nInput Choice of location or enter 0 to go back to main menu");
+
+		System.out.println("0. Go back to main menu");
+		System.out.println("\nInput Choice of location :");
 		Scanner input = new Scanner(System.in);
 		try {
 			int choice = Integer.parseInt(input.nextLine());
-			if (choice == 0)
+			if (choice == 0) {
 				LoginSession.loadMenu();
-			region = regionList.get(choice - 1);
-			askToSearch(region, userid);
+			} else {
+				region = regionList.get(choice - 1);
+				askToSearch(region, userid);
+			}
+
 			input.close();
 		} catch (Exception e) {
-			System.out.println("\n**************Please enter a valid input**************\n");
+			System.out.println("\n" + wrongInput + "n");
 			log.appendToFile(e);
 		}
 
@@ -49,13 +56,14 @@ public class SearchFunction {
 			displayRestaurants(search.nextLine(), region, userid);
 			search.close();
 		} catch (Exception e) {
-			System.out.println("\n**************Please enter a valid input**************\n");
+			System.out.println("\n" + wrongInput + "\n");
 			log.appendToFile(e);
 		}
 
 	}
 
 	private void displayRestaurants(String search, String region, Long userid) {
+		System.out.println("\n");
 		List<RestaurantDetails> restaurantDetails = fetchRestaurantsOnSearch(search, region);
 		if (restaurantDetails.isEmpty()) {
 			System.out.println("\n No restaurants for that search");
@@ -69,7 +77,7 @@ public class SearchFunction {
 					searchInput(userid);
 				input.close();
 			} catch (Exception e) {
-				System.out.println("\n**************Please enter a valid input**************\n");
+				System.out.println("\n" + wrongInput + "\n");
 				log.appendToFile(e);
 			}
 		} else {
@@ -86,7 +94,7 @@ public class SearchFunction {
 				makeSelection(restaurantDetails, choice, userid);
 				input.close();
 			} catch (Exception e) {
-				System.out.println("\n**************Please enter a valid input**************\n");
+				System.out.println("\n" + wrongInput + "\n");
 				log.appendToFile(e);
 			}
 		}
@@ -94,7 +102,7 @@ public class SearchFunction {
 
 	private void makeSelection(List<RestaurantDetails> restaurantDetails, int choice, Long userid) {
 		if (choice <= restaurantDetails.size() && choice != 0) {
-			rDetailsSelect.displayRestaurantDetails(restaurantDetails.get(choice).getRestaurantId(), userid);
+			rDetailsSelect.displayRestaurantDetails(restaurantDetails.get(choice - 1).getRestaurantId(), userid);
 		} else if (choice == 0) {
 			searchInput(userid);
 		} else {
@@ -125,12 +133,14 @@ public class SearchFunction {
 			applyFiltersOnRestaurants(restaurantDetails, vFlag, userid);
 			input.close();
 		} catch (Exception e) {
-			System.out.println("\n**************Please enter a valid input**************\n");
+			System.out.println("\n" + wrongInput + "\n");
 			log.appendToFile(e);
 		}
 	}
 
 	private void applyFiltersOnRestaurants(List<RestaurantDetails> restaurantDetails, boolean vFlag, Long userid) {
+
+		System.out.println("\n");
 		for (int i = 0; i < restaurantDetails.size(); i++) {
 			if (vFlag == true)
 				System.out.println(i + 1 + ". " + restaurantDetails.get(i).getRestaurantName());
@@ -146,7 +156,7 @@ public class SearchFunction {
 			makeSelectionFilter(restaurantDetails, choice, userid);
 			input.close();
 		} catch (Exception e) {
-			System.out.println("\n**************Please enter a valid input**************\n");
+			System.out.println("\n" + wrongInput + "\n");
 			log.appendToFile(e);
 		}
 
@@ -154,7 +164,7 @@ public class SearchFunction {
 
 	private void makeSelectionFilter(List<RestaurantDetails> restaurantDetails, int choice, Long userid) {
 		if (choice <= restaurantDetails.size() && choice != 0) {
-			rDetailsSelect.displayRestaurantDetails(restaurantDetails.get(choice).getRestaurantId(), userid);
+			rDetailsSelect.displayRestaurantDetails(restaurantDetails.get(choice - 1).getRestaurantId(), userid);
 		} else if (choice == 0) {
 			searchInput(userid);
 		}
@@ -164,54 +174,24 @@ public class SearchFunction {
 		RestaurantDetailsCRUD restaurantDetails = new RestaurantDetailsCRUD();
 		List<RestaurantDetails> listofRestaurantDetails = restaurantDetails.fetchRestaurantDetailsOnSearch(search,
 				region);
-		// if (listofRestaurantDetails != null)
 
-		// listofRestaurantDetails.forEach(restaurant -> {
-		// call searchhit entity for updation
-		// updateSearchHit(restaurant.getRestaurantId());
-
-		// });
-
-		// this section is for checking dishes table for matching dishname
 		DishCRUD dishCRUD = new DishCRUD();
 		RestaurantDishCRUD rDishCRUD = new RestaurantDishCRUD();
 
 		List<DishDetails> listOfDishDetails = dishCRUD.listOfDishOnSearch(search);
 		if (listOfDishDetails != null)
-
-			listOfDishDetails.forEach(dishId -> {
-				// call searchhit entity for updation
-				RestaurantDish restaurantDish = rDishCRUD.restaurantDishOnDishId(dishId.getDishId());
+			for (int i = 0; i < listOfDishDetails.size(); i++) {
+				RestaurantDish restaurantDish = rDishCRUD.restaurantDishOnDishId(listOfDishDetails.get(i).getDishId());
 				if (restaurantDish != null) {
 					RestaurantDetails restaurantDetail = restaurantDetails
 							.listOfRestaurantDetailsOnRestaurantId(restaurantDish.getRestaurantId());
-					if (restaurantDetail.getRegion() == region) {
+					if (restaurantDetail.getCity().equals(region)) {
 						listofRestaurantDetails.add(restaurantDetail);
 					}
-
 				}
-			});
+			}
+
 		return listofRestaurantDetails;
 	}
 
-	private void printRestaurantsForRegion(String region) {
-		RestaurantDetailsCRUD rDetailsCRUD = new RestaurantDetailsCRUD();
-		System.out.print("Please choose a restaurant: ");
-		List<RestaurantDetails> listOfRestaurantDetails = rDetailsCRUD.fetchRestaurantDetailsOnRegion(region);
-		for (int i = 0; i < listOfRestaurantDetails.size(); i++) {
-			System.out.println(i + 1 + "." + listOfRestaurantDetails.get(i).getRestaurantName());
-		}
-		System.out.println("\nEnter Choice");
-		Scanner input = new Scanner(System.in);
-		try {
-			int choiceRestaurant = Integer.parseInt(input.nextLine());
-			Long restaurantId = listOfRestaurantDetails.get(choiceRestaurant).getRestaurantId();
-			RestaurantDetailsSelect restaurantDetailsSelect = new RestaurantDetailsSelect();
-			// Call method to proceed fruther with restaurantId and CustomerLogin
-			// information
-			input.close();
-		} catch (Exception e) {
-			log.appendToFile(e);
-		}
-	}
 }

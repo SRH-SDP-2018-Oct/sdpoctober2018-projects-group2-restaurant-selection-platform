@@ -20,7 +20,7 @@ import srh.com.rsp.CustomerFunctionalities.TableReservation;
 public class RestaurantDetailsSelect {
 	public static long restaurantID;
 	WriteExceptionToFile log = new WriteExceptionToFile();
-	
+
 	public void displayRestaurantDetails(Long restaurantid, Long userid) {
 		RestaurantDetailsCRUD rDetailsCRUD = new RestaurantDetailsCRUD();
 		RestaurantDishCRUD rDishCRUD = new RestaurantDishCRUD();
@@ -30,14 +30,16 @@ public class RestaurantDetailsSelect {
 		List<RestaurantDish> listRDish = rDishCRUD.listOfRestaurantDishOnRestaurantId(restaurantid);
 		List<DishDetails> listOfDishDetails = new ArrayList<DishDetails>();
 
-		listRDish.forEach(dishId -> {
-			DishDetails dishDetail = dishCRUD.dishDetailsOnId(dishId.getDishId());
-			if (dishDetail != null) {
-				listOfDishDetails.add(dishDetail);
-			}
-		});
+		if (listRDish != null) {
+			listRDish.forEach(dishId -> {
+				DishDetails dishDetail = dishCRUD.dishDetailsOnId(dishId.getDishId());
+				if (dishDetail != null) {
+					listOfDishDetails.add(dishDetail);
+				}
+			});
+		}
 		restaurantID = restaurantid;
-		
+
 		List<RestaurantReview> rReview = rReviewCRUD.getRestaurantReviewsOnRestaurantId(restaurantid);
 
 		double averageRating = 0;
@@ -80,29 +82,30 @@ public class RestaurantDetailsSelect {
 
 		System.out.println("\nDishes available :");
 
-		for (int i = 0; i < listOfDishDetails.size(); i++) {
-			System.out.println(i + 1 + ". " + listOfDishDetails.get(i).getDishName() + "\n"
-					+ listOfDishDetails.get(i).getDishDescription() + '\n' + listOfDishDetails.get(i).getPrice() + " "
-					+ listOfDishDetails.get(i).getCurrency_Unit() + "\n" + listOfDishDetails.get(i).getCalories()
-					+ " Calories");
-			if (listOfDishDetails.get(i).isDishType() == false)
-				System.out.println("Veg");
-			else
-				System.out.println("Non Veg");
+		if (listOfDishDetails != null) {
+			for (int i = 0; i < listOfDishDetails.size(); i++) {
+				System.out.println(i + 1 + ". " + listOfDishDetails.get(i).getDishName() + "\n"
+						+ listOfDishDetails.get(i).getDishDescription() + '\n' + listOfDishDetails.get(i).getPrice()
+						+ " " + listOfDishDetails.get(i).getCurrency_Unit() + "\n"
+						+ listOfDishDetails.get(i).getCalories() + " Calories");
+				if (listOfDishDetails.get(i).isDishType() == false)
+					System.out.println("Veg");
+				else
+					System.out.println("Non Veg");
+			}
 		}
-
 		if (rReview != null) {
 			System.out.println("\nReviews :");
 			for (int i = 0; i <= 3; i++) {
 				System.out.println(i + 1 + ". " + "Description" + rReview.get(i).getReviewText() + "\n" + "Rating"
 						+ rReview.get(i).getRating() + '\n' + rReview.get(i).getDate() + " Calories");
 			}
-			}
-		
-			else {
-				System.out.println("Be the first one to review");	
-			}
-		
+		}
+
+		else {
+			System.out.println("Be the first one to review");
+		}
+
 		System.out.println("\n****************************************************** ");
 		System.out.println("Select an option:");
 		System.out.println("1.Make a reservation \n2.Give review \n3.Go back to search \n0. Back to Mail Menu");

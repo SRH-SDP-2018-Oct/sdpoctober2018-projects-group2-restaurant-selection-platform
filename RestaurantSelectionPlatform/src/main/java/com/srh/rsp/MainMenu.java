@@ -141,7 +141,7 @@ public class MainMenu {
 	}
 
 	private void SearchRestaurant() {
-		System.out.println("--------------Restaurant Selection Platform--------------");
+
 		try {
 			SearchFunction searchPage = new SearchFunction();
 			searchPage.searchInput(LoginSession.userID);
