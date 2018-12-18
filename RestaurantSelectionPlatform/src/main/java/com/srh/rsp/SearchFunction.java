@@ -21,7 +21,6 @@ public class SearchFunction {
 	public void searchInput(Long userid) {
 		System.out.println("--------------Restaurant Selection Platform--------------");
 
-
 		System.out.print("\nLocations available for search: \n");
 		RestaurantDetailsCRUD rDetailsCRUD = new RestaurantDetailsCRUD();
 		List<String> regionList = rDetailsCRUD.fetchAllRestaurantRegion();

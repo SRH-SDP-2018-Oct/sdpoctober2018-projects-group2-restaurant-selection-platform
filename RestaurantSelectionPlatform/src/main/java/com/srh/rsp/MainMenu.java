@@ -61,7 +61,7 @@ public class MainMenu {
 		System.out.println("--------------Restaurant Selection Platform--------------");
 		System.out.println("Please proceed with below options:");
 		System.out.println(
-				"1. Add/Delete Restaurant \n2. Generate Report \n3. Manage Bookings \n4. Settings \n0. Exit");
+				"1. Add Restaurant \n2. Generate Report \n3. Manage Bookings \n4. Settings \n0. Exit");
 		System.out.print("\nEnter Choice: ");
 		try {
 			int choice = Integer.parseInt(input.nextLine());

@@ -46,7 +46,7 @@ public class Notifications {
 		RestaurantDetailsCRUD rCrud = new RestaurantDetailsCRUD();
 		List<RestaurantDetails> restaurntDetails = rCrud.fetchRestaurantDetailsOnRegion(region);
 
-		for (int i = 0; i < restaurntDetails.size()-1; i++) {
+		for (int i = 0; i < restaurntDetails.size(); i++) {
 			System.out.println("Restaurant Name: " + restaurntDetails.get(i).getRestaurantName());
 			offerdetails(restaurntDetails.get(i).getRestaurantId());
 		}

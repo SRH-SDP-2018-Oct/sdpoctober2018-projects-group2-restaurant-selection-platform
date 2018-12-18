@@ -107,7 +107,7 @@ public class RestaurantDetailsCRUD {
 		CriteriaQuery<RestaurantDetails> criteriaQuery = cbuilder.createQuery(RestaurantDetails.class);
 		Root<RestaurantDetails> restaurantdetailsRoot = criteriaQuery.from(RestaurantDetails.class);
 		criteriaQuery.select(restaurantdetailsRoot);
-		criteriaQuery.where(cbuilder.equal(restaurantdetailsRoot.get("region"), region));
+		criteriaQuery.where(cbuilder.equal(restaurantdetailsRoot.get("city"), region));
 
 		List<RestaurantDetails> listofRestaurantDetails = em.createQuery(criteriaQuery).getResultList();
 		return listofRestaurantDetails;

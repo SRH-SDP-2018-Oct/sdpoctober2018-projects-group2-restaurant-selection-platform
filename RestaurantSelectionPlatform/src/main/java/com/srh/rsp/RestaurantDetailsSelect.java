@@ -96,9 +96,10 @@ public class RestaurantDetailsSelect {
 		}
 		if (rReview != null) {
 			System.out.println("\nReviews :");
-			for (int i = 0; i <= 3; i++) {
-				System.out.println(i + 1 + ". " + "Description" + rReview.get(i).getReviewText() + "\n" + "Rating"
-						+ rReview.get(i).getRating() + '\n' + rReview.get(i).getDate() + " Calories");
+
+			for (int i = 0; i < rReview.size(); i++) {
+				System.out.println(i + 1 + ". " + "Description: " + rReview.get(i).getReviewText() + "\n" + "Rating: "
+						+ rReview.get(i).getRating() + '\n' + rReview.get(i).getTimeStamp());
 			}
 		}
 
@@ -106,7 +107,7 @@ public class RestaurantDetailsSelect {
 			System.out.println("Be the first one to review");
 		}
 
-		System.out.println("\n****************************************************** ");
+		System.out.println("\n*************************************** ");
 		System.out.println("Select an option:");
 		System.out.println("1.Make a reservation \n2.Give review \n3.Go back to search \n0. Back to Mail Menu");
 		System.out.print("Enter Choice: ");

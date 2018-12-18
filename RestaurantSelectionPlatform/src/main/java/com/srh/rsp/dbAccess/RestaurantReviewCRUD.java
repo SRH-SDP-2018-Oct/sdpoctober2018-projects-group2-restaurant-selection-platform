@@ -1,6 +1,5 @@
 package com.srh.rsp.dbAccess;
 
-import java.sql.Date;
 import java.sql.Timestamp;
 import java.util.List;
 
@@ -17,19 +16,17 @@ public class RestaurantReviewCRUD {
 	String reviewtext;
 	float raing;
 	Timestamp timestamp;
-	Date date;
 
 	CriteriaBuilder cbuilder = PersistenceManager.INSTANCE.getCriteriaBuilder();
 	EntityManager em = PersistenceManager.INSTANCE.getEntityManager();
 
 	public void setRestaurantReview(long restaurantid, long customerid, String reviewtext, float rating,
-			Timestamp timestamp, Date date) {
+			Timestamp timestamp) {
 		RestaurantReview restaurantReview = new RestaurantReview();
 		restaurantReview.setRestaurantId(restaurantid);
 		restaurantReview.setCustomerId(customerid);
 		restaurantReview.setReviewText(reviewtext);
 		restaurantReview.setTimeStamp(timestamp);
-		restaurantReview.setDate(date);
 
 		em.getTransaction().begin();
 		em.persist(restaurantReview);

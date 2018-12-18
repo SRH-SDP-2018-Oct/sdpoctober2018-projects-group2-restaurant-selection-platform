@@ -1,6 +1,5 @@
 package com.srh.rsp.entity;
 
-import java.sql.Date;
 import java.sql.Timestamp;
 
 import javax.persistence.Column;
@@ -31,9 +30,6 @@ public class RestaurantReview {
 	@Column(name = "time_Stamp")
 	private Timestamp timeStamp;
 
-	@Column(name = "date")
-	private Date date;
-
 	public long getReview_Id() {
 		return reviewId;
 	}
@@ -60,14 +56,6 @@ public class RestaurantReview {
 
 	public void setTimeStamp(Timestamp timeStamp) {
 		this.timeStamp = timeStamp;
-	}
-
-	public Date getDate() {
-		return date;
-	}
-
-	public void setDate(Date date) {
-		this.date = date;
 	}
 
 	public long getReviewId() {
@@ -97,8 +85,7 @@ public class RestaurantReview {
 	@Override
 	public String toString() {
 		return "RestaurantReview [reviewId=" + reviewId + ", restaurantId=" + restaurantId + ", customerId="
-				+ customerId + ", rating=" + rating + ", reviewText=" + reviewText + ", timeStamp=" + timeStamp
-				+ ", date=" + date + "]";
+				+ customerId + ", rating=" + rating + ", reviewText=" + reviewText + ", timeStamp=" + timeStamp + "]";
 	}
 
 }

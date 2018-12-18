@@ -47,8 +47,10 @@ public class TableReservation {
 
 	private void MakeReservation() {
 		RestaurantReservationCRUD request = new RestaurantReservationCRUD();
-		request.setRestaurantReservation(RestaurantDetailsSelect.restaurantID, LoginSession.userID, data.noOfPeople, "Processing", data.date,
-				data.timeFrom, data.timeTo);
+		request.setRestaurantReservation(RestaurantDetailsSelect.restaurantID, LoginSession.userID, data.noOfPeople,
+				"Processing", data.date, data.timeFrom, data.timeTo);
+		System.out.println("\n Reservation request sent");
+		System.out.println("\n Forwading you to Main menu........");
 		LoginSession.loadMenu();
 	}
 }

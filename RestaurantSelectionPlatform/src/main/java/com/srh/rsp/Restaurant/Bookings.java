@@ -19,13 +19,23 @@ public class Bookings {
 		List<RestaurantDetails> restaurantIDs = restaurants.listOfRestaurantDetailsOnCustomerId(LoginSession.userID);
 		RestaurantReservationCRUD reservation = new RestaurantReservationCRUD();
 		List<RestaurantReservation> reservationDetails = null;
-		for (RestaurantDetails listItem : restaurantIDs) {
-			reservationDetails = reservation.getRestaurantReservation(listItem.getRestaurantId());
-			if (reservationDetails != null)
-				for (RestaurantReservation data : reservationDetails) {
-					System.out.println("\n" + data);
-					decideBooking(data);
+		if (restaurantIDs != null) {
+			for (RestaurantDetails listItem : restaurantIDs) {
+				reservationDetails = reservation.getRestaurantReservation(listItem.getRestaurantId());
+				if (reservationDetails != null)
+					for (RestaurantReservation data : reservationDetails) {
+						System.out.println("\n" + data);
+						decideBooking(data);
+					}
+				else {
+					System.out.println("No pending reservations.");
+					LoginSession.loadMenu();
 				}
+			} 
+		}
+		else {
+			System.out.println("No pending reservations.");
+			LoginSession.loadMenu();
 		}
 	}
 

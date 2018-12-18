@@ -11,7 +11,7 @@ import LogException.WriteExceptionToFile;
 
 public class CustomerReview {
 	WriteExceptionToFile log = new WriteExceptionToFile();
-	
+
 	public void giveRating() {
 		Scanner input = new Scanner(System.in);
 		System.out.println("Please rate our restaurant");
@@ -34,10 +34,11 @@ public class CustomerReview {
 		Scanner input = new Scanner(System.in);
 		System.out.println("Please provide your feedback");
 		String review = input.nextLine();
-		
+
 		// DB call to enter rating & review
 		RestaurantReviewCRUD newReview = new RestaurantReviewCRUD();
-		newReview.setRestaurantReview(RestaurantDetailsSelect.restaurantID, LoginSession.userID, review, rating, new Timestamp(System.currentTimeMillis()), null);
+		newReview.setRestaurantReview(RestaurantDetailsSelect.restaurantID, LoginSession.userID, review, rating,
+				new Timestamp(System.currentTimeMillis()));
 		System.out.println("Thank you for your feedback ");
 		LoginSession.loadMenu();
 	}
